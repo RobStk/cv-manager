@@ -1,0 +1,1 @@
+This folder contains React Components along with their own styles.

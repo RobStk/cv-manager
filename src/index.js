@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
+import CVManager from "./CV-Manager";
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 root.render(
 	<React.StrictMode>
-		<App />
+		<CVManager />
 	</React.StrictMode>
 );

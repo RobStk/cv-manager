@@ -1,0 +1,1 @@
+This folder contains general styles common to the entire application. You will find styles for individual Components in the another folders containing those Components.
