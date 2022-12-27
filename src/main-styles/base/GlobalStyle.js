@@ -1,12 +1,26 @@
 import { createGlobalStyle } from "styled-components";
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`	
 	html {
-    	//TODO
+    	box-sizing: border-box;
+
+		*,
+		*::before,
+		*::after {
+			box-sizing: inherit;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+		}
 	}
 	
 	body {
-		//TODO
+		height: 100vh;
+		font-family: 'Poppins', sans-serif;
+		font-size: 13px;
+    	background-color: ${({ theme }) => theme.colors.bgPrimary};
 	}
 `;
 
