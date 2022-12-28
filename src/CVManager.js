@@ -1,12 +1,13 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
+import simpleTheme from "./main-styles/themes/simple-theme";
 import CVManagerLayout from "./layout/CVManagerLayout";
 import GlobalStyle from "./main-styles/base/GlobalStyle";
-import simpleTheme from "./main-styles/themes/simple-theme";
 import MainContainerLayout from "./layout/MainContainerLayout";
 import MainFooter from "./components/MainFooter";
 import CVHeaderLayout from "./layout/CVHeaderLayout";
 import CVContentLayout from "./layout/CVContentLayout";
+import Name from "./components/Name";
 
 class CVManager extends React.Component {
 	render() {
@@ -16,9 +17,12 @@ class CVManager extends React.Component {
 				<CVManagerLayout>
 					<MainContainerLayout>
 						<CVHeaderLayout>
-							<div>col 1</div>
-							<div>col 2</div>
-							<div>col 3</div>
+							<div className="name-wrapper">
+								<Name />
+							</div>
+							<div className="contact-wrapper">
+								<div>col 2</div>
+							</div>
 						</CVHeaderLayout>
 						<CVContentLayout>
 							<div>col 1</div>

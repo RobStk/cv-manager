@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`	
 	html {
     	box-sizing: border-box;
+		font-size: 13px;
 
 		*,
 		*::before,
@@ -19,8 +20,9 @@ const GlobalStyle = createGlobalStyle`
 	body {
 		height: 100vh;
 		font-family: 'Poppins', sans-serif;
-		font-size: 13px;
     	background-color: ${({ theme }) => theme.colors.bgPrimary};
+
+		/* background-color: black; */
 	}
 `;
 
