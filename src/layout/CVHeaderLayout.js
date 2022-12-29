@@ -22,6 +22,11 @@ const CVHeaderLayout = styled.div`
             padding-left: ${props => props.theme.spaces.main};
         }
 	}
+
+	.contact-wrapper {
+		padding-top: 0.5rem;
+		padding-right: 0.5rem;
+	}
 `;
 
 CVHeaderLayout.displayName = "CVHeaderLayout";

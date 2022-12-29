@@ -8,6 +8,7 @@ import MainFooter from "./components/MainFooter";
 import CVHeaderLayout from "./layout/CVHeaderLayout";
 import CVContentLayout from "./layout/CVContentLayout";
 import Name from "./components/Name";
+import ContactSection from "./components/ContactSection";
 
 class CVManager extends React.Component {
 	render() {
@@ -21,7 +22,7 @@ class CVManager extends React.Component {
 								<Name />
 							</div>
 							<div className="contact-wrapper">
-								<div>col 2</div>
+								<ContactSection />
 							</div>
 						</CVHeaderLayout>
 						<CVContentLayout>
