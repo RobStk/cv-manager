@@ -9,6 +9,7 @@ import CVHeaderLayout from "./layout/CVHeaderLayout";
 import CVContentLayout from "./layout/CVContentLayout";
 import Name from "./components/Name";
 import ContactSection from "./components/ContactSection";
+import AboutColumn from "./components/AboutColumn";
 
 class CVManager extends React.Component {
 	render() {
@@ -25,9 +26,13 @@ class CVManager extends React.Component {
 								<ContactSection />
 							</div>
 						</CVHeaderLayout>
-						<CVContentLayout>
-							<div>col 1</div>
-							<div>col 2</div>
+						<CVContentLayout>							
+							<div className="content-column">
+								<AboutColumn />
+							</div>
+							<div className="content-column">
+								col 2
+							</div>
 						</CVContentLayout>
 					</MainContainerLayout>
 					<MainFooter />

@@ -5,7 +5,17 @@ const CVContentLayout = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 
-	> :first-child {
+	.content-column {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		padding-top: ${props => props.theme.spaces.main};
+		padding-bottom: ${props => props.theme.spaces.main};
+		padding-right: ${props => props.theme.spaces.main};
+		padding-left: 0;
+	}
+
+	.content-column:first-child {
 		background-color: ${({ theme }) => theme.colors.bgSecondary};
 		color: ${({ theme }) => theme.colors.fgSecondary};
 		border-top-right-radius: 2rem;
@@ -16,7 +26,7 @@ const CVContentLayout = styled.div`
 		}
 	}
 
-	> :last-child {
+	.content-column:last-child {
 		> div {
 			gap: 1rem;
 			justify-content: space-around;
