@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 const GradeStyled = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 0.2em;
+
 	.grade {
 		font-size: large;
 		line-height: 110%;
@@ -11,6 +15,12 @@ const GradeStyled = styled.div`
 		font-variant: small-caps;
 		font-size: large;
 		line-height: 110%;
+	}
+
+	.grade-items {
+		display: flex;
+		flex-direction: column;
+		gap: 0.2em;
 	}
 `;
 

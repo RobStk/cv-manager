@@ -1,12 +1,16 @@
 import React from "react";
 import GradeStyled from "./GradeStyled";
+import RowItem from "./RowItem";
 
 class Grade extends React.Component {
 	constructor(props) {
 		super(props);
 	}
 	render() {
-		const rowFields = [];
+		const rowFields = [
+			<RowItem key="0" title="Field: " content="Lorem, ipsum dolor sit amet consectetur adipisicing elit." />,
+			<RowItem key="1" title="Spec: " content="Repellendus molestias, magnam architecto consequuntur provident" />
+		];
 		return (
 			<GradeStyled>
 				<div className="grade-header">
@@ -14,7 +18,7 @@ class Grade extends React.Component {
 					<div className="grade">Grade</div>
 					<div className="desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</div>
 				</div>
-				<div>
+				<div className="grade-items">
 					{rowFields}
 				</div>
 			</GradeStyled>
