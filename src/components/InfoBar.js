@@ -7,6 +7,9 @@ class InfoBar extends React.Component {
 		content: PropTypes.string
 	};
 
+	/* -------------------------------------------- */
+	/* Constructor 									*/
+	/* -------------------------------------------- */
 	constructor(props) {
 		super(props);
 
@@ -14,6 +17,9 @@ class InfoBar extends React.Component {
 		this.content = props.content;
 	}
 
+	/* -------------------------------------------- */
+	/* Render 										*/
+	/* -------------------------------------------- */
 	render() {
 		return (
 			<InfoBarStyled>

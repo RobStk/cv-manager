@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const RowItemStyled = styled.div`
 	.row-title {
-		font-size: large;
+		font-size: larger;
 		text-decoration: underline;
 		line-height: 110%;
 	}

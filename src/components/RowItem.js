@@ -18,7 +18,8 @@ class RowItem extends React.Component {
 	render() {
 		return (
 			<RowItemStyled>
-				<span className="row-title">{this.props.title}</span>
+				<span className="row-title">{this.props.title + ":"}</span>
+				<span >{" "}</span>
 				<span className="row-content">{this.props.content}</span>
 			</RowItemStyled>
 		);

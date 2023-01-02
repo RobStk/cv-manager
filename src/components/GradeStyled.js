@@ -17,7 +17,7 @@ const GradeStyled = styled.div`
 		margin-bottom: 0.1rem;
 		display: flex;
 		flex-direction: column;
-		gap: 0.1rem;
+		gap: 0.2rem;
 		line-height: 100%;
 	}
 `;

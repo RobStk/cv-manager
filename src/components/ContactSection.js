@@ -18,30 +18,6 @@ class ContactSection extends React.Component {
 	constructor(props) {
 		super(props);
 		this.contacts = props.contacts ? props.contacts : [];
-
-		// TODO temp
-		this.contacts = [
-			{
-				id: 0,
-				type: "facebook",
-				value: "profile.facebook.com"
-			},
-			{
-				id: 1,
-				type: "email",
-				value: "email@host.com"
-			},
-			{
-				id: 2,
-				type: "gitHub",
-				value: "profile.github.com"
-			},
-			{
-				id: 3,
-				type: "phone",
-				value: "+01234567890"
-			}
-		];
 	}
 
 	/* -------------------------------------------- */
