@@ -4,23 +4,21 @@ const GradeStyled = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 0.2em;
-
-	.grade {
-		font-size: large;
-		line-height: 110%;
-		letter-spacing: 1px;
-	}
+	text-align: justify;
 
 	.desc {
 		font-variant: small-caps;
 		font-size: large;
-		line-height: 110%;
+		line-height: 100%;
 	}
 
 	.grade-items {
+		margin-top: 0.1rem;
+		margin-bottom: 0.1rem;
 		display: flex;
 		flex-direction: column;
-		gap: 0.2em;
+		gap: 0.1rem;
+		line-height: 100%;
 	}
 `;
 

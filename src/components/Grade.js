@@ -15,7 +15,7 @@ class Grade extends React.Component {
 			<GradeStyled>
 				<div className="grade-header">
 					<div className="date">11.12.2015</div>
-					<div className="grade">Grade</div>
+					<h3 className="grade">Grade</h3>
 					<div className="desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</div>
 				</div>
 				<div className="grade-items">
