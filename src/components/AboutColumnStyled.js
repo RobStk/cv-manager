@@ -23,6 +23,9 @@ const AboutColumnStyled = styled.div`
 		> *{
 			margin-left: ${props => props.theme.spaces.main};
 			margin-right: 1rem;
+			display: flex;
+			flex-direction: column;
+			gap: 0.6rem;
 
 			h3 {
 				font-size: large;
@@ -30,6 +33,10 @@ const AboutColumnStyled = styled.div`
 				letter-spacing: 1px;
 				text-transform: uppercase;
 				font-weight: bold;
+			}
+			
+			p {
+				text-align: justify;
 			}
 		}
 	}

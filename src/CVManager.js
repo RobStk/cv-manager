@@ -87,6 +87,21 @@ class CVManager extends React.Component {
 						}
 					]
 				},
+				{
+					grade: "Grade1",
+					date: "11.11.2011",
+					desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
+					additional: [
+						{
+							title: "Field",
+							content: "Repellendus molestias, magnam architecto consequuntur provident"
+						},
+						{
+							title: "Spec",
+							content: "Repellendus molestias, magnam architecto consequuntur provident"
+						}
+					]
+				},
 			],
 			experience: [
 				{
