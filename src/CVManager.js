@@ -11,6 +11,7 @@ import CVContentLayout from "./layout/CVContentLayout";
 import Name from "./components/Name";
 import ContactSection from "./components/ContactSection";
 import AboutColumn from "./components/AboutColumn";
+import DiagramsColumn from "./components/DiagramsColumn";
 
 class CVManager extends React.Component {
 	static propTypes = {
@@ -48,7 +49,7 @@ class CVManager extends React.Component {
 								<AboutColumn data={this.personalData} />
 							</div>
 							<div className="content-column">
-								col 2
+								<DiagramsColumn data={this.personalData.skillDiagrams} />
 							</div>
 						</CVContentLayout>
 					</MainContainerLayout>
@@ -115,6 +116,15 @@ class CVManager extends React.Component {
 						}
 					]
 				},
+			],
+			skillDiagrams: [
+				{
+					type: "pie",
+					name: "section name",
+					diagrams: [
+						{ name: "skillName", value: "55" }
+					]
+				}
 			]
 		};
 		return tempData;

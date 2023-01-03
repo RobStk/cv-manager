@@ -4,25 +4,28 @@ import { FaFeather as DefaultIcon } from "react-icons/fa";
 import { FaGithubSquare as GitHubIcon } from "react-icons/fa";
 import { FaMobileAlt as PhoneIcon } from "react-icons/fa";
 
-class IconFactory extends React.Component {
+class IconsFactory extends React.Component {
 
-	/** @param {string} iconType */
+	/**
+	 * @param {string} iconType
+	 * @returns {React.Component|null}
+	 */
 	static create(iconType) {
 		switch (iconType) {
 
 		case "email":
-			return <EmailIcon/>;
+			return <EmailIcon />;
 
 		case "gitHub":
-			return <GitHubIcon/>;
+			return <GitHubIcon />;
 
 		case "phone":
-			return <PhoneIcon/>;
+			return <PhoneIcon />;
 
 		default:
-			return <DefaultIcon/>;
+			return <DefaultIcon />;
 		}
 	}
 }
 
-export default IconFactory;
+export default IconsFactory;

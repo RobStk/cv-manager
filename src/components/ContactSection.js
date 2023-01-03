@@ -9,7 +9,7 @@ class ContactSection extends React.Component {
 	/* Types 										*/
 	/* -------------------------------------------- */
 	static propTypes = {
-		contacts: propTypes.arrayOf(propTypes.element)
+		contacts: propTypes.array
 	};
 
 	/* -------------------------------------------- */
@@ -24,8 +24,8 @@ class ContactSection extends React.Component {
 	/* Render 										*/
 	/* -------------------------------------------- */
 	render() {
-		const contacts = this.contacts.map((contact) =>
-			<Contact key={contact.id} type={contact.type} value={contact.value} />
+		const contacts = this.contacts.map((contact, index) =>
+			<Contact key={index} type={contact.type} value={contact.value} />
 		);
 		return (
 			<ContactSectionStyled>

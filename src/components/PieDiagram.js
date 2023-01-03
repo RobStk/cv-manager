@@ -1,36 +1,30 @@
 import React from "react";
 import propTypes from "prop-types";
-import IconsFactory from "./factories/iconsFactory";
-import ContactStyled from "./ContactStyled";
+import PieDiagramStyled from "./PieDiagramStyled";
 
-class Contact extends React.Component {
+class PieDiagram extends React.Component {
 
 	/* -------------------------------------------- */
 	/* Types 										*/
 	/* -------------------------------------------- */
 	static propTypes = {
-		type: propTypes.string,
-		value: propTypes.string,
+		data: propTypes.object
 	};
 
 	/* -------------------------------------------- */
 	/* Constructor 									*/
 	/* -------------------------------------------- */
-	constructor(props) {
-		super(props);
-		this.icon = IconsFactory.create(this.props.type);
-	}
 
 	/* -------------------------------------------- */
 	/* Render 										*/
 	/* -------------------------------------------- */
 	render() {
 		return (
-			<ContactStyled>
-				{this.icon} {this.props.value}
-			</ContactStyled>
+			<PieDiagramStyled>
+				<div className="skill-name">{this.props.data.skillName}</div>
+			</PieDiagramStyled>
 		);
 	}
 }
 
-export default Contact;
+export default PieDiagram;
