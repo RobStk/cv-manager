@@ -1,5 +1,7 @@
 import React from "react";
+import FlexColumnLayout from "../../layout/FlexColumnLayout";
 import FlexRowCenterLayout from "../../layout/FlexRowCenterLayout";
+import BarDiagram from "../BarDiagram";
 import PieDiagram from "../PieDiagram";
 
 class DiagramsSectionFactory extends React.Component {
@@ -10,17 +12,26 @@ class DiagramsSectionFactory extends React.Component {
 	 * @returns {React.Component|null}
 	 */
 	static create(data) {
-		const diagrams = data.diagrams.map((diagram, index) => <PieDiagram data={diagram} key={index} />);
 		switch (data.type) {
 		case "pie":
+		{
+			const diagrams = data.diagrams.map((diagram, index) => <PieDiagram data={diagram} key={index} />);
 			return (
 				<FlexRowCenterLayout>
 					{diagrams}
 				</FlexRowCenterLayout>
 			);
+		}
 
 		case "bar":
-			return null; //TODO
+		{
+			const diagrams = data.diagrams.map((diagram, index) => <BarDiagram data={diagram} key={index} />);
+			return (
+				<FlexColumnLayout>
+					{diagrams}
+				</FlexColumnLayout>
+			);
+		}
 
 		case "list":
 			return null; //TODO
