@@ -122,7 +122,9 @@ class CVManager extends React.Component {
 					type: "pie",
 					name: "section name",
 					diagrams: [
-						{ name: "skillName", value: "55" }
+						{ name: "skill 1", value: "55" },
+						{ name: "skill 2", value: "85" },
+						{ name: "skill 3", value: "15" }
 					]
 				}
 			]

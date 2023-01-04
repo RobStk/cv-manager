@@ -20,8 +20,8 @@ class PieDiagram extends React.Component {
 	/* -------------------------------------------- */
 	render() {
 		return (
-			<PieDiagramStyled>
-				<div className="skill-name">{this.props.data.skillName}</div>
+			<PieDiagramStyled value={this.props.data.value}>
+				<div className="diagram-name">{this.props.data.name}</div>
 			</PieDiagramStyled>
 		);
 	}
