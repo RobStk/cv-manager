@@ -20,7 +20,7 @@ class DiagramsColumn extends React.Component {
 		this.skillSections = this.props.data.map((skillSection, index) => {
 			return (
 				<div className="diagram-section" key={index}>
-					<h2 className="skills-section-name">{skillSection.name}</h2>
+					<h2 className="diagram-section-name">{skillSection.name}</h2>
 					{DiagramsSectionFactory.create(skillSection)}
 				</div>
 			);

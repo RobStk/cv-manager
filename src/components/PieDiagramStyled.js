@@ -7,7 +7,7 @@ const PieDiagramStyled = styled.div.attrs(props => {
 	let rotateBase = 45;
 	const rotateAdditional = (props.value > 0 && props.value <= 100) ? (360 * props.value / 100) : 0;
 	return ({
-		size: props.size || "7rem",
+		size: props.size || "100px",
 		color: props.color || props.theme.colors.fgPrimary,
 		bgColor: props.bgColor || props.theme.colors.bgPrimary,
 		rotateBase: rotateBase,

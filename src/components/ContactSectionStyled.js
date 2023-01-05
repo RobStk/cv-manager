@@ -14,7 +14,7 @@ const ContactSectionStyled = styled.div`
     .contacts {
         display: flex;
         width: 100%;
-        flex-wrap: wrap;
+        flex-direction: column;
         column-gap: 0.5em;
     }
 `;

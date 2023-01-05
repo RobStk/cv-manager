@@ -25,6 +25,10 @@ const GlobalStyle = createGlobalStyle`
 		/* background-color: black; */
 	}
 
+	h2 {
+		font-size: 2rem;
+	}
+
 	ul {
 		list-style: inside;
 	}

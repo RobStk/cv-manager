@@ -17,7 +17,7 @@ class DiagramsSectionFactory extends React.Component {
 		{
 			const diagrams = data.diagrams.map((diagram, index) => <PieDiagram data={diagram} key={index} />);
 			return (
-				<FlexRowCenterLayout>
+				<FlexRowCenterLayout paddingTop="0.5rem" paddingBottom="0.5rem">
 					{diagrams}
 				</FlexRowCenterLayout>
 			);
@@ -27,7 +27,7 @@ class DiagramsSectionFactory extends React.Component {
 		{
 			const diagrams = data.diagrams.map((diagram, index) => <BarDiagram data={diagram} key={index} />);
 			return (
-				<FlexColumnLayout>
+				<FlexColumnLayout gap={"0.2rem"}>
 					{diagrams}
 				</FlexColumnLayout>
 			);

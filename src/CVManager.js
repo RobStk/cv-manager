@@ -124,16 +124,9 @@ class CVManager extends React.Component {
 					diagrams: [
 						{ name: "skill 1", value: "55" },
 						{ name: "skill 2", value: "85" },
-						{ name: "skill 3", value: "15" }
-					]
-				},
-				{
-					type: "bar",
-					name: "bar section name",
-					diagrams: [
-						{ name: "skill 1", value: "55" },
-						{ name: "skill 2", value: "85" },
-						{ name: "skill 3", value: "15" }
+						{ name: "skill 3", value: "100" },
+						{ name: "skill 4", value: "50" },
+						{ name: "skill 5", value: "15" }
 					]
 				},
 				{
@@ -142,7 +135,20 @@ class CVManager extends React.Component {
 					diagrams: [
 						{ name: "skill 1" },
 						{ name: "skill 2" },
-						{ name: "skill 3" }
+						{ name: "skill 3" },
+						{ name: "skill 4" },
+						{ name: "skill 5" }
+					]
+				},
+				{
+					type: "bar",
+					name: "bar section name",
+					diagrams: [
+						{ name: "skill 1", value: "55" },
+						{ name: "skill 2", value: "85" },
+						{ name: "skill 3", value: "100" },
+						{ name: "skill 4", value: "50" },
+						{ name: "skill 5", value: "15" }
 					]
 				}
 			]

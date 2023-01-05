@@ -12,7 +12,6 @@ const AboutColumnStyled = styled.div`
         margin-bottom: 0.6rem;
         border-top-right-radius: 1000px;
         border-bottom-right-radius: 1000px;
-		font-size: large;
 		
 		> *{
 			margin-left: ${props => props.theme.spaces.main};
