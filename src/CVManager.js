@@ -135,6 +135,15 @@ class CVManager extends React.Component {
 						{ name: "skill 2", value: "85" },
 						{ name: "skill 3", value: "15" }
 					]
+				},
+				{
+					type: "list",
+					name: "list section name",
+					diagrams: [
+						{ name: "skill 1" },
+						{ name: "skill 2" },
+						{ name: "skill 3" }
+					]
 				}
 			]
 		};

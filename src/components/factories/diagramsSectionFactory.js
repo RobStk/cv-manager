@@ -34,7 +34,14 @@ class DiagramsSectionFactory extends React.Component {
 		}
 
 		case "list":
-			return null; //TODO
+		{
+			const diagrams = data.diagrams.map((diagram, index) => <li key={index}>{diagram.name}</li>);
+			return (
+				<ul>
+					{diagrams}
+				</ul>
+			);
+		}
 
 		default:
 			return null;

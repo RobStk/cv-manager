@@ -24,6 +24,10 @@ const GlobalStyle = createGlobalStyle`
 
 		/* background-color: black; */
 	}
+
+	ul {
+		list-style: inside;
+	}
 `;
 
 export default GlobalStyle;
