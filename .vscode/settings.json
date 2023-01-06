@@ -2,5 +2,8 @@
     "javascript.preferences.quoteStyle": "double",
     "cSpell.words": [
         "vmax"
-    ]
+    ],
+    "cSpell.ignorePaths": [
+        "data",
+    ],
 }
