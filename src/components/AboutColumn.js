@@ -15,16 +15,22 @@ class AboutColumn extends React.Component {
 			<AboutColumnStyled>
 				<div className="about-section">
 					<div className="header"><h2>O mnie</h2></div>
-					<div className="content"><AboutMe /></div>
+					<div className="content">
+						<AboutMe data={this.props.data.aboutMe} />
+					</div>
 
 				</div>
 				<div className="about-section">
 					<div className="header"><h2>Wykształcenie</h2></div>
-					<div className="content"><Education data={this.props.data.education} /></div>
+					<div className="content">
+						<Education data={this.props.data?.education || []} />
+					</div>
 				</div>
 				<div className="about-section">
 					<div className="header"><h2>Doświadczenie</h2></div>
-					<div className="content"><Experience data={this.props.data.experience} /></div>
+					<div className="content">
+						<Experience data={this.props.data?.experience || []} />
+					</div>
 				</div>
 			</AboutColumnStyled>
 		);

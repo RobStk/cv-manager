@@ -9,24 +9,17 @@ class Experience extends React.Component {
 	};
 
 	/* -------------------------------------------- */
-	/* Constructor 									*/
+	/* Render 										*/
 	/* -------------------------------------------- */
-	constructor(props) {
-		super(props);
-		this.gradeArr = props.data.map((grade, index) => {
+	render() {
+		const gradeArr = this.props.data.map((grade, index) => {
 			return (
 				<Grade key={index} data={grade} />
 			);
 		});
-	}
-
-	/* -------------------------------------------- */
-	/* Render 										*/
-	/* -------------------------------------------- */
-	render() {
 		return (
 			<ExperienceStyled>
-				{this.gradeArr}
+				{gradeArr}
 			</ExperienceStyled>
 		);
 	}

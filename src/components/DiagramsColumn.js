@@ -13,11 +13,11 @@ class DiagramsColumn extends React.Component {
 	};
 
 	/* -------------------------------------------- */
-	/* Constructor 									*/
+	/* Render 										*/
 	/* -------------------------------------------- */
-	constructor(props) {
-		super(props);
-		this.skillSections = this.props.data.map((skillSection, index) => {
+	render() {
+		const data = this.props.data || [];
+		const skillSections = data.map((skillSection, index) => {
 			return (
 				<div className="diagram-section" key={index}>
 					<h2 className="diagram-section-name">{skillSection.name}</h2>
@@ -25,15 +25,9 @@ class DiagramsColumn extends React.Component {
 				</div>
 			);
 		});
-	}
-
-	/* -------------------------------------------- */
-	/* Render 										*/
-	/* -------------------------------------------- */
-	render() {
 		return (
 			<DiagramsColumnStyled>
-				{this.skillSections}
+				{skillSections}
 			</DiagramsColumnStyled>
 		);
 	}

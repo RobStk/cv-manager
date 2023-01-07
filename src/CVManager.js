@@ -12,10 +12,11 @@ import Name from "./components/Name";
 import ContactSection from "./components/ContactSection";
 import AboutColumn from "./components/AboutColumn";
 import DiagramsColumn from "./components/DiagramsColumn";
+import DataService from "./modules/data-service";
 
 class CVManager extends React.Component {
 	static propTypes = {
-		dataPath: PropTypes.string
+		dataUrl: PropTypes.string
 	};
 
 	/* -------------------------------------------- */
@@ -23,14 +24,24 @@ class CVManager extends React.Component {
 	/* -------------------------------------------- */
 	constructor(props) {
 		super(props);
-		this.dataPath = props.dataPath;
-		this.personalData = this.getPersonalData();
+		this.dataManager = new DataService(this.props.dataUrl);
+		this.state = { personalData: {} };
+	}
+
+	/* -------------------------------------------- */
+	/* Initialization 								*/
+	/* -------------------------------------------- */
+	componentDidMount() {
+		this.getPersonalData();
 	}
 
 	/* -------------------------------------------- */
 	/* Render 										*/
 	/* -------------------------------------------- */
 	render() {
+		const name = this.state.personalData.name;
+		const contacts = this.state.personalData.contact;
+		const skillDiagrams = this.state.personalData.skillDiagrams;
 		return (
 			<ThemeProvider theme={simpleTheme}>
 				<GlobalStyle />
@@ -38,18 +49,18 @@ class CVManager extends React.Component {
 					<MainContainerLayout>
 						<CVHeaderLayout>
 							<div className="name-wrapper">
-								<Name />
+								<Name data={name} />
 							</div>
 							<div className="contact-wrapper">
-								<ContactSection contacts={this.personalData.contact} />
+								<ContactSection data={contacts} />
 							</div>
 						</CVHeaderLayout>
 						<CVContentLayout>							
 							<div className="content-column">
-								<AboutColumn data={this.personalData} />
+								<AboutColumn data={this.state.personalData} />
 							</div>
 							<div className="content-column">
-								<DiagramsColumn data={this.personalData.skillDiagrams} />
+								<DiagramsColumn data={skillDiagrams} />
 							</div>
 						</CVContentLayout>
 					</MainContainerLayout>
@@ -62,98 +73,9 @@ class CVManager extends React.Component {
 	/* -------------------------------------------- */
 	/* Methods 										*/
 	/* -------------------------------------------- */
-	getPersonalData() {
-		const tempData = {
-			name: "Name Surname",
-			contact: [
-				{ type: "phone", value: "123456789" },
-				{ type: "email", value: "email@host.com" },
-				{ type: "gitHub", value: "profile.github.com" },
-				{ type: "facebook", value: "profile.facebook.com" },
-			],
-			aboutMe: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis libero aperiam, iste voluptatibus, tempora quam perspiciatis numquam maiores exercitationem odio qui quidem quasi similique laudantium sed ex veniam fugit ? Commodi. Lorem, ipsum dolor sit amet consectetur adipisicing elit.Laborum hic dolorum debitis eveniet animi sapiente, aliquid quidem accusantium necessitatibus minima ea vitae quia.Veritatis saepe modi dolore ipsum quibusdam sint ?",
-			education: [
-				{
-					grade: "Grade1",
-					date: "11.11.2011",
-					desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-					additional: [
-						{
-							title: "Field",
-							content: "Repellendus molestias, magnam architecto consequuntur provident"
-						},
-						{
-							title: "Spec",
-							content: "Repellendus molestias, magnam architecto consequuntur provident"
-						}
-					]
-				},
-				{
-					grade: "Grade1",
-					date: "11.11.2011",
-					desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-					additional: [
-						{
-							title: "Field",
-							content: "Repellendus molestias, magnam architecto consequuntur provident"
-						},
-						{
-							title: "Spec",
-							content: "Repellendus molestias, magnam architecto consequuntur provident"
-						}
-					]
-				},
-			],
-			experience: [
-				{
-					grade: "Grade1",
-					date: "12.12.2022",
-					desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-					additional: [
-						{
-							title: "Title",
-							content: "Repellendus molestias, magnam architecto consequuntur provident"
-						}
-					]
-				},
-			],
-			skillDiagrams: [
-				{
-					type: "pie",
-					name: "pie section name",
-					diagrams: [
-						{ name: "skill 1", value: "55" },
-						{ name: "skill 2", value: "85" },
-						{ name: "skill 3", value: "100" },
-						{ name: "skill 4", value: "50" },
-						{ name: "skill 5", value: "15" }
-					]
-				},
-				{
-					type: "list",
-					name: "list section name",
-					diagrams: [
-						{ name: "skill 1" },
-						{ name: "skill 2" },
-						{ name: "skill 3" },
-						{ name: "skill 4" },
-						{ name: "skill 5" }
-					]
-				},
-				{
-					type: "bar",
-					name: "bar section name",
-					diagrams: [
-						{ name: "skill 1", value: "55" },
-						{ name: "skill 2", value: "85" },
-						{ name: "skill 3", value: "100" },
-						{ name: "skill 4", value: "50" },
-						{ name: "skill 5", value: "15" }
-					]
-				}
-			]
-		};
-		return tempData;
+	async getPersonalData() {
+		const data = await this.dataManager.getData();
+		if (data) this.setState({ personalData: data });
 	}
 }
 

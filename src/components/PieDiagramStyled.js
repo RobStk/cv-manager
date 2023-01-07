@@ -15,7 +15,6 @@ const PieDiagramStyled = styled.div.attrs(props => {
 	});
 	/* -------------------------------------------- */
 })`
-	${(props) => { console.log(props); }}
     display: flex;
 	align-items: center;
 	justify-content: center;

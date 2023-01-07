@@ -27,7 +27,7 @@ class DataService {
 	/* ---------------------------------------------------- */
 
 	/**
-	 * Returns a promise resolved to a data array or null.
+	 * Returns a promise resolved to a json-data or null.
 	 * @returns {Promise<Array|null>}
 	 */
 	async #getData() {

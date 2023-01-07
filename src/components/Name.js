@@ -1,26 +1,24 @@
 import React from "react";
+import propTypes from "prop-types";
 import NameStyled from "./NameStyled";
 
 class Name extends React.Component {
 	/* -------------------------------------------- */
-	/* Constructor 									*/
+	/* Types 										*/
 	/* -------------------------------------------- */
-	constructor(props) {
-		super(props);
-		this.name = "Name Surname";
-		this.profession = "";
-	}
+	static propTypes = {
+		data: propTypes.string,
+	};
 
 	/* -------------------------------------------- */
 	/* Render 										*/
 	/* -------------------------------------------- */
 	render() {
-		const nameElement = <h1>{this.name}</h1>;
-		const professionElement = this.profession ? <h2>{this.profession}</h2> : null;
+		const name = this.props.data || "";
+		const nameElement = <h1>{name}</h1>;
 		return (
 			<NameStyled>
 				{nameElement}
-				{professionElement}
 			</NameStyled>
 		);
 	}
