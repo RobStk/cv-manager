@@ -42,6 +42,8 @@ class CVManager extends React.Component {
 		const name = this.state.personalData.name;
 		const contacts = this.state.personalData.contact;
 		const skillDiagrams = this.state.personalData.skillDiagrams;
+		const footer = this.state.personalData.footer;
+		console.log(footer);
 		return (
 			<ThemeProvider theme={simpleTheme}>
 				<GlobalStyle />
@@ -64,7 +66,7 @@ class CVManager extends React.Component {
 							</div>
 						</CVContentLayout>
 					</MainContainerLayout>
-					<MainFooter />
+					<MainFooter data={footer} />
 				</CVManagerLayout>
 			</ThemeProvider>
 		);

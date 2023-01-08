@@ -1,12 +1,24 @@
 import React from "react";
+import propTypes from "prop-types";
 import InfoBar from "./InfoBar";
 import MainFooterStyled from "./MainFooterStyled";
 
 class MainFooter extends React.Component {
+	/* -------------------------------------------- */
+	/* Types 										*/
+	/* -------------------------------------------- */
+	static propTypes = {
+		data: propTypes.object,
+	};
+
+	/* -------------------------------------------- */
+	/* Render 										*/
+	/* -------------------------------------------- */
 	render() {
+		const mainContent = this.props.data ? this.props.data.mainContent : "";
 		return (
 			<MainFooterStyled>
-				<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae voluptatibus voluptates libero, maiores illo deserunt quibusdam. Temporibus officia repellendus dolores maxime, ut ea molestias. Fuga ipsa ullam tenetur nulla ab.</p>
+				<p>{mainContent}</p>
 				<InfoBar content="placeholder" />
 			</MainFooterStyled>
 		);

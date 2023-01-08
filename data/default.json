@@ -139,6 +139,9 @@
 					}
 				]
 			}
-		]
+		],
+		"footer": {
+			"mainContent": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae voluptatibus voluptates libero, maiores illo deserunt quibusdam. Temporibus officia repellendus dolores maxime, ut ea molestias. Fuga ipsa ullam tenetur nulla ab."
+		}
 	}
 }
