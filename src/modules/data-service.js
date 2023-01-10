@@ -4,8 +4,9 @@ class DataService {
 	/* Interface 											*/
 	/* ---------------------------------------------------- */
 	get getData() { return this.#getData; }
+	get setData() { return this.#setData; }
 	get addItem() { return this.#addItem; }
-	get updateItem() { return this.#updateItem; }
+	get changeItem() { return this.#changeItem; }
 
 	/* ---------------------------------------------------- */
 	/* Constructor 											*/
@@ -46,12 +47,38 @@ class DataService {
 	// ----------------------------------------------------
 
 	/**
-	 * Adds data and return true if resolved or false if rejected.
-	 * @param {Object} itemToAdd 
+	 * Updates data and return true if resolved or false if rejected.
+	 * @param {Object} data 
 	 * @returns {Promise<boolean>}
 	 */
-	async #addItem(itemToAdd) {
-		const dataString = JSON.stringify(itemToAdd);
+	async #setData(data) {
+		const dataString = JSON.stringify(data);
+		try {
+			const response = await fetch(this.#url, {
+				method: "put",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: dataString
+			});
+			if (!response.ok) throw new Error(response.status);
+			return true;
+		}
+		catch (error) {
+			console.error("Http error:", error.status || error);
+			return false;
+		}
+	}
+
+	// ----------------------------------------------------
+
+	/**
+	 * Adds data and return true if resolved or false if rejected.
+	 * @param {Object} item 
+	 * @returns {Promise<boolean>}
+	 */
+	async #addItem(item) {
+		const dataString = JSON.stringify(item);
 		try {
 			const response = await fetch(this.#url, {
 				method: "post",
@@ -75,14 +102,14 @@ class DataService {
 
 	/**
 	 * Updates data and return true if resolved or false if rejected.
-	 * @param {Object} itemToUpdate 
+	 * @param {Object} item 
 	 * @returns {Promise<boolean>}
 	 */
-	async #updateItem(itemToUpdate) {
-		const id = itemToUpdate.id;
-		const tempId = itemToUpdate.tempId;
-		if (id && tempId) delete itemToUpdate.tempId;
-		const dataString = JSON.stringify(itemToUpdate);
+	async #changeItem(item) {
+		const id = item.id;
+		const tempId = item.tempId;
+		if (id && tempId) delete item.tempId;
+		const dataString = JSON.stringify(item);
 		try {
 			const response = await fetch(this.#url + "/" + id, {
 				method: "put",
