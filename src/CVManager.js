@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { ThemeProvider } from "styled-components";
 import simpleTheme from "./main-styles/themes/simple-theme";
@@ -14,71 +14,56 @@ import AboutColumn from "./components/AboutColumn";
 import DiagramsColumn from "./components/DiagramsColumn";
 import DataService from "./modules/data-service";
 
-class CVManager extends React.Component {
-	static propTypes = {
-		dataUrl: PropTypes.string
-	};
+export default function CVManager({ dataUrl }) {
+	const [data, setData] = useState({});
 
-	/* -------------------------------------------- */
-	/* Constructor 									*/
-	/* -------------------------------------------- */
-	constructor(props) {
-		super(props);
-		this.dataManager = new DataService(this.props.dataUrl);
-		this.state = { personalData: {} };
-	}
+	useEffect(() => {
+		let ignore = false;
 
-	/* -------------------------------------------- */
-	/* Initialization 								*/
-	/* -------------------------------------------- */
-	componentDidMount() {
-		this.getPersonalData();
-	}
+		async function fetchData() {
+			const dataService = new DataService(dataUrl);
+			const jsonData = await dataService.getData();
+			if (!ignore && jsonData) {
+				setData(jsonData);
+			}
+		}
 
-	/* -------------------------------------------- */
-	/* Render 										*/
-	/* -------------------------------------------- */
-	render() {
-		const name = this.state.personalData.name;
-		const contacts = this.state.personalData.contact;
-		const skillDiagrams = this.state.personalData.skillDiagrams;
-		const footer = this.state.personalData.footer;
-		console.log(footer);
-		return (
-			<ThemeProvider theme={simpleTheme}>
-				<GlobalStyle />
-				<CVManagerLayout>
-					<MainContainerLayout>
-						<CVHeaderLayout>
-							<div className="name-wrapper">
-								<Name data={name} />
-							</div>
-							<div className="contact-wrapper">
-								<ContactSection data={contacts} />
-							</div>
-						</CVHeaderLayout>
-						<CVContentLayout>							
-							<div className="content-column">
-								<AboutColumn data={this.state.personalData} />
-							</div>
-							<div className="content-column">
-								<DiagramsColumn data={skillDiagrams} />
-							</div>
-						</CVContentLayout>
-					</MainContainerLayout>
-					<MainFooter data={footer} />
-				</CVManagerLayout>
-			</ThemeProvider>
-		);
-	}
+		fetchData();
+	}, [dataUrl]);
 
-	/* -------------------------------------------- */
-	/* Methods 										*/
-	/* -------------------------------------------- */
-	async getPersonalData() {
-		const data = await this.dataManager.getData();
-		if (data) this.setState({ personalData: data });
-	}
+	const name = data.name;
+	const contacts = data.contact;
+	const skillDiagrams = data.skillDiagrams;
+	const footer = data.footer;
+
+	return (
+		<ThemeProvider theme={simpleTheme}>
+			<GlobalStyle />
+			<CVManagerLayout>
+				<MainContainerLayout>
+					<CVHeaderLayout>
+						<div className="name-wrapper">
+							<Name data={name} />
+						</div>
+						<div className="contact-wrapper">
+							<ContactSection data={contacts} />
+						</div>
+					</CVHeaderLayout>
+					<CVContentLayout>
+						<div className="content-column">
+							<AboutColumn data={data} />
+						</div>
+						<div className="content-column">
+							<DiagramsColumn data={skillDiagrams} />
+						</div>
+					</CVContentLayout>
+				</MainContainerLayout>
+				<MainFooter data={footer} />
+			</CVManagerLayout>
+		</ThemeProvider>
+	);
 }
 
-export default CVManager;
+CVManager.propTypes = {
+	dataUrl: PropTypes.string
+};

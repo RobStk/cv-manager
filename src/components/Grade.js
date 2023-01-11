@@ -3,38 +3,25 @@ import PropTypes from "prop-types";
 import GradeStyled from "./GradeStyled";
 import RowItem from "./RowItem";
 
-class Grade extends React.Component {
-	static propTypes = {
-		data: PropTypes.object
-	};
+export default function Grade({ data }) {
+	const additionalArr = data.additional.map((add, index) => {
+		return <RowItem key={index} title={add.title} content={add.content} />;
+	});
 
-	/* -------------------------------------------- */
-	/* Constructor 									*/
-	/* -------------------------------------------- */
-	constructor(props) {
-		super(props);
-		this.additionalArr = this.props.data.additional.map((add, index) => {
-			return <RowItem key={index} title={add.title} content={add.content} />;
-		});
-	}
-
-	/* -------------------------------------------- */
-	/* Render 										*/
-	/* -------------------------------------------- */
-	render() {
-		return (
-			<GradeStyled>
-				<div className="grade-header">
-					<div className="date">{this.props.data.date}</div>
-					<h3 className="grade">{this.props.data.grade}</h3>
-					<div className="desc">{this.props.data.desc}</div>
-				</div>
-				<div className="grade-items">
-					{this.additionalArr}
-				</div>
-			</GradeStyled>
-		);
-	}
+	return (
+		<GradeStyled>
+			<div className="grade-header">
+				<div className="date">{data.date}</div>
+				<h3 className="grade">{data.grade}</h3>
+				<div className="desc">{data.desc}</div>
+			</div>
+			<div className="grade-items">
+				{additionalArr}
+			</div>
+		</GradeStyled>
+	);
 }
 
-export default Grade;
+Grade.propTypes = {
+	data: PropTypes.object
+};

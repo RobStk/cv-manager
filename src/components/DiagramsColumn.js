@@ -3,34 +3,23 @@ import propTypes from "prop-types";
 import DiagramsColumnStyled from "./DiagramsColumnStyled";
 import DiagramsSectionFactory from "./factories/diagramsSectionFactory";
 
-class DiagramsColumn extends React.Component {
-
-	/* -------------------------------------------- */
-	/* Types 										*/
-	/* -------------------------------------------- */
-	static propTypes = {
-		data: propTypes.array,
-	};
-
-	/* -------------------------------------------- */
-	/* Render 										*/
-	/* -------------------------------------------- */
-	render() {
-		const data = this.props.data || [];
-		const skillSections = data.map((skillSection, index) => {
-			return (
-				<div className="diagram-section" key={index}>
-					<h2 className="diagram-section-name">{skillSection.name}</h2>
-					{DiagramsSectionFactory.create(skillSection)}
-				</div>
-			);
-		});
+export default function DiagramsColumn({ data }) {
+	const dataArr = data || [];
+	const skillSections = dataArr.map((skillSection, index) => {
 		return (
-			<DiagramsColumnStyled>
-				{skillSections}
-			</DiagramsColumnStyled>
+			<div className="diagram-section" key={index}>
+				<h2 className="diagram-section-name">{skillSection.name}</h2>
+				{DiagramsSectionFactory.create(skillSection)}
+			</div>
 		);
-	}
+	});
+	return (
+		<DiagramsColumnStyled>
+			{skillSections}
+		</DiagramsColumnStyled>
+	);
 }
 
-export default DiagramsColumn;
+DiagramsColumn.propTypes = {
+	data: propTypes.array,
+};

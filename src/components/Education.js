@@ -3,26 +3,21 @@ import PropTypes from "prop-types";
 import EducationStyled from "./EducationStyled";
 import Grade from "./Grade";
 
-class Education extends React.Component {
-	static propTypes = {
-		data: PropTypes.array
-	};
+export default function Education({ data }) {
 
-	/* -------------------------------------------- */
-	/* Render 										*/
-	/* -------------------------------------------- */
-	render() {
-		const gradeArr = this.props.data.map((grade, index) => {
-			return (
-				<Grade key={index} data={grade} />
-			);
-		});
+	const gradeArr = data.map((grade, index) => {
 		return (
-			<EducationStyled>
-				{gradeArr}
-			</EducationStyled>
+			<Grade key={index} data={grade} />
 		);
-	}
+	});
+
+	return (
+		<EducationStyled>
+			{gradeArr}
+		</EducationStyled>
+	);
 }
 
-export default Education;
+Education.propTypes = {
+	data: PropTypes.array
+};
