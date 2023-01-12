@@ -12,9 +12,11 @@ import Name from "./components/Name";
 import ContactSection from "./components/ContactSection";
 import AboutColumn from "./components/AboutColumn";
 import DiagramsColumn from "./components/DiagramsColumn";
+import Modal from "./components/Modal";
 
 export default function CVManager({ dataManager }) {
 	const [data, setData] = useState({});
+	const [isModalActive, setModalActiveState] = useState(true);
 
 	useEffect(() => {
 		let ignore = false;
@@ -37,6 +39,7 @@ export default function CVManager({ dataManager }) {
 	return (
 		<ThemeProvider theme={simpleTheme}>
 			<GlobalStyle />
+			{isModalActive && <Modal content="modal content" handleClose={() => setModalActiveState(false)} />}
 			<CVManagerLayout>
 				<MainContainerLayout>
 					<CVHeaderLayout>
