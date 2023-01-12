@@ -12,24 +12,22 @@ import Name from "./components/Name";
 import ContactSection from "./components/ContactSection";
 import AboutColumn from "./components/AboutColumn";
 import DiagramsColumn from "./components/DiagramsColumn";
-import DataService from "./modules/data-service";
 
-export default function CVManager({ dataUrl }) {
+export default function CVManager({ dataManager }) {
 	const [data, setData] = useState({});
 
 	useEffect(() => {
 		let ignore = false;
 
 		async function fetchData() {
-			const dataService = new DataService(dataUrl);
-			const jsonData = await dataService.getData();
+			const jsonData = await dataManager.getData();
 			if (!ignore && jsonData) {
 				setData(jsonData);
 			}
 		}
-
 		fetchData();
-	}, [dataUrl]);
+		return () => { ignore = true; };
+	}, []);
 
 	const name = data.name;
 	const contacts = data.contact;
@@ -65,5 +63,5 @@ export default function CVManager({ dataUrl }) {
 }
 
 CVManager.propTypes = {
-	dataUrl: PropTypes.string
+	dataManager: PropTypes.object
 };
