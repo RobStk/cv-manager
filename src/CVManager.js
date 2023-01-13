@@ -13,6 +13,8 @@ import ContactSection from "./components/ContactSection";
 import AboutColumn from "./components/AboutColumn";
 import DiagramsColumn from "./components/DiagramsColumn";
 import Modal from "./components/Modal";
+import InputRow from "./components/InputRow";
+import Form from "./components/Form";
 
 export default function CVManager({ dataManager }) {
 	const [data, setData] = useState({});
@@ -36,10 +38,15 @@ export default function CVManager({ dataManager }) {
 	const skillDiagrams = data.skillDiagrams;
 	const footer = data.footer;
 
+	//TODO Testing lines to remove:
+	const input = <input type="text" id="id" defaultValue="input value" />;
+	const inputRow = <InputRow label="label" input={input} />;
+	const modalContent = <Form inputRows={[inputRow]} />;
+
 	return (
 		<ThemeProvider theme={simpleTheme}>
 			<GlobalStyle />
-			{isModalActive && <Modal content="modal content" handleClose={() => setModalActiveState(false)} />}
+			{isModalActive && <Modal content={modalContent} handleClose={() => setModalActiveState(false)} />}
 			<CVManagerLayout>
 				<MainContainerLayout>
 					<CVHeaderLayout>
