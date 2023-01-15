@@ -6,7 +6,7 @@ const fancyHeader = ({ height, color, bgColor }) => {
 		position: relative;
 		color: ${color};
 
-		& :first-child {
+		& >*:first-child {
 			width: 100%;
 			border-bottom-right-radius: calc(${height}/2);
 			background-color: ${bgColor};

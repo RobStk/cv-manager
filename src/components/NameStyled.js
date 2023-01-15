@@ -4,6 +4,7 @@ const NameStyled = styled.div`
 	display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
 
     h1 {
         text-transform: uppercase;
