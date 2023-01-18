@@ -1,6 +1,6 @@
 import configs from "../configs";
 
-const theme = {
+const simpleTheme = {
 	colors: {
 		bgPrimary: "white",
 		bgSecondary: "hsl(207 61% 20%)",
@@ -10,4 +10,4 @@ const theme = {
 	spaces: configs.spaces
 };
 
-export default theme;
+export default simpleTheme;
