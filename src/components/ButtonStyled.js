@@ -1,15 +1,28 @@
 import styled from "styled-components";
 
 const ButtonStyled = styled.button`
-	border: none;
-	background-color: ${props => props.theme.colors.bgSecondary};
-	color: ${props => props.color || props.theme.colors.fgSecondary};
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 3px;
+	background: none;
 	font-size: 1.5rem;
-	height: 100%;
+	height: 2rem;
+	width: 2rem;
 	cursor: pointer;
+	opacity: 0.8;
+	transition: opacity 0.1s;
 
+	color: ${props => props.theme.colors.fgSecondary};
+	background-color: ${props => props.color || props.theme.colors.bgSecondary};
+	border-color: ${props => props.color || props.theme.colors.bgSecondary};
+	
 	& * {
 		pointer-events: none;
+	}
+
+	:hover {
+		opacity: 1;
 	}
 `;
 

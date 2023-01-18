@@ -2,9 +2,9 @@ import React from "react";
 import propTypes from "prop-types";
 import ButtonStyled from "./ButtonStyled";
 
-export default function Button({ icon, clickAction, color }) {
+export default function Button({ icon, color, onClick }) {
 	return (
-		<ButtonStyled onClick={clickAction} color={color}>
+		<ButtonStyled onClick={onClick} color={color}>
 			{icon}
 		</ButtonStyled>
 	);
@@ -12,6 +12,6 @@ export default function Button({ icon, clickAction, color }) {
 
 Button.propTypes = {
 	icon: propTypes.object,
-	clickAction: propTypes.func,
+	onClick: propTypes.func,
 	color: propTypes.string || undefined,
 };

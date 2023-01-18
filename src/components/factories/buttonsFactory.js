@@ -10,15 +10,15 @@ import Button from "../Button";
  * @param {string} param0.color
  * @returns 
  */
-export default function createButton({ type, clickAction, color }) {
+export default function createButton({ type, onClick, color }) {
 	switch (type) {
 		case "edit": {
 			const icon = <EditIcon />;
-			return <Button icon={icon} clickAction={clickAction} color={color} />;
+			return <Button icon={icon} onClick={onClick} color={color} />;
 		}
 		case "delete": {
 			const icon = <DeleteIcon />;
-			return <Button icon={icon} clickAction={clickAction} color={color || "red"} />;
+			return <Button icon={icon} onClick={onClick} color={color || "hsl(0deg 100% 50%)"} />;
 		}
 		default: {
 			return <Button />;
