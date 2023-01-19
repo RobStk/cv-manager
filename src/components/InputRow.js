@@ -2,16 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import InputRowStyled from "./InputRowStyled";
 
-export default function InputRow({ label, input }) {
+export default function InputRow({ children }) {
 	return (
 		<InputRowStyled>
-			<label>{label}</label>
-			{input}
+			{children}
 		</InputRowStyled>
 	);
 }
 
 InputRow.propTypes = {
-	input: PropTypes.object,
-	label: PropTypes.string
+	children: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 };

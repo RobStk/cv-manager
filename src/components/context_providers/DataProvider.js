@@ -19,7 +19,7 @@ export default function DataProvider({ data, dataDispatch, modalDispatch, childr
 }
 
 DataProvider.propTypes = {
-	data: PropTypes.any,
+	data: PropTypes.object,
 	dataDispatch: PropTypes.func,
 	modalDispatch: PropTypes.func,
 	children: PropTypes.object,

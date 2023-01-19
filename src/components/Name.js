@@ -1,27 +1,37 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import propTypes from "prop-types";
 import NameStyled from "./NameStyled";
-import EditPanelLayout from "../layout/EditPanelLayout";
-import createButton from "./factories/buttonsFactory";
-
-export default function Name({ data }) {
-	const name = data || "";
-	const editAction = () => console.log("Congratulations! You just clicked the edit name button!");
-	const editButton = createButton({ type: "edit", clickAction: editAction });
-	const deleteButton = createButton({ type: "delete" });
-	const editPanel = <EditPanelLayout>{deleteButton}{editButton}</EditPanelLayout>;
-
-	const [isHovered, setHover] = useState(false);
+import { DataContext, DataDispatchContext } from "./context_providers/DataProvider";
+import EditableDataComponent from "./EditableDataComponent";
+export default function Name({ className }) {
+	const name = useContext(DataContext) || {};
+	const dispatchNameUpdate = useContext(DataDispatchContext);
+	const nameInput = { id: "nameValueInput", name: "Name", value: name.value, label: "Name" };
+	const inputsData = [nameInput];
 
 	return (
-		<NameStyled onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
-			<h1>{name}</h1>
-			{isHovered && editPanel}			
+		<NameStyled className={className}>
+			<EditableDataComponent inputsData={inputsData} onUpdate={handleUpdate}>
+				<h1>{name?.value}</h1>
+			</EditableDataComponent>
 		</NameStyled>
 	);
+
+	function handleUpdate(inputsData) {
+		const newData = { ...name };
+		inputsData.forEach(input => {
+			if (input.id == nameInput.id) (
+				newData.value = input.value
+			);
+		});
+		dispatchNameUpdate({
+			type: "name_updated",
+			name: newData
+		});
+	}
 }
 
 Name.propTypes = {
-	data: propTypes.string,
+	className: propTypes.string
 };
 

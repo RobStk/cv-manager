@@ -1,6 +1,9 @@
 {
 	"personal": {
-		"name": "Name Surname",
+		"name": {
+			"title": "Name",
+			"value": "Name Surname"
+		},
 		"contact": [
 			{
 				"type": "phone",
