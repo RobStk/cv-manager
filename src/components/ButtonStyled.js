@@ -6,7 +6,7 @@ const ButtonStyled = styled.button`
 	justify-content: center;
 	border-radius: 3px;
 	background: none;
-	font-size: 1.5rem;
+	font-size: 1.4rem;
 	height: 2rem;
 	width: 2rem;
 	cursor: pointer;

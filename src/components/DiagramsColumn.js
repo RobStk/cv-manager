@@ -13,6 +13,7 @@ export default function DiagramsColumn({ data }) {
 			</div>
 		);
 	});
+
 	return (
 		<DiagramsColumnStyled>
 			{skillSections}
