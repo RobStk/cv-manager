@@ -1,5 +1,4 @@
 import React, { useEffect, useReducer } from "react";
-import PropTypes from "prop-types";
 import { ThemeProvider } from "styled-components";
 import simpleTheme from "./main-styles/themes/simple-theme";
 import simpleThemeInverted from "./main-styles/themes/simple-theme-inverted";
@@ -18,21 +17,25 @@ import DataProvider from "./components/context_providers/DataProvider";
 import dataReducer from "./components/reducers/dataReducer";
 import modalReducer from "./components/reducers/modalReducer";
 import Modal from "./components/Modal";
+import DataService from "./modules/data-service";
 
-export default function CVManager({ dataManager }) {
+export default function CVManager() {
 	const [data, dispatchData] = useReducer(dataReducer, {});
 	const [modalState, dispatchModal] = useReducer(modalReducer, { isActive: false, content: null });
+	console.log("render");
 
 	useEffect(() => {
 		let ignore = false;
 
 		async function fetchData() {
-			const jsonData = await dataManager.getData();
-			if (!ignore && jsonData) {
-				dispatchData({
-					type: "data_updated",
-					data: jsonData
-				});
+			if (!ignore) {
+				const jsonData = await DataService.getData();
+				if (jsonData) {
+					dispatchData({
+						type: "data_updated",
+						data: jsonData
+					});
+				}
 			}
 		}
 		fetchData();
@@ -75,7 +78,3 @@ export default function CVManager({ dataManager }) {
 		</ThemeProvider>
 	);
 }
-
-CVManager.propTypes = {
-	dataManager: PropTypes.object
-};

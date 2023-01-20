@@ -1,39 +1,13 @@
-class DataService {
-
-	/* ---------------------------------------------------- */
-	/* Interface 											*/
-	/* ---------------------------------------------------- */
-	get getData() { return this.#getData; }
-	get setData() { return this.#setData; }
-	get addItem() { return this.#addItem; }
-	get changeItem() { return this.#changeItem; }
-
-	/* ---------------------------------------------------- */
-	/* Constructor 											*/
-	/* ---------------------------------------------------- */
-	/**
-	 * @param {string} url 
-	 */
-	constructor(url) {
-		this.#url = url;
-	}
-
-	/* ---------------------------------------------------- */
-	/* Private properties 									*/
-	/* ---------------------------------------------------- */
-	#url;
-
-	/* ---------------------------------------------------- */
-	/* Methods 												*/
-	/* ---------------------------------------------------- */
+export default class DataService {
+	static url = "http://localhost:5000/personal";
 
 	/**
 	 * Returns a promise resolved to a json-data or null.
 	 * @returns {Promise<Array|null>}
 	 */
-	async #getData() {
+	static async getData() {
 		try {
-			const response = await fetch(this.#url);
+			const response = await fetch(this.url);
 			if (!response.ok) throw new Error(response.status);
 			const data = await response.json();
 			return data;
@@ -51,10 +25,10 @@ class DataService {
 	 * @param {Object} data 
 	 * @returns {Promise<boolean>}
 	 */
-	async #setData(data) {
+	static async setData(data) {
 		const dataString = JSON.stringify(data);
 		try {
-			const response = await fetch(this.#url, {
+			const response = await fetch(this.url, {
 				method: "put",
 				headers: {
 					"Content-Type": "application/json"
@@ -77,10 +51,10 @@ class DataService {
 	 * @param {Object} item 
 	 * @returns {Promise<boolean>}
 	 */
-	async #addItem(item) {
+	static async addItem(item) {
 		const dataString = JSON.stringify(item);
 		try {
-			const response = await fetch(this.#url, {
+			const response = await fetch(this.url, {
 				method: "post",
 				headers: {
 					"Content-Type": "application/json"
@@ -105,13 +79,13 @@ class DataService {
 	 * @param {Object} item 
 	 * @returns {Promise<boolean>}
 	 */
-	async #changeItem(item) {
+	static async changeItem(item) {
 		const id = item.id;
 		const tempId = item.tempId;
 		if (id && tempId) delete item.tempId;
 		const dataString = JSON.stringify(item);
 		try {
-			const response = await fetch(this.#url + "/" + id, {
+			const response = await fetch(this.url + "/" + id, {
 				method: "put",
 				headers: {
 					"Content-Type": "application/json"
@@ -129,5 +103,3 @@ class DataService {
 
 	// ----------------------------------------------------
 }
-
-export default DataService;

@@ -1,150 +1,150 @@
 {
-	"personal": {
-		"name": {
-			"title": "Name",
-			"value": "Name Surname"
-		},
-		"contact": [
-			{
-				"type": "phone",
-				"value": "123456789"
-			},
-			{
-				"type": "email",
-				"value": "email@host.com"
-			},
-			{
-				"type": "gitHub",
-				"value": "profile.github.com"
-			},
-			{
-				"type": "facebook",
-				"value": "profile.facebook.com"
-			}
-		],
-		"aboutMe": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis libero aperiam, iste voluptatibus, tempora quam perspiciatis numquam maiores exercitationem odio qui quidem quasi similique laudantium sed ex veniam fugit ? Commodi. Lorem, ipsum dolor sit amet consectetur adipisicing elit.Laborum hic dolorum debitis eveniet animi sapiente, aliquid quidem accusantium necessitatibus minima ea vitae quia.Veritatis saepe modi dolore ipsum quibusdam sint ?",
-		"education": [
-			{
-				"grade": "Grade1",
-				"date": "11.11.2011",
-				"desc": "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-				"additional": [
-					{
-						"title": "Field",
-						"content": "Repellendus molestias, magnam architecto consequuntur provident"
-					},
-					{
-						"title": "Spec",
-						"content": "Repellendus molestias, magnam architecto consequuntur provident"
-					}
-				]
-			},
-			{
-				"grade": "Grade1",
-				"date": "11.11.2011",
-				"desc": "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-				"additional": [
-					{
-						"title": "Field",
-						"content": "Repellendus molestias, magnam architecto consequuntur provident"
-					},
-					{
-						"title": "Spec",
-						"content": "Repellendus molestias, magnam architecto consequuntur provident"
-					}
-				]
-			}
-		],
-		"experience": [
-			{
-				"grade": "Grade1",
-				"date": "12.12.2022",
-				"desc": "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-				"additional": [
-					{
-						"title": "Title",
-						"content": "Repellendus molestias, magnam architecto consequuntur provident"
-					}
-				]
-			}
-		],
-		"skillDiagrams": [
-			{
-				"type": "pie",
-				"name": "pie section name",
-				"diagrams": [
-					{
-						"name": "skill 1",
-						"value": "55"
-					},
-					{
-						"name": "skill 2",
-						"value": "85"
-					},
-					{
-						"name": "skill 3",
-						"value": "100"
-					},
-					{
-						"name": "skill 4",
-						"value": "50"
-					},
-					{
-						"name": "skill 5",
-						"value": "15"
-					}
-				]
-			},
-			{
-				"type": "list",
-				"name": "list section name",
-				"diagrams": [
-					{
-						"name": "skill 1"
-					},
-					{
-						"name": "skill 2"
-					},
-					{
-						"name": "skill 3"
-					},
-					{
-						"name": "skill 4"
-					},
-					{
-						"name": "skill 5"
-					}
-				]
-			},
-			{
-				"type": "bar",
-				"name": "bar section name",
-				"diagrams": [
-					{
-						"name": "skill 1",
-						"value": "55"
-					},
-					{
-						"name": "skill 2",
-						"value": "85"
-					},
-					{
-						"name": "skill 3",
-						"value": "100"
-					},
-					{
-						"name": "skill 4",
-						"value": "50"
-					},
-					{
-						"name": "skill 5",
-						"value": "15"
-					}
-				]
-			}
-		],
-		"footer": {
-			"mainContent": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae voluptatibus voluptates libero, maiores illo deserunt quibusdam. Temporibus officia repellendus dolores maxime, ut ea molestias. Fuga ipsa ullam tenetur nulla ab."
-		}
-	}
+  "personal": {
+    "name": {
+      "title": "Name",
+      "value": "Name Surname"
+    },
+    "contact": [
+      {
+        "type": "phone",
+        "value": "123456789"
+      },
+      {
+        "type": "email",
+        "value": "email@host.com"
+      },
+      {
+        "type": "gitHub",
+        "value": "profile.github.com"
+      },
+      {
+        "type": "facebook",
+        "value": "profile.facebook.com"
+      }
+    ],
+    "aboutMe": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis libero aperiam, iste voluptatibus, tempora quam perspiciatis numquam maiores exercitationem odio qui quidem quasi similique laudantium sed ex veniam fugit ? Commodi. Lorem, ipsum dolor sit amet consectetur adipisicing elit.Laborum hic dolorum debitis eveniet animi sapiente, aliquid quidem accusantium necessitatibus minima ea vitae quia.Veritatis saepe modi dolore ipsum quibusdam sint ?",
+    "education": [
+      {
+        "grade": "Grade1",
+        "date": "11.11.2011",
+        "desc": "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
+        "additional": [
+          {
+            "title": "Field",
+            "content": "Repellendus molestias, magnam architecto consequuntur provident"
+          },
+          {
+            "title": "Spec",
+            "content": "Repellendus molestias, magnam architecto consequuntur provident"
+          }
+        ]
+      },
+      {
+        "grade": "Grade1",
+        "date": "11.11.2011",
+        "desc": "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
+        "additional": [
+          {
+            "title": "Field",
+            "content": "Repellendus molestias, magnam architecto consequuntur provident"
+          },
+          {
+            "title": "Spec",
+            "content": "Repellendus molestias, magnam architecto consequuntur provident"
+          }
+        ]
+      }
+    ],
+    "experience": [
+      {
+        "grade": "Grade1",
+        "date": "12.12.2022",
+        "desc": "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
+        "additional": [
+          {
+            "title": "Title",
+            "content": "Repellendus molestias, magnam architecto consequuntur provident"
+          }
+        ]
+      }
+    ],
+    "skillDiagrams": [
+      {
+        "type": "pie",
+        "name": "pie section name",
+        "diagrams": [
+          {
+            "name": "skill 1",
+            "value": "55"
+          },
+          {
+            "name": "skill 2",
+            "value": "85"
+          },
+          {
+            "name": "skill 3",
+            "value": "100"
+          },
+          {
+            "name": "skill 4",
+            "value": "50"
+          },
+          {
+            "name": "skill 5",
+            "value": "15"
+          }
+        ]
+      },
+      {
+        "type": "list",
+        "name": "list section name",
+        "diagrams": [
+          {
+            "name": "skill 1"
+          },
+          {
+            "name": "skill 2"
+          },
+          {
+            "name": "skill 3"
+          },
+          {
+            "name": "skill 4"
+          },
+          {
+            "name": "skill 5"
+          }
+        ]
+      },
+      {
+        "type": "bar",
+        "name": "bar section name",
+        "diagrams": [
+          {
+            "name": "skill 1",
+            "value": "55"
+          },
+          {
+            "name": "skill 2",
+            "value": "85"
+          },
+          {
+            "name": "skill 3",
+            "value": "100"
+          },
+          {
+            "name": "skill 4",
+            "value": "50"
+          },
+          {
+            "name": "skill 5",
+            "value": "15"
+          }
+        ]
+      }
+    ],
+    "footer": {
+      "mainContent": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae voluptatibus voluptates libero, maiores illo deserunt quibusdam. Temporibus officia repellendus dolores maxime, ut ea molestias. Fuga ipsa ullam tenetur nulla ab."
+    }
+  }
 }

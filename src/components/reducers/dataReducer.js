@@ -1,13 +1,19 @@
+import DataService from "../../modules/data-service";
+
 /* eslint-disable indent */
 export default function dataReducer(data, action) {
-	const newData = { ...data };
+	let newData = { ...data };
 	switch (action.type) {
 		case "data_updated": {
-			return action.data;
+			newData = action.data;
+			break;
 		}
 		case "name_updated": {
 			newData.name = action.name;
-			return newData;
+			break;
 		}
+		default: return newData;
 	}
+	DataService.setData(newData);
+	return newData;
 }
