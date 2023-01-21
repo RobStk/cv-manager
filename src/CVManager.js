@@ -12,7 +12,6 @@ import Name from "./components/Name";
 import ContactSection from "./components/ContactSection";
 import AboutColumn from "./components/AboutColumn";
 import DiagramsColumn from "./components/DiagramsColumn";
-import EditableDataComponent from "./components/EditableDataComponent";
 import DataProvider from "./components/context_providers/DataProvider";
 import dataReducer from "./components/reducers/dataReducer";
 import modalReducer from "./components/reducers/modalReducer";
@@ -22,7 +21,6 @@ import DataService from "./modules/data-service";
 export default function CVManager() {
 	const [data, dispatchData] = useReducer(dataReducer, {});
 	const [modalState, dispatchModal] = useReducer(modalReducer, { isActive: false, content: null });
-	console.log("render");
 
 	useEffect(() => {
 		let ignore = false;
@@ -42,7 +40,6 @@ export default function CVManager() {
 		return () => { ignore = true; };
 	}, []);
 
-	const contacts = data.contact;
 	const skillDiagrams = data.skillDiagrams;
 	const footer = data.footer;
 
@@ -54,13 +51,14 @@ export default function CVManager() {
 				<MainContainerLayout>
 					<CVHeaderLayout>
 						<ThemeProvider theme={simpleThemeInverted}>
-							<DataProvider data={data.name} contentName="Name" dataDispatch={dispatchData} modalDispatch={dispatchModal}>
+							<DataProvider data={data.name} dataDispatch={dispatchData} modalDispatch={dispatchModal}>
 								<div className="name-wrapper"><Name /></div>
 							</DataProvider>
 						</ThemeProvider>
-						<EditableDataComponent className="contact-wrapper" contentName="Contact">
-							<ContactSection data={contacts} />
-						</EditableDataComponent>
+
+						<DataProvider data={data.contact} dataDispatch={dispatchData} modalDispatch={dispatchModal}>
+							<ContactSection className="contact-wrapper" />
+						</DataProvider>
 					</CVHeaderLayout>
 					<CVContentLayout>
 						<ThemeProvider theme={simpleThemeInverted}>

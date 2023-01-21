@@ -12,6 +12,10 @@ export default function dataReducer(data, action) {
 			newData.name = action.name;
 			break;
 		}
+		case "contact_updated": {
+			newData.contact = action.contact;
+			break;
+		}
 		default: return newData;
 	}
 	DataService.setData(newData);
