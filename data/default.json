@@ -4,24 +4,35 @@
       "title": "Name",
       "value": "Name Surname"
     },
-    "contact": [
-      {
-        "type": "phone",
-        "value": "123456789"
-      },
-      {
-        "type": "email",
-        "value": "email@host.com"
-      },
-      {
-        "type": "gitHub",
-        "value": "profile.github.com"
-      },
-      {
-        "type": "facebook",
-        "value": "profile.facebook.com"
-      }
-    ],
+    "contact": {
+      "title": "Contact",
+      "value": [
+        {
+          "id": 1,
+          "title": "phone",
+          "type": "phone",
+          "value": "123456789"
+        },
+        {
+          "id": 2,
+          "title": "email",
+          "type": "email",
+          "value": "email@host.com"
+        },
+        {
+          "id": 3,
+          "title": "gitHub",
+          "type": "gitHub",
+          "value": "profile.github.com"
+        },
+        {
+          "id": 4,
+          "title": "facebook",
+          "type": "facebook",
+          "value": "profile.facebook.com"
+        }
+      ]
+    },
     "aboutMe": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis libero aperiam, iste voluptatibus, tempora quam perspiciatis numquam maiores exercitationem odio qui quidem quasi similique laudantium sed ex veniam fugit ? Commodi. Lorem, ipsum dolor sit amet consectetur adipisicing elit.Laborum hic dolorum debitis eveniet animi sapiente, aliquid quidem accusantium necessitatibus minima ea vitae quia.Veritatis saepe modi dolore ipsum quibusdam sint ?",
     "education": [
       {
