@@ -9,9 +9,15 @@ export default function ContactSection() {
 	const data = useContext(DataContext) || {};
 	const header = data.title || "header";
 	const dispatchUpdate = useContext(DataDispatchContext);
-	const titleInput = { id: "contactHeaderTitleInput", name: "Title", value: data.title, label: "Title" };
-	const contacts = data.value?.map((contact, index) =>
-		<Contact key={index} type={contact.type} value={contact.value} />
+	const titleInput = { ...data, id: "contactHeaderTitleInput", name: "Title", value: data.title, label: "Title" };
+	const contacts = data.value?.map((contact, index) => {
+		const contactValueInputData = { ...contact, index: index };
+		return (
+			<EditableDataComponent key={contact.id} inputsData={[contactValueInputData]} onUpdate={handleContactUpdate}>
+				<Contact type={contact.type} value={contact.value} />
+			</EditableDataComponent>
+		);
+	}
 	);
 	return (
 		<ContactSectionStyled>
@@ -28,6 +34,18 @@ export default function ContactSection() {
 			if (input.id == titleInput.id) (
 				newData.title = input.value
 			);
+		});
+		dispatchUpdate({
+			type: "contact_updated",
+			contact: newData
+		});
+	}
+
+	function handleContactUpdate(inputsData) {
+		const newData = { ...data };
+		inputsData.forEach(input => {
+			newData.value[input.index].value = input.value;
+			newData.value[input.index].type = input.type;
 		});
 		dispatchUpdate({
 			type: "contact_updated",
