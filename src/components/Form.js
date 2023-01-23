@@ -2,16 +2,25 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import FormStyled from "./FormStyled";
 import InputRow from "./InputRow";
+import createInput from "./factories/inputsFactory";
 
 export default function Form({ inputsDataArr, onSubmit }) {
 	const [inputsData, setInputsData] = useState([...inputsDataArr]);
 
 	const inputRows = inputsData.map(input => {
+		const textInput = createInput({
+			...input,
+			defaultValue: input.value,
+			onChange: handleInputChange
+		});
+
 		return (
-			<InputRow key={input.id}>
-				<label htmlFor={input.id}>{input.label}</label>
-				<input id={input.id} name={input.name} defaultValue={input.value} onChange={handleInputChange} />
-			</InputRow>
+			<div key={input.id}>
+				<InputRow>
+					<label htmlFor={input.id}>{input.label}</label>
+					{textInput}
+				</InputRow>
+			</div>
 		);
 	});
 
@@ -31,7 +40,8 @@ export default function Form({ inputsDataArr, onSubmit }) {
 		const value = event.target.value;
 		const newData = [...inputsData];
 		newData.forEach(input => {
-			if (input.id == id) input.value = value;
+			if (id == input.id) input.value = value;
+			if (id == `${input.id}type`) input.type = value;
 		});
 		setInputsData(newData);
 	}

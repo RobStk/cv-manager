@@ -9,16 +9,9 @@ export default function ContactSection() {
 	const data = useContext(DataContext) || {};
 	const header = data.title || "header";
 	const dispatchUpdate = useContext(DataDispatchContext);
-	const titleInput = { ...data, id: "contactHeaderTitleInput", name: "Title", value: data.title, label: "Title" };
-	const contacts = data.value?.map((contact, index) => {
-		const contactValueInputData = { ...contact, index: index };
-		return (
-			<EditableDataComponent key={contact.id} inputsData={[contactValueInputData]} onUpdate={handleContactUpdate}>
-				<Contact type={contact.type} value={contact.value} />
-			</EditableDataComponent>
-		);
-	}
-	);
+	const titleInput = { ...data, inputType: "text", id: "contactHeaderTitleInput", name: "Title", value: data.title, label: "Title" };
+	const contacts = createContacts(data);
+
 	return (
 		<ContactSectionStyled>
 			<EditableDataComponent inputsData={[titleInput]} onUpdate={handleTitleUpdate}>
@@ -27,6 +20,11 @@ export default function ContactSection() {
 			<div className="contacts">{contacts}</div>
 		</ContactSectionStyled>
 	);
+
+
+	// ----------------------------------------------------
+	// Functions
+	// ----------------------------------------------------
 
 	function handleTitleUpdate(inputsData) {
 		const newData = { ...data };
@@ -51,6 +49,19 @@ export default function ContactSection() {
 			type: "contact_updated",
 			contact: newData
 		});
+	}
+
+	function createContacts(data) {
+		const contacts = data.value?.map((contact, index) => {
+			const contactTypeInputData = { ...contact, id: `${contact.id}type`, inputType: "select", index: index, options: ["phone", "gitHub", "email", "facebook"], selected: contact.type };
+			const contactValueInputData = { ...contact, inputType: "text", index: index };
+			return (
+				<EditableDataComponent key={contact.id} inputsData={[contactTypeInputData, contactValueInputData]} onUpdate={handleContactUpdate}>
+					<Contact type={contact.type} value={contact.value} />
+				</EditableDataComponent>
+			);
+		});
+		return contacts;
 	}
 }
 

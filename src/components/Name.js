@@ -6,12 +6,17 @@ import EditableDataComponent from "./EditableDataComponent";
 export default function Name({ className }) {
 	const name = useContext(DataContext) || {};
 	const dispatchNameUpdate = useContext(DataDispatchContext);
-	const nameInput = { id: "nameValueInput", name: "Name", value: name.value, label: "Name" };
-	const inputsData = [nameInput];
+	const nameInput = [{
+		inputType: "text",
+		id: "nameValueInput",
+		name: "Name",
+		value: name.value,
+		label: "Name"
+	}];
 
 	return (
 		<NameStyled className={className}>
-			<EditableDataComponent inputsData={inputsData} onUpdate={handleUpdate}>
+			<EditableDataComponent inputsData={nameInput} onUpdate={handleUpdate}>
 				<h1>{name?.value}</h1>
 			</EditableDataComponent>
 		</NameStyled>
