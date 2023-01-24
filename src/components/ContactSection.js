@@ -4,6 +4,7 @@ import propTypes from "prop-types";
 import Contact from "./Contact";
 import { DataContext, DataDispatchContext } from "./context_providers/DataProvider";
 import EditableDataComponent from "./EditableDataComponent";
+import getContactTypes from "../utils/contact-types";
 
 export default function ContactSection() {
 	const data = useContext(DataContext) || {};
@@ -52,8 +53,11 @@ export default function ContactSection() {
 	}
 
 	function createContacts(data) {
+		const contactTypes = getContactTypes();
+		const contactOptions = [];
+		contactTypes.forEach(contact => contactOptions.push(contact.type));
 		const contacts = data.value?.map((contact, index) => {
-			const contactTypeInputData = { ...contact, id: `${contact.id}type`, inputType: "select", index: index, options: ["phone", "gitHub", "email", "facebook"], selected: contact.type, label: "Type" };
+			const contactTypeInputData = { ...contact, id: `${contact.id}type`, inputType: "select", index: index, options: contactOptions, selected: contact.type, label: "Type" };
 			const contactValueInputData = { ...contact, inputType: "text", index: index, label: "Contact" };
 			return (
 				<EditableDataComponent key={contact.id} inputsData={[contactTypeInputData, contactValueInputData]} onUpdate={handleContactUpdate}>
