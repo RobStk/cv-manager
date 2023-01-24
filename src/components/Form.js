@@ -7,8 +7,8 @@ import createInput from "./factories/inputsFactory";
 export default function Form({ inputsDataArr, onSubmit }) {
 	const [inputsData, setInputsData] = useState([...inputsDataArr]);
 
-	const inputRows = inputsData.map(input => {
-		const textInput = createInput({
+	const inputs = inputsData.map(input => {
+		const inputElement = createInput({
 			...input,
 			defaultValue: input.value,
 			onChange: handleInputChange
@@ -18,7 +18,7 @@ export default function Form({ inputsDataArr, onSubmit }) {
 			<div key={input.id}>
 				<InputRow>
 					<label htmlFor={input.id}>{input.label}</label>
-					{textInput}
+					{inputElement}
 				</InputRow>
 			</div>
 		);
@@ -26,7 +26,7 @@ export default function Form({ inputsDataArr, onSubmit }) {
 
 	return (
 		<FormStyled onSubmit={handleSubmit}>
-			{inputRows}
+			{inputs}
 		</FormStyled>
 	);
 

@@ -53,8 +53,8 @@ export default function ContactSection() {
 
 	function createContacts(data) {
 		const contacts = data.value?.map((contact, index) => {
-			const contactTypeInputData = { ...contact, id: `${contact.id}type`, inputType: "select", index: index, options: ["phone", "gitHub", "email", "facebook"], selected: contact.type };
-			const contactValueInputData = { ...contact, inputType: "text", index: index };
+			const contactTypeInputData = { ...contact, id: `${contact.id}type`, inputType: "select", index: index, options: ["phone", "gitHub", "email", "facebook"], selected: contact.type, label: "Type" };
+			const contactValueInputData = { ...contact, inputType: "text", index: index, label: "Contact" };
 			return (
 				<EditableDataComponent key={contact.id} inputsData={[contactTypeInputData, contactValueInputData]} onUpdate={handleContactUpdate}>
 					<Contact type={contact.type} value={contact.value} />
