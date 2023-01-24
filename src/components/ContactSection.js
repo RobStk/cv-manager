@@ -15,7 +15,7 @@ export default function ContactSection() {
 	return (
 		<ContactSectionStyled>
 			<EditableDataComponent inputsData={[titleInput]} onUpdate={handleTitleUpdate}>
-				<h1>{header}</h1>
+				<h2>{header}</h2>
 			</EditableDataComponent>
 			<div className="contacts">{contacts}</div>
 		</ContactSectionStyled>

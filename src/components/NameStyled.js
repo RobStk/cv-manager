@@ -5,16 +5,6 @@ const NameStyled = styled.div`
     flex-direction: column;
     justify-content: center;
     position: relative;
-
-    h1 {
-        text-transform: uppercase;
-    }
-
-    h2 {
-        text-transform: uppercase;
-        font-size: large;
-        font-weight: unset;
-    }
 `;
 
 NameStyled.displayName = "NameStyled";

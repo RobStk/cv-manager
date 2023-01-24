@@ -11,6 +11,18 @@ const CVHeaderLayout = styled.div`
 	.name-wrapper {
 		height: ${height};
 		color: ${props => props.theme.colors.fgSecondary};
+		font-size: 1.5rem;
+
+		h1 {
+			text-transform: uppercase;
+			font-size: 1.25em;
+		}
+
+		h2 {
+			text-transform: uppercase;
+			font-size: 1em;
+			font-weight: unset;
+		}
 		
 		${props => fancyHeader({
 			height: height,
@@ -20,6 +32,7 @@ const CVHeaderLayout = styled.div`
 
 		> * {
             padding-left: ${props => props.theme.spaces.main};
+            padding-right: ${props => props.theme.spaces.main};
         }
 	}
 

@@ -1,14 +1,15 @@
 import styled from "styled-components";
 
 const ContactSectionStyled = styled.div`
-	padding-left: calc(${props => props.theme.spaces.main}/2);
+	margin: calc(${props => props.theme.spaces.main}/4) calc(${props => props.theme.spaces.main}/2);
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 0.1em;
 
-    h1 {
+    h2 {
         font-size: x-large;
+        line-height: 100%;
     }
 
     .contacts {

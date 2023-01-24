@@ -5,6 +5,7 @@ const flexRowCenter = (props) => {
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: center;
+		align-items: center;
 		gap: ${props.gap || 0};
 	`;
 };
