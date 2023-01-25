@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import addOpacityToColor from "../utils/color-opacity";
 
 const ModalStyled = styled.div`
 	display: none;
@@ -32,6 +33,7 @@ const ModalStyled = styled.div`
 		color: ${props => props.theme.colors.fgSecondary};
 		padding: ${props => props.theme.spaces.main};
 		border-radius: 5px;
+		box-shadow: 3px 3px 5px 0px ${props => addOpacityToColor(props.theme.colors.bgSecondary, 0.5)};
 	}
 `;
 
