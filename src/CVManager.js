@@ -6,8 +6,6 @@ import CVManagerLayout from "./layout/CVManagerLayout";
 import GlobalStyle from "./main-styles/base/GlobalStyle";
 import MainContainerLayout from "./layout/MainContainerLayout";
 import MainFooter from "./components/MainFooter";
-import CVHeaderLayout from "./layout/CVHeaderLayout";
-import CVContentLayout from "./layout/CVContentLayout";
 import Name from "./components/Name";
 import ContactSection from "./components/ContactSection";
 import AboutColumn from "./components/AboutColumn";
@@ -17,6 +15,7 @@ import dataReducer from "./components/reducers/dataReducer";
 import modalReducer from "./components/reducers/modalReducer";
 import Modal from "./components/Modal";
 import DataService from "./modules/data-service";
+import Section from "./components/Section";
 
 export default function CVManager() {
 	const [data, dispatchData] = useReducer(dataReducer, {});
@@ -40,7 +39,6 @@ export default function CVManager() {
 		return () => { ignore = true; };
 	}, []);
 
-	const skillDiagrams = data.skillDiagrams;
 	const footer = data.footer;
 
 	return (
@@ -48,30 +46,27 @@ export default function CVManager() {
 			<GlobalStyle />
 			{modalState.isActive && <Modal onClose={() => dispatchModal({ type: "modal_closed" })}>{modalState.content}</Modal>}
 			<CVManagerLayout>
-				<MainContainerLayout>
-					<CVHeaderLayout>
-						<ThemeProvider theme={simpleThemeInverted}>
-							<DataProvider data={data.name} dataDispatch={dispatchData} modalDispatch={dispatchModal}>
-								<div className="name-wrapper"><Name /></div>
-							</DataProvider>
-						</ThemeProvider>
-
-						<DataProvider data={data.contact} dataDispatch={dispatchData} modalDispatch={dispatchModal}>
-							<ContactSection className="contact-wrapper" />
-						</DataProvider>
-					</CVHeaderLayout>
-					<CVContentLayout>
-						<ThemeProvider theme={simpleThemeInverted}>
-							<div className="content-column">
-								<AboutColumn data={data} />
+				<DataProvider data={data} dataDispatch={dispatchData} modalDispatch={dispatchModal}>
+					<MainContainerLayout>
+						<Section className="cv-header">
+							<div className="name-wrapper">
+								<Name data={data.name} theme={simpleThemeInverted} />
 							</div>
-						</ThemeProvider>
-						<div className="content-column">
-							<DiagramsColumn data={skillDiagrams} />
-						</div>
-					</CVContentLayout>
-				</MainContainerLayout>
-				<MainFooter data={footer} />
+							<div className="contact-wrapper">
+								<ContactSection data={data.contact} />
+							</div>
+						</Section>
+						<Section className="cv-content">
+							<div className="content-column">
+								<AboutColumn theme={simpleThemeInverted} data={data} />
+							</div>
+							<div className="content-column">
+								<DiagramsColumn data={data.skillDiagrams} />
+							</div>
+						</Section>
+					</MainContainerLayout>
+					<MainFooter data={footer} />
+				</DataProvider>
 			</CVManagerLayout>
 		</ThemeProvider>
 	);

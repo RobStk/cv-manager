@@ -1,36 +1,42 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext, ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import AboutColumnStyled from "./AboutColumnStyled";
 import AboutMe from "./AboutMe";
 import Education from "./Education";
 import Experience from "./Experience";
+import { DataContext } from "./context_providers/DataProvider";
 
-export default function AboutColumn({ data }) {
+export default function AboutColumn(props) {
+	const theme = props.theme || useContext(ThemeContext);
+	const data = props.data || useContext(DataContext) || {};
 	return (
-		<AboutColumnStyled>
-			<div className="about-section">
-				<div className="header"><h2>O mnie</h2></div>
-				<div className="content">
-					<AboutMe data={data.aboutMe} />
+		<ThemeProvider theme={theme}>
+			<AboutColumnStyled>
+				<div className="about-section">
+					<div className="header"><h2>O mnie</h2></div>
+					<div className="content">
+						<AboutMe data={data.aboutMe} />
+					</div>
 				</div>
-
-			</div>
-			<div className="about-section">
-				<div className="header"><h2>Wykształcenie</h2></div>
-				<div className="content">
-					<Education data={data?.education || []} />
+				<div className="about-section">
+					<div className="header"><h2>Wykształcenie</h2></div>
+					<div className="content">
+						<Education data={data?.education || []} />
+					</div>
 				</div>
-			</div>
-			<div className="about-section">
-				<div className="header"><h2>Doświadczenie</h2></div>
-				<div className="content">
-					<Experience data={data?.experience || []} />
+				<div className="about-section">
+					<div className="header"><h2>Doświadczenie</h2></div>
+					<div className="content">
+						<Experience data={data?.experience || []} />
+					</div>
 				</div>
-			</div>
-		</AboutColumnStyled>
+			</AboutColumnStyled>
+		</ThemeProvider>
 	);
 }
 
 AboutColumn.propTypes = {
-	data: PropTypes.object
+	data: PropTypes.object,
+	theme: PropTypes.object
 };

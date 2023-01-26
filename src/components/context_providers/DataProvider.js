@@ -22,5 +22,8 @@ DataProvider.propTypes = {
 	data: PropTypes.object,
 	dataDispatch: PropTypes.func,
 	modalDispatch: PropTypes.func,
-	children: PropTypes.object,
+	children: PropTypes.oneOfType([
+		PropTypes.object,
+		PropTypes.arrayOf(PropTypes.object)
+	])
 };
