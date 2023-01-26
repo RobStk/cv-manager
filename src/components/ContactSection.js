@@ -6,8 +6,8 @@ import { DataContext, DataDispatchContext } from "./context_providers/DataProvid
 import EditableDataComponent from "./EditableDataComponent";
 import getContactTypes from "../utils/contact-types";
 
-export default function ContactSection() {
-	const data = useContext(DataContext) || {};
+export default function ContactSection(props) {
+	const data = props.data || useContext(DataContext) || {};
 	const header = data.title || "header";
 	const dispatchUpdate = useContext(DataDispatchContext);
 	const titleInput = { ...data, inputType: "text", id: "contactHeaderTitleInput", name: "Title", value: data.title, label: "Title" };
@@ -44,7 +44,7 @@ export default function ContactSection() {
 		const newData = { ...data };
 		inputsData.forEach(input => {
 			newData.value[input.index].value = input.value;
-			newData.value[input.index].type = input.type;
+			if (input.inputType === "select") newData.value[input.index].type = input.value;
 		});
 		dispatchUpdate({
 			type: "contact_updated",
@@ -70,5 +70,5 @@ export default function ContactSection() {
 }
 
 ContactSection.propTypes = {
-	data: propTypes.array
+	data: propTypes.object
 };

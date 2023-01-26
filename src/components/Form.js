@@ -40,9 +40,12 @@ export default function Form({ inputsDataArr, onSubmit }) {
 		const value = event.target.value;
 		const newData = [...inputsData];
 		newData.forEach(input => {
-			if (id == input.id) input.value = value;
-			if (id == `${input.id}type`) input.type = value;
+			if (id == input.id) {
+				input.value = value;
+				input.selected = value;
+			}
 		});
+		console.log(newData);
 		setInputsData(newData);
 	}
 }
