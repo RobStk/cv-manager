@@ -21,8 +21,10 @@ const GlobalStyle = createGlobalStyle`
 		height: 100vh;
 		font-family: 'Poppins', sans-serif;
     	background-color: ${({ theme }) => theme.colors.bgPrimary};
+	}
 
-		/* background-color: black; */
+	h1 {
+		font-size: 2rem;
 	}
 
 	h2 {

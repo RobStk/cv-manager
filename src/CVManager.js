@@ -25,14 +25,12 @@ export default function CVManager() {
 		let ignore = false;
 
 		async function fetchData() {
-			if (!ignore) {
-				const jsonData = await DataService.getData();
-				if (jsonData) {
-					dispatchData({
-						type: "data_updated",
-						data: jsonData
-					});
-				}
+			const jsonData = await DataService.getData();
+			if (jsonData && !ignore) {
+				dispatchData({
+					type: "data_updated",
+					data: jsonData
+				});
 			}
 		}
 		fetchData();
@@ -52,17 +50,17 @@ export default function CVManager() {
 							<div className="name-wrapper">
 								<Name data={data.name} theme={simpleThemeInverted} />
 							</div>
-							<div className="contact-wrapper">
+							<Section className="contact-wrapper">
 								<ContactSection data={data.contact} />
-							</div>
+							</Section>
 						</Section>
 						<Section className="cv-content">
-							<div className="content-column">
+							<Section className="content-column">
 								<AboutColumn theme={simpleThemeInverted} data={data} />
-							</div>
-							<div className="content-column">
+							</Section>
+							<Section className="content-column">
 								<DiagramsColumn data={data.skillDiagrams} />
-							</div>
+							</Section>
 						</Section>
 					</MainContainerLayout>
 					<MainFooter data={footer} />

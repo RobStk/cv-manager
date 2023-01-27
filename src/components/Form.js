@@ -45,7 +45,6 @@ export default function Form({ inputsDataArr, onSubmit }) {
 				input.selected = value;
 			}
 		});
-		console.log(newData);
 		setInputsData(newData);
 	}
 }

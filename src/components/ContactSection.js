@@ -5,6 +5,7 @@ import Contact from "./Contact";
 import { DataContext, DataDispatchContext } from "./context_providers/DataProvider";
 import EditableDataComponent from "./EditableDataComponent";
 import getContactTypes from "../utils/contact-types";
+import Header from "./Header";
 
 export default function ContactSection(props) {
 	const data = props.data || useContext(DataContext) || {};
@@ -16,7 +17,7 @@ export default function ContactSection(props) {
 	return (
 		<ContactSectionStyled>
 			<EditableDataComponent inputsData={[titleInput]} onUpdate={handleTitleUpdate}>
-				<h2>{header}</h2>
+				<Header>{header}</Header>
 			</EditableDataComponent>
 			<div className="contacts">{contacts}</div>
 		</ContactSectionStyled>

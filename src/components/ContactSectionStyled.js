@@ -8,7 +8,6 @@ const ContactSectionStyled = styled.div`
     gap: 0.1em;
 
     h2 {
-        font-size: x-large;
         line-height: 100%;
     }
 

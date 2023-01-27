@@ -6,6 +6,7 @@ import AboutMe from "./AboutMe";
 import Education from "./Education";
 import Experience from "./Experience";
 import { DataContext } from "./context_providers/DataProvider";
+import Header from "./Header";
 
 export default function AboutColumn(props) {
 	const theme = props.theme || useContext(ThemeContext);
@@ -14,21 +15,27 @@ export default function AboutColumn(props) {
 		<ThemeProvider theme={theme}>
 			<AboutColumnStyled>
 				<div className="about-section">
-					<div className="header"><h2>O mnie</h2></div>
+					<div className="header">
+						<Header>{data?.aboutMe?.title}</Header>
+					</div>
 					<div className="content">
-						<AboutMe data={data.aboutMe} />
+						<AboutMe data={data?.aboutMe?.value} />
 					</div>
 				</div>
 				<div className="about-section">
-					<div className="header"><h2>Wykształcenie</h2></div>
+					<div className="header">
+						<Header>{data?.education?.title}</Header>
+					</div>
 					<div className="content">
-						<Education data={data?.education || []} />
+						<Education data={data?.education?.value || []} />
 					</div>
 				</div>
 				<div className="about-section">
-					<div className="header"><h2>Doświadczenie</h2></div>
+					<div className="header">
+						<Header>{data?.experience?.title}</Header>
+					</div>
 					<div className="content">
-						<Experience data={data?.experience || []} />
+						<Experience data={data?.experience?.value || []} />
 					</div>
 				</div>
 			</AboutColumnStyled>

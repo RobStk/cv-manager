@@ -4,6 +4,8 @@ import propTypes from "prop-types";
 import NameStyled from "./NameStyled";
 import { DataContext, DataDispatchContext } from "./context_providers/DataProvider";
 import EditableDataComponent from "./EditableDataComponent";
+import Header from "./Header";
+
 export default function Name(props) {
 	const theme = props.theme || useContext(ThemeContext);
 	const data = props.data || useContext(DataContext) || {};
@@ -20,7 +22,7 @@ export default function Name(props) {
 		<ThemeProvider theme={theme}>
 			<NameStyled className={props.className}>
 				<EditableDataComponent inputsData={[nameInput]} onUpdate={handleUpdate}>
-					<h1>{data?.value}</h1>
+					<Header>{data?.value}</Header>
 				</EditableDataComponent>
 			</NameStyled>
 		</ThemeProvider>

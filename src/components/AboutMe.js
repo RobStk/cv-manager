@@ -4,29 +4,29 @@ import AboutMeStyled from "./AboutMeStyled";
 import EditableDataComponent from "./EditableDataComponent";
 import { DataContext, DataDispatchContext } from "./context_providers/DataProvider";
 
-export default function AboutMe() {
-	const data = useContext(DataContext).aboutMe || {};
+export default function AboutMe(props) {
+	const data = props.data || useContext(DataContext).aboutMe || "";
 	const dispatchUpdate = useContext(DataDispatchContext);
 	const nameInput = [{
 		inputType: "text",
 		id: "aboutMeValueInput",
 		name: "About Me",
-		value: data.value,
+		value: data,
 		label: "About Me"
 	}];
 	return (
 		<AboutMeStyled>
 			<EditableDataComponent inputsData={nameInput} onUpdate={handleUpdate}>
-				<p>{data.value}</p>
+				<p>{data}</p>
 			</EditableDataComponent>
 		</AboutMeStyled>
 	);
 
 	function handleUpdate(inputsData) {
-		const newData = { ...data };
+		let newData = data;
 		inputsData.forEach(input => {
 			if (input.id == nameInput.id) (
-				newData.value = input.value
+				newData = input.value
 			);
 		});
 		dispatchUpdate({
@@ -37,5 +37,5 @@ export default function AboutMe() {
 }
 
 AboutMe.propTypes = {
-	data: propTypes.object,
+	data: propTypes.string,
 };
