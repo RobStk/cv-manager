@@ -8,8 +8,6 @@ const AboutColumnStyled = styled.div`
 	color: ${props => props.theme.colors.fgPrimary};
 
 	.header {
-        background-color: ${props => props.theme.colors.bgSecondary};
-        color: ${props => props.theme.colors.fgSecondary};
         padding-left: 0;
         margin-bottom: 0.6rem;
         border-top-right-radius: 1000px;

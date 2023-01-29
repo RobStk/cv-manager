@@ -16,6 +16,18 @@ export default function dataReducer(data, action) {
 			newData.contact = action.contact;
 			break;
 		}
+		case "aboutMeTitleUpdated": {
+			newData.aboutMe.title = action.title;
+			break;
+		}
+		case "educationTitleUpdated": {
+			newData.education.title = action.title;
+			break;
+		}
+		case "experienceTitleUpdated": {
+			newData.experience.title = action.title;
+			break;
+		}
 		default: return newData;
 	}
 	DataService.setData(newData);
