@@ -1,5 +1,6 @@
 /* eslint-disable indent */
 import React from "react";
+import TextArea from "../TextArea";
 
 /**
  * @param {object} props 
@@ -10,6 +11,11 @@ export default function createInput(props) {
 		case "text": {
 			return (
 				<input id={props.id} name={props.name} defaultValue={props.defaultValue} onChange={props.onChange} />
+			);
+		}
+		case "textarea": {
+			return (
+				<TextArea id={props.id} name={props.name} defaultValue={props.defaultValue} onChange={props.onChange} />
 			);
 		}
 		case "select": {

@@ -1,38 +1,35 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import FormStyled from "./FormStyled";
 import InputRow from "./InputRow";
 import createInput from "./factories/inputsFactory";
+import createButton from "./factories/buttonsFactory";
+import { ModalDispatchContext } from "./context_providers/DataProvider";
 
 export default function Form({ inputsDataArr, onSubmit }) {
 	const [inputsData, setInputsData] = useState([...inputsDataArr]);
-
-	const inputs = inputsData.map(input => {
-		const inputElement = createInput({
-			...input,
-			defaultValue: input.value,
-			onChange: handleInputChange
-		});
-
-		return (
-			<div key={input.id}>
-				<InputRow>
-					<label htmlFor={input.id}>{input.label}</label>
-					{inputElement}
-				</InputRow>
-			</div>
-		);
-	});
+	const dispatchModalClose = useContext(ModalDispatchContext);
+	const acceptButton = createButton({ type: "accept", onClick: handleSubmit });
+	const cancelButton = createButton({ type: "cancel", onClick: handleCancel });
+	const inputs = createInputsFromData(inputsData);
 
 	return (
 		<FormStyled onSubmit={handleSubmit}>
 			{inputs}
+			<div className="buttons">
+				{acceptButton}
+				{cancelButton}
+			</div>
 		</FormStyled>
 	);
 
 	function handleSubmit(event) {
 		event.preventDefault();
 		onSubmit(inputsData);
+	}
+
+	function handleCancel() {
+		dispatchModalClose({ type: "modal_closed" });
 	}
 
 	function handleInputChange(event) {
@@ -46,6 +43,26 @@ export default function Form({ inputsDataArr, onSubmit }) {
 			}
 		});
 		setInputsData(newData);
+	}
+
+	function createInputsFromData(inputsData) {
+		const inputs = inputsData.map(input => {
+			const inputElement = createInput({
+				...input,
+				defaultValue: input.value,
+				onChange: handleInputChange
+			});
+
+			return (
+				<div key={input.id}>
+					<InputRow>
+						<label htmlFor={input.id}>{input.label}</label>
+						{inputElement}
+					</InputRow>
+				</div>
+			);
+		});
+		return inputs;
 	}
 }
 

@@ -42,9 +42,9 @@ export default function CVManager() {
 	return (
 		<ThemeProvider theme={simpleTheme}>
 			<GlobalStyle />
-			{modalState.isActive && <Modal onClose={() => dispatchModal({ type: "modal_closed" })}>{modalState.content}</Modal>}
 			<CVManagerLayout>
 				<DataProvider data={data} dataDispatch={dispatchData} modalDispatch={dispatchModal}>
+					{modalState.isActive && <Modal onClose={() => dispatchModal({ type: "modal_closed" })}>{modalState.content}</Modal>}
 					<MainContainerLayout>
 						<Section className="cv-header">
 							<div className="name-wrapper">
