@@ -17,12 +17,14 @@ const ModalStyled = styled.div`
 		display: flex;
 	}
 
-	.close-btn {
+	.close {
 		position: absolute;
-		top: 10px;
-		right: 10px;
-		background: none;
+		top: -20px;
+		right: -20px;
+		padding: 4px;
+		background-color: ${props => props.theme.colors.bgSecondary};
 		border: none;
+		border-radius: 9999px;
 		color: inherit;
 		cursor: pointer;
 	}
