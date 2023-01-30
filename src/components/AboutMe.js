@@ -7,35 +7,34 @@ import { DataContext, DataDispatchContext } from "./context_providers/DataProvid
 export default function AboutMe(props) {
 	const data = props.data || useContext(DataContext).aboutMe || "";
 	const dispatchUpdate = useContext(DataDispatchContext);
-	const nameInput = [{
-		inputType: "text",
+	const aboutMeInput = [{
+		inputType: "textarea",
 		id: "aboutMeValueInput",
 		name: "About Me",
-		value: data,
-		label: "About Me"
+		value: data.value,
+		label: data.title
 	}];
 	return (
 		<AboutMeStyled>
-			<EditableDataComponent inputsData={nameInput} onUpdate={handleUpdate}>
-				<p>{data}</p>
+			<EditableDataComponent inputsData={aboutMeInput} onUpdate={handleUpdate}>
+				<p>{data.value}</p>
 			</EditableDataComponent>
 		</AboutMeStyled>
 	);
 
 	function handleUpdate(inputsData) {
-		let newData = data;
+		let newData = data.value;
 		inputsData.forEach(input => {
-			if (input.id == nameInput.id) (
-				newData = input.value
-			);
+			console.log(input.id);
+			if (input.id == aboutMeInput[0].id) newData = input.value;
 		});
 		dispatchUpdate({
-			type: "aboutMe_updated",
-			name: newData
+			type: "aboutMeValue_updated",
+			value: newData
 		});
 	}
 }
 
 AboutMe.propTypes = {
-	data: propTypes.string,
+	data: propTypes.object,
 };

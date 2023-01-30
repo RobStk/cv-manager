@@ -19,10 +19,11 @@ export default function AboutColumn(props) {
 					<AboutHeader
 						data={data.aboutMe?.title}
 						actionType="aboutMeTitleUpdated"
-						label="About Me Title" />
+						label="About Me Title"
+					/>
 
 					<div className="content">
-						<AboutMe data={data?.aboutMe?.value} />
+						<AboutMe data={data?.aboutMe} />
 					</div>
 
 				</div>
@@ -31,7 +32,8 @@ export default function AboutColumn(props) {
 					<AboutHeader
 						data={data.education?.title}
 						actionType="educationTitleUpdated"
-						label="Education Title" />
+						label="Education Title"
+					/>
 
 					<div className="content">
 						<Education data={data?.education?.value || []} />
@@ -43,7 +45,8 @@ export default function AboutColumn(props) {
 					<AboutHeader
 						data={data.experience?.title}
 						actionType="experienceTitleUpdated"
-						label="Experience Title" />
+						label="Experience Title"
+					/>
 
 					<div className="content">
 						<Experience data={data?.experience?.value || []} />

@@ -31,9 +31,7 @@ export default function Name(props) {
 	function handleUpdate(inputsData) {
 		const newData = { ...data };
 		inputsData.forEach(input => {
-			if (input.id == nameInput.id) (
-				newData.value = input.value
-			);
+			if (input.id == nameInput.id) newData.value = input.value;
 		});
 		dispatchNameUpdate({
 			type: "name_updated",
