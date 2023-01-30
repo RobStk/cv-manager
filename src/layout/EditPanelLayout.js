@@ -13,8 +13,8 @@ const EditPanelLayout = styled.div`
 
 	button {
 		font-size: 1rem;
-		height: 1.7rem;
-		width: 1.7rem;
+		height: 1.5rem;
+		width: 1.5rem;
 		opacity: 0.8;
 		transition: opacity 0.1s;
 
