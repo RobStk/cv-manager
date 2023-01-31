@@ -4,6 +4,11 @@ const FormStyled = styled.form`
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
+
+	label, textarea, input[type=text]{
+		padding: 0.3rem 0.6rem;
+		border-radius: 5px;
+	}
 	
 	.buttons {
 		width: 100%;

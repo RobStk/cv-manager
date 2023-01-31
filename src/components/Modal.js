@@ -8,10 +8,12 @@ export default function Modal({ onClose, children }) {
 
 	return (
 		<ModalStyled className="active">
-			<div className="modal-content">
+			<div className="modal-content-wrapper">
 				{closeButton}
-				{children}
-			</div>
+				<div className="modal-content">
+					{children}
+				</div>
+			</div>			
 		</ModalStyled>
 	);
 

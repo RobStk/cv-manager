@@ -10,7 +10,7 @@ export default function createInput(props) {
 	switch (props.inputType) {
 		case "text": {
 			return (
-				<input id={props.id} name={props.name} defaultValue={props.defaultValue} onChange={props.onChange} />
+				<input id={props.id} name={props.name} defaultValue={props.defaultValue} onChange={props.onChange} type={props.inputType} />
 			);
 		}
 		case "textarea": {
