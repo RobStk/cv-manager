@@ -8,22 +8,22 @@ export default function Header(props) {
 
 	switch (level) {
 		case 1: {
-			return <h1>{props.children}</h1>;
+			return <h1 className={props.className}>{props.children}</h1>;
 		}
 		case 2: {
-			return <h2>{props.children}</h2>;
+			return <h2 className={props.className}>{props.children}</h2>;
 		}
 		case 3: {
-			return <h3>{props.children}</h3>;
+			return <h3 className={props.className}>{props.children}</h3>;
 		}
 		case 4: {
-			return <h4>{props.children}</h4>;
+			return <h4 className={props.className}>{props.children}</h4>;
 		}
 		case 5: {
-			return <h5>{props.children}</h5>;
+			return <h5 className={props.className}>{props.children}</h5>;
 		}
 		case 6: {
-			return <h6>{props.children}</h6>;
+			return <h6 className={props.className}>{props.children}</h6>;
 		}
 		default:
 			throw Error("header must be level 1 to 6.");
@@ -33,4 +33,5 @@ export default function Header(props) {
 Header.propTypes = {
 	level: PropTypes.number,
 	children: PropTypes.string,
+	className: PropTypes.string
 };

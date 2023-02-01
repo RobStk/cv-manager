@@ -47,11 +47,11 @@
           "additional": [
             {
               "title": "Field",
-              "content": "Repellendus molestias, magnam architecto consequuntur provident"
+              "value": "Repellendus molestias, magnam architecto consequuntur provident"
             },
             {
               "title": "Spec",
-              "content": "Repellendus molestias, magnam architecto consequuntur provident"
+              "value": "Repellendus molestias, magnam architecto consequuntur provident"
             }
           ]
         },
@@ -62,11 +62,11 @@
           "additional": [
             {
               "title": "Field",
-              "content": "Repellendus molestias, magnam architecto consequuntur provident"
+              "value": "Repellendus molestias, magnam architecto consequuntur provident"
             },
             {
               "title": "Spec",
-              "content": "Repellendus molestias, magnam architecto consequuntur provident"
+              "value": "Repellendus molestias, magnam architecto consequuntur provident"
             }
           ]
         }
@@ -82,7 +82,7 @@
           "additional": [
             {
               "title": "Title",
-              "content": "Repellendus molestias, magnam architecto consequuntur provident"
+              "value": "Repellendus molestias, magnam architecto consequuntur provident"
             }
           ]
         }

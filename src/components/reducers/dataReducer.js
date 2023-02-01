@@ -28,6 +28,10 @@ export default function dataReducer(data, action) {
 			newData.education.title = action.title;
 			break;
 		}
+		case "education_value_updated": {
+			newData.education.value = action.value;
+			break;
+		}
 		case "experienceTitleUpdated": {
 			newData.experience.title = action.title;
 			break;
