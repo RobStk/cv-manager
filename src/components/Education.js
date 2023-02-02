@@ -5,11 +5,11 @@ import Grade from "./Grade";
 import { DataDispatchContext } from "./context_providers/DataProvider";
 
 export default function Education({ data }) {
-	const dispatchNameUpdate = useContext(DataDispatchContext);
+	const dispatchUpdate = useContext(DataDispatchContext);
 
 	const gradeArr = data.map((grade, index) => {
 		return (
-			<Grade key={index} data={grade} onUpdate={gradeData => handleGradeUpdate(index, gradeData)} />
+			<Grade key={index} data={grade} onUpdate={gradeData => handleUpdate(index, gradeData)} />
 		);
 	});
 
@@ -19,10 +19,10 @@ export default function Education({ data }) {
 		</EducationStyled>
 	);
 
-	function handleGradeUpdate(index, gradeData) {
+	function handleUpdate(index, gradeData) {
 		const newData = [...data];
 		newData[index] = gradeData;
-		dispatchNameUpdate({
+		dispatchUpdate({
 			type: "education_value_updated",
 			value: newData
 		});
