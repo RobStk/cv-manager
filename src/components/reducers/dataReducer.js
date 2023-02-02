@@ -36,6 +36,10 @@ export default function dataReducer(data, action) {
 			newData.experience.title = action.title;
 			break;
 		}
+		case "experience_value_updated": {
+			newData.experience.value = action.value;
+			break;
+		}
 		default: return newData;
 	}
 	DataService.setData(newData);
