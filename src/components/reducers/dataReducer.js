@@ -16,28 +16,8 @@ export default function dataReducer(data, action) {
 			newData.contact = action.contact;
 			break;
 		}
-		case "aboutMeTitleUpdated": {
-			newData.aboutMe.title = action.title;
-			break;
-		}
-		case "aboutMeValue_updated": {
-			newData.aboutMe.value = action.value;
-			break;
-		}
-		case "educationTitleUpdated": {
-			newData.education.title = action.title;
-			break;
-		}
-		case "education_value_updated": {
-			newData.education.value = action.value;
-			break;
-		}
-		case "experienceTitleUpdated": {
-			newData.experience.title = action.title;
-			break;
-		}
-		case "experience_value_updated": {
-			newData.experience.value = action.value;
+		case "about_updated": {
+			newData.about = action.data;
 			break;
 		}
 		default: return newData;

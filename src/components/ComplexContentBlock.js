@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import GradeStyled from "./GradeStyled";
+import ComplexContentBlockStyled from "./ComplexContentBlockStyled";
 import RowItem from "./RowItem";
 import EditableDataComponent from "./EditableDataComponent";
 import Header from "./Header";
 
-export default function Grade({ data, onUpdate }) {
+export default function ComplexContentBlock({ data, onUpdate }) {
 	const inputs = createInputs();
 
 	const additionalArr = data.additional.map((add, index) => {
@@ -31,26 +31,26 @@ export default function Grade({ data, onUpdate }) {
 	});
 
 	return (
-		<GradeStyled>
+		<ComplexContentBlockStyled>
 			<EditableDataComponent inputsData={inputs} onUpdate={handleUpdate}>
 				<>
-					<div className="grade-header">
+					<div className="content-clock-header">
 						<div className="date">{data.date}</div>
-						<Header className="grade">{data.grade}</Header>
+						<Header className="content-block">{data.title}</Header>
 						<div className="desc">{data.desc}</div>
 					</div>
-					<div className="grade-items">
+					<div className="content-block-items">
 						{additionalArr}
 					</div>
 				</>
-			</EditableDataComponent>			
-		</GradeStyled>
+			</EditableDataComponent>
+		</ComplexContentBlockStyled>
 	);
 
 	function handleUpdate(inputs) {
 		const newData = { ...data };
 		inputs.forEach(input => {
-			if (input.name === "Grade") newData.grade = input.value;
+			if (input.name === "Title") newData.title = input.value;
 			if (input.name === "Date") newData.date = input.value;
 			if (input.name === "Description") newData.desc = input.value;
 			if (input.name.startsWith("Add")) {
@@ -64,18 +64,18 @@ export default function Grade({ data, onUpdate }) {
 	function createInputs() {
 		const inputs = [];
 
-		const gradeInput = {
+		const titleInput = {
 			inputType: "text",
-			id: data.grade.id || "gradeName",
-			name: "Grade",
-			value: data.grade,
-			label: "Grade"
+			id: "blockTitle",
+			name: "Title",
+			value: data.title,
+			label: "Title"
 		};
-		inputs.push(gradeInput);
+		inputs.push(titleInput);
 
 		const dateInput = {
 			inputType: "text",
-			id: data.date.id || "gradeDate",
+			id: "blockDate",
 			name: "Date",
 			value: data.date,
 			label: "Date"
@@ -84,7 +84,7 @@ export default function Grade({ data, onUpdate }) {
 
 		const descInput = {
 			inputType: "textarea",
-			id: data.desc.id || "gradeNameDesc",
+			id: "blockDesc",
 			name: "Description",
 			value: data.desc,
 			label: "Description"
@@ -95,7 +95,7 @@ export default function Grade({ data, onUpdate }) {
 	}
 }
 
-Grade.propTypes = {
+ComplexContentBlock.propTypes = {
 	data: PropTypes.object,
 	onUpdate: PropTypes.func
 };

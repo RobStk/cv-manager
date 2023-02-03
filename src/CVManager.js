@@ -56,7 +56,7 @@ export default function CVManager() {
 						</Section>
 						<Section className="cv-content">
 							<Section className="content-column">
-								<AboutColumn theme={simpleThemeInverted} data={data} />
+								<AboutColumn theme={simpleThemeInverted} data={data.about} />
 							</Section>
 							<Section className="content-column">
 								<DiagramsColumn data={data.skillDiagrams} />

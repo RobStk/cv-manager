@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const GradeStyled = styled.div`
+const ComplexContentBlockStyled = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 0.2em;
@@ -12,7 +12,7 @@ const GradeStyled = styled.div`
 		line-height: 100%;
 	}
 
-	.grade-items {
+	.content-block-items {
 		margin-top: 0.1rem;
 		margin-bottom: 0.1rem;
 		display: flex;
@@ -22,5 +22,5 @@ const GradeStyled = styled.div`
 	}
 `;
 
-GradeStyled.displayName = "GradeStyled";
-export default GradeStyled;
+ComplexContentBlockStyled.displayName = "ComplexContentBlockStyled";
+export default ComplexContentBlockStyled;
