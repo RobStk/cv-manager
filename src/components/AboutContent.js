@@ -1,17 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import AboutContentStyled from "./AboutContentStyled";
-import createContentBlock from "./factories/contentBlocksFactory";
+import ContentBlock from "./ContentBlock";
 
 export default function AboutContent(props) {
 	const data = props.data || "";
 	const content = Array.isArray(data) ? data : [data];
 	const contentArr = content.map((item, index) =>
-		createContentBlock({
-			data: item,
-			key: index,
-			onUpdate: newData => handleUpdate(index, newData)
-		})
+		<ContentBlock data={item} key={index} onUpdate={newData => handleUpdate(index, newData)} />
 	);
 
 	return (

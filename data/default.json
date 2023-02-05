@@ -36,7 +36,11 @@
     "about": [
       {
         "title": "About Me",
-        "value": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis libero aperiam, iste voluptatibus, tempora quam perspiciatis numquam maiores exercitationem odio qui quidem quasi similique laudantium sed ex veniam fugit ? Commodi. Lorem, ipsum dolor sit amet consectetur adipisicing elit.Laborum hic dolorum debitis eveniet animi sapiente, aliquid quidem accusantium necessitatibus minima ea vitae quia.Veritatis saepe modi dolore ipsum quibusdam sint ?"
+        "value": [
+          {
+            "value": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis libero aperiam, iste voluptatibus, tempora quam perspiciatis numquam maiores exercitationem odio qui quidem quasi similique laudantium sed ex veniam fugit ? Commodi. Lorem, ipsum dolor sit amet consectetur adipisicing elit.Laborum hic dolorum debitis eveniet animi sapiente, aliquid quidem accusantium necessitatibus minima ea vitae quia.Veritatis saepe modi dolore ipsum quibusdam sint ?"
+          }
+        ]
       },
       {
         "title": "Education",
@@ -44,7 +48,7 @@
           {
             "title": "Grade1",
             "date": "11.11.2011",
-            "desc": "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
+            "subtitle": "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
             "additional": [
               {
                 "title": "Field",
@@ -59,7 +63,7 @@
           {
             "title": "Grade1",
             "date": "11.11.2011",
-            "desc": "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
+            "subtitle": "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
             "additional": [
               {
                 "title": "Field",
@@ -79,7 +83,7 @@
           {
             "grade": "Grade1",
             "date": "12.12.2022",
-            "desc": "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
+            "subtitle": "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
             "additional": [
               {
                 "title": "Title",

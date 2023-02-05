@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ComplexContentBlockStyled from "./ComplexContentBlockStyled";
+import ContentBlockStyled from "./ContentBlockStyled";
 import RowItem from "./RowItem";
 import EditableDataComponent from "./EditableDataComponent";
 import Header from "./Header";
 
-export default function ComplexContentBlock({ data, onUpdate }) {
+export default function ContentBlock({ data, onUpdate }) {
 	const inputs = createInputs();
 
-	const additionalArr = data.additional.map((add, index) => {
+	const additionalArr = data.additional?.map((add, index) => {
 		inputs.push({
 			inputType: "text",
 			id: `title${index}`,
@@ -31,20 +31,21 @@ export default function ComplexContentBlock({ data, onUpdate }) {
 	});
 
 	return (
-		<ComplexContentBlockStyled>
+		<ContentBlockStyled>
 			<EditableDataComponent inputsData={inputs} onUpdate={handleUpdate}>
 				<>
 					<div className="content-clock-header">
 						<div className="date">{data.date}</div>
 						<Header className="content-block">{data.title}</Header>
-						<div className="desc">{data.desc}</div>
+						<div className="subtitle">{data.subtitle}</div>
+						<div className="text-value">{data.value}</div>
 					</div>
 					<div className="content-block-items">
 						{additionalArr}
 					</div>
 				</>
 			</EditableDataComponent>
-		</ComplexContentBlockStyled>
+		</ContentBlockStyled>
 	);
 
 	function handleUpdate(inputs) {
@@ -52,7 +53,8 @@ export default function ComplexContentBlock({ data, onUpdate }) {
 		inputs.forEach(input => {
 			if (input.name === "Title") newData.title = input.value;
 			if (input.name === "Date") newData.date = input.value;
-			if (input.name === "Description") newData.desc = input.value;
+			if (input.name === "Subtitle") newData.subtitle = input.value;
+			if (input.name === "Text value") newData.value = input.value;
 			if (input.name.startsWith("Add")) {
 				if (input.name.endsWith("title")) newData.additional[input.index].title = input.value;
 				if (input.name.endsWith("value")) newData.additional[input.index].value = input.value;
@@ -82,20 +84,29 @@ export default function ComplexContentBlock({ data, onUpdate }) {
 		};
 		inputs.push(dateInput);
 
-		const descInput = {
+		const subtitleInput = {
 			inputType: "textarea",
-			id: "blockDesc",
-			name: "Description",
-			value: data.desc,
-			label: "Description"
+			id: "blockSubtitle",
+			name: "Subtitle",
+			value: data.subtitle,
+			label: "Subtitle"
 		};
-		inputs.push(descInput);
+		inputs.push(subtitleInput);
+
+		const textValueInput = {
+			inputType: "textarea",
+			id: "blockTextValue",
+			name: "Text value",
+			value: data.value,
+			label: "textValue"
+		};
+		inputs.push(textValueInput);
 
 		return inputs;
 	}
 }
 
-ComplexContentBlock.propTypes = {
+ContentBlock.propTypes = {
 	data: PropTypes.object,
 	onUpdate: PropTypes.func
 };

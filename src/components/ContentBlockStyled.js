@@ -6,7 +6,7 @@ const ComplexContentBlockStyled = styled.div`
 	gap: 0.2em;
 	text-align: justify;
 
-	.desc {
+	.subtitle {
 		font-variant: small-caps;
 		font-size: large;
 		line-height: 100%;
