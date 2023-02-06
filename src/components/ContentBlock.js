@@ -6,29 +6,8 @@ import EditableDataComponent from "./EditableDataComponent";
 import Header from "./Header";
 
 export default function ContentBlock({ data, onUpdate }) {
-	const inputs = createInputs();
-
-	const additionalArr = data.additional?.map((add, index) => {
-		inputs.push({
-			inputType: "text",
-			id: `title${index}`,
-			index: index,
-			name: `Add ${index + 1} title`,
-			value: add.title,
-			label: `Add ${index + 1} title`
-		});
-
-		inputs.push({
-			inputType: "textarea",
-			id: `value${index}`,
-			index: index,
-			name: `Add ${index + 1} value`,
-			value: add.value,
-			label: `Add ${index + 1} value`
-		});
-
-		return <RowItem key={index} title={add.title} value={add.value} />;
-	});
+	const inputs = createInputs(data);
+	const additionalArr = createAdditionalArr(data);
 
 	return (
 		<ContentBlockStyled>
@@ -63,7 +42,7 @@ export default function ContentBlock({ data, onUpdate }) {
 		onUpdate(newData);
 	}
 
-	function createInputs() {
+	function createInputs(data) {
 		const inputs = [];
 
 		const titleInput = {
@@ -102,7 +81,35 @@ export default function ContentBlock({ data, onUpdate }) {
 		};
 		inputs.push(textValueInput);
 
+		data.additional?.forEach((add, index) => {
+			inputs.push({
+				inputType: "text",
+				id: `title${index}`,
+				index: index,
+				name: `Add ${index + 1} title`,
+				value: add.title,
+				label: `Add ${index + 1} title`
+			});
+
+			inputs.push({
+				inputType: "textarea",
+				id: `value${index}`,
+				index: index,
+				name: `Add ${index + 1} value`,
+				value: add.value,
+				label: `Add ${index + 1} value`
+			});
+
+		});
+
 		return inputs;
+	}
+
+	function createAdditionalArr(data) {
+		const additionalArr = data.additional?.map((add, index) => {
+			return <RowItem key={index} title={add.title} value={add.value} />;
+		});
+		return additionalArr;
 	}
 }
 
