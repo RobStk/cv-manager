@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const DiagramsColumnStyled = styled.div`	
+const DiagramColumnStyled = styled.div`	
 	height: 100%;
 	display: flex;
 	flex-direction: column;
@@ -16,5 +16,5 @@ const DiagramsColumnStyled = styled.div`
 	
 `;
 
-DiagramsColumnStyled.displayName = "DiagramsColumnStyled";
-export default DiagramsColumnStyled;
+DiagramColumnStyled.displayName = "DiagramColumnStyled";
+export default DiagramColumnStyled;

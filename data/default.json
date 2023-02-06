@@ -81,7 +81,7 @@
         "title": "Experience",
         "value": [
           {
-            "grade": "Grade1",
+            "title": "Grade1",
             "date": "12.12.2022",
             "subtitle": "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
             "additional": [
@@ -94,76 +94,76 @@
         ]
       }
     ],
-    "skillDiagrams": [
+    "diagrams": [
       {
         "type": "pie",
-        "name": "pie section name",
+        "title": "pie section title",
         "diagrams": [
           {
-            "name": "skill 1",
+            "title": "skill 1",
             "value": "55"
           },
           {
-            "name": "skill 2",
+            "title": "skill 2",
             "value": "85"
           },
           {
-            "name": "skill 3",
+            "title": "skill 3",
             "value": "100"
           },
           {
-            "name": "skill 4",
+            "title": "skill 4",
             "value": "50"
           },
           {
-            "name": "skill 5",
+            "title": "skill 5",
             "value": "15"
           }
         ]
       },
       {
         "type": "list",
-        "name": "list section name",
+        "title": "list section title",
         "diagrams": [
           {
-            "name": "skill 1"
+            "title": "skill 1"
           },
           {
-            "name": "skill 2"
+            "title": "skill 2"
           },
           {
-            "name": "skill 3"
+            "title": "skill 3"
           },
           {
-            "name": "skill 4"
+            "title": "skill 4"
           },
           {
-            "name": "skill 5"
+            "title": "skill 5"
           }
         ]
       },
       {
         "type": "bar",
-        "name": "bar section name",
+        "title": "bar section title",
         "diagrams": [
           {
-            "name": "skill 1",
+            "title": "skill 1",
             "value": "55"
           },
           {
-            "name": "skill 2",
+            "title": "skill 2",
             "value": "85"
           },
           {
-            "name": "skill 3",
+            "title": "skill 3",
             "value": "100"
           },
           {
-            "name": "skill 4",
+            "title": "skill 4",
             "value": "50"
           },
           {
-            "name": "skill 5",
+            "title": "skill 5",
             "value": "15"
           }
         ]

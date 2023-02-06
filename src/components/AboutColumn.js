@@ -3,7 +3,7 @@ import { ThemeContext, ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import AboutColumnStyled from "./AboutColumnStyled";
 import { DataDispatchContext } from "./context_providers/DataProvider";
-import AboutHeader from "./AboutHeader";
+import SectionHeader from "./SectionHeader";
 import Section from "./Section";
 import AboutContent from "./AboutContent";
 
@@ -15,7 +15,7 @@ export default function AboutColumn(props) {
 		return (
 			<div key={element.id || index} className="about-section">
 
-				<AboutHeader
+				<SectionHeader
 					data={element.title}
 					actionType="aboutMeTitleUpdated"
 					label="About Me Title"

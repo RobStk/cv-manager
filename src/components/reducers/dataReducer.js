@@ -20,6 +20,10 @@ export default function dataReducer(data, action) {
 			newData.about = action.data;
 			break;
 		}
+		case "diagrams_updated": {
+			newData.diagrams = action.data;
+			break;
+		}
 		default: return newData;
 	}
 	DataService.setData(newData);

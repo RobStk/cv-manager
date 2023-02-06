@@ -9,7 +9,7 @@ import MainFooter from "./components/MainFooter";
 import Name from "./components/Name";
 import ContactSection from "./components/ContactSection";
 import AboutColumn from "./components/AboutColumn";
-import DiagramsColumn from "./components/DiagramsColumn";
+import DiagramColumn from "./components/DiagramColumn";
 import DataProvider from "./components/context_providers/DataProvider";
 import dataReducer from "./components/reducers/dataReducer";
 import modalReducer from "./components/reducers/modalReducer";
@@ -59,7 +59,7 @@ export default function CVManager() {
 								<AboutColumn theme={simpleThemeInverted} data={data.about} />
 							</Section>
 							<Section className="content-column">
-								<DiagramsColumn data={data.skillDiagrams} />
+								<DiagramColumn data={data.diagrams} />
 							</Section>
 						</Section>
 					</MainContainerLayout>

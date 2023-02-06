@@ -1,12 +1,12 @@
 import React from "react";
-import AboutHeaderStyled from "./AboutHeaderStyled";
+import SectionHeaderStyled from "./SectionHeaderStyled";
 import Header from "./Header";
 import PropTypes from "prop-types";
 import EditableDataComponent from "./EditableDataComponent";
 import { ThemeProvider } from "styled-components";
 import simpleTheme from "../main-styles/themes/simple-theme";
 
-export default function AboutHeader(props) {
+export default function SectionHeader(props) {
 	const theme = props.theme || simpleTheme;
 	const input = {
 		inputType: "text",
@@ -18,11 +18,11 @@ export default function AboutHeader(props) {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<AboutHeaderStyled className={props.className || "header"}>
+			<SectionHeaderStyled className={props.className || "header"}>
 				<EditableDataComponent inputsData={[input]} onUpdate={handleUpdate}>
 					<Header>{props.data}</Header>
 				</EditableDataComponent>
-			</AboutHeaderStyled>
+			</SectionHeaderStyled>
 		</ThemeProvider>
 	);
 
@@ -37,7 +37,7 @@ export default function AboutHeader(props) {
 	}
 }
 
-AboutHeader.propTypes = {
+SectionHeader.propTypes = {
 	data: PropTypes.string,
 	label: PropTypes.string,
 	theme: PropTypes.object,

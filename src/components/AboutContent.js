@@ -17,15 +17,8 @@ export default function AboutContent(props) {
 	);
 
 	function handleUpdate(index, value) {
-		let newData = null;
-		if (Array.isArray(props.data)) {
-			newData = [...props.data];
-			newData[index] = value;
-		}
-		else {
-			newData = value;
-			console.log(newData);
-		}
+		const newData = [...props.data];
+		newData[index] = value;
 		props.onUpdate(newData);
 	}
 }

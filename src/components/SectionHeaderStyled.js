@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const AboutHeaderStyled = styled.div`
+const SectionHeaderStyled = styled.div`
 	color: ${props => props.theme.colors.fgPrimary};
 	background-color: ${props => props.theme.colors.bgPrimary};
 	border: inherit;
@@ -9,5 +9,5 @@ const AboutHeaderStyled = styled.div`
 	padding-bottom: 0.2rem;
 	line-height: 200%;
 `;
-AboutHeaderStyled.displayName = "AboutHeaderStyled";
-export default AboutHeaderStyled;
+SectionHeaderStyled.displayName = "SectionHeaderStyled";
+export default SectionHeaderStyled;

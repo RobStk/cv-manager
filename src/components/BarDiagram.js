@@ -5,7 +5,7 @@ import BarDiagramStyled from "./BarDiagramStyled";
 export default function BarDiagram({ data }) {
 	return (
 		<BarDiagramStyled value={data.value}>
-			<div className="diagram-name">{data.name}</div>
+			<div className="diagram-name">{data.title}</div>
 		</BarDiagramStyled>
 	);
 }
