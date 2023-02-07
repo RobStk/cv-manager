@@ -87,7 +87,26 @@ export default function createDiagramSection(data, onUpdate) {
 	}
 
 	case "list": {
-		const diagrams = data.value?.map((diagram, index) => <li key={index}>{diagram.title}</li>);
+		const diagrams = data.value?.map((diagram, index) => {
+			const titleInput = {
+				inputType: "text",
+				id: "diagramTitle",
+				name: "Diagram Title",
+				value: diagram.title,
+				label: "Diagram Title"
+			};
+			return (
+				<EditableDataComponent
+					key={index}
+					inputsData={[titleInput]}
+					onUpdate={inputsData => handleUpdate(index, inputsData)}
+				>
+
+					<li key={index}>{diagram.title}</li>
+				
+				</EditableDataComponent>
+			);
+		});
 		return (
 			<ul>
 				{diagrams}
