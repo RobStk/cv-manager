@@ -52,7 +52,33 @@ export default function createDiagramSection(data, onUpdate) {
 	}
 
 	case "bar": {
-		const diagrams = data.value?.map((diagram, index) => <BarDiagram data={diagram} key={index} />);
+		const diagrams = data.value?.map((diagram, index) => {
+			const titleInput = {
+				inputType: "text",
+				id: "diagramTitle",
+				name: "Diagram Title",
+				value: diagram.title,
+				label: "Diagram Title"
+			};
+			const valueInput = {
+				inputType: "number",
+				id: "diagramValue",
+				name: "Diagram Value",
+				value: diagram.value,
+				label: "Diagram Value"
+			};
+			
+			return (
+				<EditableDataComponent
+					key={index}
+					inputsData={[titleInput, valueInput]}
+					onUpdate={inputsData => handleUpdate(index, inputsData)}
+				>
+					<BarDiagram data={diagram} key={index} />
+				
+				</EditableDataComponent>
+			);
+		});
 		return (
 			<FlexColumnLayout gap={"0.2rem"}>
 				{diagrams}
