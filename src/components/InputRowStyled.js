@@ -6,7 +6,7 @@ const InputRowStyled = styled.div`
 	margin: 0.5rem 0;
 	
 	@media screen and (min-width: 900px){
-		grid-template-columns: 8rem 25rem;
+		grid-template-columns: 9rem 25rem;
 		gap: 1rem;
 		margin: 0.5rem 0;
 		& > *:first-child {

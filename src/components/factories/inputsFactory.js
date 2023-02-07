@@ -26,6 +26,11 @@ export default function createInput(props) {
 				<select id={props.id} value={props.selected} onChange={props.onChange}>{optionElements}</select>
 			);
 		}
+		case "number": {
+			return (
+				<input id={props.id} name={props.name} defaultValue={props.defaultValue} onChange={props.onChange} type={props.inputType} />
+			);
+		}
 		default: return null;
 	}
 }

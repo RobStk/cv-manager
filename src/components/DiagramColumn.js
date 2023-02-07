@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import propTypes from "prop-types";
 import DiagramColumnStyled from "./DiagramColumnStyled";
-import DiagramSectionFactory from "./factories/diagramSectionFactory";
 import SectionHeader from "./SectionHeader";
 import Section from "./Section";
 import { DataDispatchContext } from "./context_providers/DataProvider";
+import createDiagramSection from "./factories/diagramSectionFactory";
 
 export default function DiagramColumn({ data }) {
 	const dispatchUpdate = useContext(DataDispatchContext);
@@ -20,7 +20,7 @@ export default function DiagramColumn({ data }) {
 				/>
 
 				<Section className="content">
-					{DiagramSectionFactory.create(section)}
+					{createDiagramSection(section, value => handleDiagramsUpdate(index, value))}
 				</Section>
 			</div>
 		);
@@ -35,6 +35,17 @@ export default function DiagramColumn({ data }) {
 	function handleHeaderUpdate(index, value) {
 		const newData = [...dataArr];
 		newData[index].title = value;
+		dispatchUpdate({
+			type: "diagrams_updated",
+			data: newData
+		});
+	}
+
+	function handleDiagramsUpdate(index, value) {
+		console.log("column received value: ", value);
+		const newData = [...dataArr];
+		console.log("newData[index]: ", newData[index]);
+		newData[index] = value;
 		dispatchUpdate({
 			type: "diagrams_updated",
 			data: newData

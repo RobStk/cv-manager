@@ -98,7 +98,7 @@
       {
         "type": "pie",
         "title": "pie section title",
-        "diagrams": [
+        "value": [
           {
             "title": "skill 1",
             "value": "55"
@@ -124,7 +124,7 @@
       {
         "type": "list",
         "title": "list section title",
-        "diagrams": [
+        "value": [
           {
             "title": "skill 1"
           },
@@ -145,7 +145,7 @@
       {
         "type": "bar",
         "title": "bar section title",
-        "diagrams": [
+        "value": [
           {
             "title": "skill 1",
             "value": "55"

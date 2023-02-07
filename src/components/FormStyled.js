@@ -5,7 +5,7 @@ const FormStyled = styled.form`
 	flex-direction: column;
 	gap: 0.5rem;
 
-	label, textarea, input[type=text]{
+	label, textarea, input[type=text], input[type=number]{
 		padding: 0.3rem 0.6rem;
 		border-radius: 5px;
 	}
