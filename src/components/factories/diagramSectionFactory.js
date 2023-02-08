@@ -1,7 +1,6 @@
 import React from "react";
 import FlexColumnLayout from "../../layout/FlexColumnLayout";
 import FlexRowCenterLayout from "../../layout/FlexRowCenterLayout";
-import BarDiagram from "../BarDiagram";
 import Diagram from "../Diagram";
 import EditableDataComponent from "../EditableDataComponent";
 
@@ -74,7 +73,7 @@ export default function createDiagramSection(data, onUpdate) {
 					inputsData={[titleInput, valueInput]}
 					onUpdate={inputsData => handleUpdate(index, inputsData)}
 				>
-					<BarDiagram data={diagram} key={index} />
+					<Diagram data={diagram} key={index} type="bar" />
 				
 				</EditableDataComponent>
 			);
@@ -102,7 +101,7 @@ export default function createDiagramSection(data, onUpdate) {
 					onUpdate={inputsData => handleUpdate(index, inputsData)}
 				>
 
-					<li key={index}>{diagram.title}</li>
+					<li key={index}><Diagram data={diagram} key={index} type="list-item" /></li>
 				
 				</EditableDataComponent>
 			);

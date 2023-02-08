@@ -1,4 +1,4 @@
-const pieDiagram = props => {
+export default function pieDiagram(props) {
 	/* -------------------------------------------- */
 	/* Configs 										*/
 	/* -------------------------------------------- */
@@ -69,6 +69,4 @@ const pieDiagram = props => {
 			text-align: center;
 		}
 	`;
-};
-
-export default pieDiagram;
+}
