@@ -63,7 +63,9 @@ export default function CVManager() {
 							</Section>
 						</Section>
 					</MainContainerLayout>
-					<MainFooter data={footer} />
+					<Section className="main-footer">
+						<MainFooter data={footer} />
+					</Section>
 				</DataProvider>
 			</CVManagerLayout>
 		</ThemeProvider>
