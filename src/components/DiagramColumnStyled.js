@@ -9,7 +9,6 @@ const DiagramColumnStyled = styled.div`
 	.diagram-section {
 		h2 {
 			text-transform: capitalize;
-			margin-bottom: 0.7rem;
 		}
 	}
 

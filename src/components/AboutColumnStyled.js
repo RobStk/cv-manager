@@ -9,6 +9,7 @@ const AboutColumnStyled = styled.div`
 
 	.header {
         padding-left: 0;
+		padding-right: 1.2rem;
         margin-bottom: 0.6rem;
         border-top-right-radius: 1000px;
         border-bottom-right-radius: 1000px;
