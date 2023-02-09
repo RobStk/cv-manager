@@ -9,12 +9,13 @@ import Form from "./Form";
 export default function EditableDataComponent({ inputsData, className, onUpdate, children }) {
 	const [isHovered, setHover] = useState(false);
 	const dispatchModal = useContext(ModalDispatchContext);
+	const editForm = <Form inputsDataArr={inputsData} onSubmit={handleSubmit} />;
 	const form = <Form inputsDataArr={inputsData} onSubmit={(data) => handleSubmit(data)} />;
-	const editButton = createButton({ type: "edit", onClick: () => dispatchModal({ type: "modal_opened", content: form }) });
+	const editButton = createButton({ type: "edit", onClick: () => openModal(editForm) });
 	const deleteButton = createButton({ type: "delete" });
 
 	return (
-		<EditableDataComponentStyled className={className} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+		<EditableDataComponentStyled className={className} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
 			{children}
 			<EditPanelLayout className={(isHovered) ? "active" : "inactive"}>
 				{editButton}
@@ -25,9 +26,34 @@ export default function EditableDataComponent({ inputsData, className, onUpdate,
 
 	function handleSubmit(data) {
 		onUpdate(data);
+		closeModal();
+	}
+
+
+	function handleModalClosing() {
+		closeModal();
+	}
+
+	function openModal(content) {
+		dispatchModal({
+			type: "modal_opened",
+			content: content
+		});
+	}
+
+	function closeModal() {
 		dispatchModal({
 			type: "modal_closed"
 		});
+	}
+
+	function handleMouseOver(e) {
+		e.stopPropagation();
+		setHover(true);
+	}
+
+	function handleMouseOut() {
+		setHover(false);
 	}
 }
 
