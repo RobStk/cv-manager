@@ -5,14 +5,15 @@ import createButton from "./factories/buttonsFactory";
 import EditPanelLayout from "../layout/EditPanelLayout";
 import { ModalDispatchContext } from "./context_providers/DataProvider";
 import Form from "./Form";
+import DeletionConfirmation from "./DeletionConfirmation";
 
 export default function EditableDataComponent({ inputsData, className, onUpdate, children }) {
 	const [isHovered, setHover] = useState(false);
 	const dispatchModal = useContext(ModalDispatchContext);
 	const editForm = <Form inputsDataArr={inputsData} onSubmit={handleSubmit} />;
-	const form = <Form inputsDataArr={inputsData} onSubmit={(data) => handleSubmit(data)} />;
+	const deletionConfirmation = <DeletionConfirmation onAccept={handleDeletion} onCancel={handleModalClosing} />;
 	const editButton = createButton({ type: "edit", onClick: () => openModal(editForm) });
-	const deleteButton = createButton({ type: "delete" });
+	const deleteButton = createButton({ type: "delete", onClick: () => openModal(deletionConfirmation) });
 
 	return (
 		<EditableDataComponentStyled className={className} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
@@ -29,6 +30,10 @@ export default function EditableDataComponent({ inputsData, className, onUpdate,
 		closeModal();
 	}
 
+	function handleDeletion() {
+		console.log("Deletion");
+		closeModal();
+	}
 
 	function handleModalClosing() {
 		closeModal();
