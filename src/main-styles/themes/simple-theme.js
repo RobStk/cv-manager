@@ -7,7 +7,7 @@ const simpleTheme = {
 		fgPrimary: "hsl(207 61% 20%)",
 		fgSecondary: "hsl(0deg 0% 100%)",
 		redPrimary: "hsl(0deg 73% 45%)",
-		redSecondary: "hsl(0deg 73% 60%)",
+		redSecondary: "hsl(0deg 73% 55%)",
 	},
 	spaces: configs.spaces
 };
