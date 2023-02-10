@@ -41,6 +41,15 @@ export default function ContactSection(props) {
 		});
 	}
 
+	function handleDeletion(id) {
+		const newData = { ...data };
+		newData.value = newData.value.filter(el => el.id != id);
+		dispatchUpdate({
+			type: "contact_updated",
+			contact: newData
+		});
+	}
+
 	function handleContactUpdate(inputsData) {
 		const newData = { ...data };
 		inputsData.forEach(input => {
@@ -61,7 +70,7 @@ export default function ContactSection(props) {
 			const contactTypeInputData = { ...contact, id: `${contact.id}type`, inputType: "select", index: index, options: contactOptions, selected: contact.type, label: "Type" };
 			const contactValueInputData = { ...contact, inputType: "text", index: index, label: "Contact" };
 			return (
-				<EditableDataComponent key={contact.id} inputsData={[contactTypeInputData, contactValueInputData]} onUpdate={handleContactUpdate}>
+				<EditableDataComponent key={contact.id} inputsData={[contactTypeInputData, contactValueInputData]} onUpdate={handleContactUpdate} onDeletion={() => handleDeletion(contact.id)}>
 					<Contact type={contact.type} value={contact.value} />
 				</EditableDataComponent>
 			);

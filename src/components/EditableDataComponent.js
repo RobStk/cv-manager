@@ -7,7 +7,7 @@ import { ModalDispatchContext } from "./context_providers/DataProvider";
 import Form from "./Form";
 import DeletionConfirmation from "./DeletionConfirmation";
 
-export default function EditableDataComponent({ inputsData, className, onUpdate, children }) {
+export default function EditableDataComponent({ inputsData, className, onUpdate, onDeletion, children }) {
 	const [isHovered, setHover] = useState(false);
 	const dispatchModal = useContext(ModalDispatchContext);
 	const editForm = <Form inputsDataArr={inputsData} onSubmit={handleSubmit} />;
@@ -31,7 +31,7 @@ export default function EditableDataComponent({ inputsData, className, onUpdate,
 	}
 
 	function handleDeletion() {
-		console.log("Deletion");
+		onDeletion();
 		closeModal();
 	}
 
@@ -66,5 +66,6 @@ EditableDataComponent.propTypes = {
 	inputsData: propTypes.array,
 	children: propTypes.object,
 	className: propTypes.string,
-	onUpdate: propTypes.func
+	onUpdate: propTypes.func,
+	onDeletion: propTypes.func
 };
