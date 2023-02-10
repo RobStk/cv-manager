@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import propTypes from "prop-types";
 import EditableDataComponentStyled from "./EditableDataComponentStyled";
-import createButton from "./factories/buttonsFactory";
+import createButton from "./factories/buttonFactory";
 import EditPanelLayout from "../layout/EditPanelLayout";
 import { ModalDispatchContext } from "./context_providers/DataProvider";
 import Form from "./Form";

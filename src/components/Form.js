@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import FormStyled from "./FormStyled";
 import InputRow from "./InputRow";
 import createInput from "./factories/inputsFactory";
-import createButton from "./factories/buttonsFactory";
+import createButton from "./factories/buttonFactory";
 import { ModalDispatchContext } from "./context_providers/DataProvider";
 
 export default function Form({ inputsDataArr, onSubmit }) {

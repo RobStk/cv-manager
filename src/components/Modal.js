@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ModalStyled from "./ModalStyled";
-import createButton from "./factories/buttonsFactory";
+import createButton from "./factories/buttonFactory";
 
 export default function Modal({ onClose, children }) {
 	const closeButton = createButton({ type: "close", className: "close-btn", onClick: () => handleClose(onClose) });
