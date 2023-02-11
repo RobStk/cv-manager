@@ -13,7 +13,7 @@ export default function dataReducer(data, action) {
 			break;
 		}
 		case "contact_updated": {
-			newData.contact = action.contact;
+			newData.contact = action.data;
 			break;
 		}
 		case "about_updated": {

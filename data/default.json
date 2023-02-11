@@ -8,25 +8,25 @@
       "title": "Contact",
       "value": [
         {
-          "id": 1,
+          "id": 0,
           "title": "phone",
           "type": "phone",
           "value": "123456789"
         },
         {
-          "id": 2,
+          "id": 1,
           "title": "email",
           "type": "email",
           "value": "email@host.com"
         },
         {
-          "id": 3,
+          "id": 2,
           "title": "gitHub",
           "type": "gitHub",
           "value": "profile.github.com"
         },
         {
-          "id": 4,
+          "id": 3,
           "title": "facebook",
           "type": "facebook",
           "value": "profile.facebook.com"

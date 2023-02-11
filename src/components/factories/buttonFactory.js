@@ -23,6 +23,7 @@ export default function createButton(props) {
 			opts.icon = <AddIcon />;
 			opts.className = "add";
 			opts.name = "add";
+			opts.backgroundColor = opts.backgroundColor || "green";
 			break;
 		}
 		case "accept": {
