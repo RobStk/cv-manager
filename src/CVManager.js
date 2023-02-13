@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useReducer } from "react";
 import { ThemeProvider } from "styled-components";
 import simpleTheme from "./main-styles/themes/simple-theme";
 import simpleThemeInverted from "./main-styles/themes/simple-theme-inverted";
@@ -11,31 +11,15 @@ import ContactSection from "./components/ContactSection";
 import AboutColumn from "./components/AboutColumn";
 import DiagramColumn from "./components/DiagramColumn";
 import DataProvider from "./components/context_providers/DataProvider";
-import dataReducer from "./components/reducers/dataReducer";
 import modalReducer from "./components/reducers/modalReducer";
 import Modal from "./components/Modal";
 import DataService from "./modules/data-service";
 import Section from "./components/Section";
+import useData from "./utils/useData";
 
 export default function CVManager() {
-	const [data, dispatchData] = useReducer(dataReducer, {});
+	const [data, dispatchData] = useData(DataService);
 	const [modalState, dispatchModal] = useReducer(modalReducer, { isActive: false, content: null });
-
-	useEffect(() => {
-		let ignore = false;
-
-		async function fetchData() {
-			const jsonData = await DataService.getData();
-			if (jsonData && !ignore) {
-				dispatchData({
-					type: "data_updated",
-					data: jsonData
-				});
-			}
-		}
-		fetchData();
-		return () => { ignore = true; };
-	}, []);
 
 	const footer = data.footer;
 
