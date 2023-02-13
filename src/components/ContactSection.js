@@ -67,11 +67,27 @@ export default function ContactSection(props) {
 		const contactOptions = [];
 		contactTypes.forEach(contact => contactOptions.push(contact.type));
 		const contacts = data.value?.map((contact, index) => {
-			const contactTypeInputData = { ...contact, id: `${contact.id || index}type`, inputType: "select", index: index, options: contactOptions, selected: contact.type, label: "Type" };
-			const contactValueInputData = { ...contact, id: `${contact.id || index}value`, inputType: "text", index: index, label: "Contact" };
+			const key = contact.id || index;
+			const contactTypeInputData = { ...contact, id: `${key}type`, inputType: "select", index: index, options: contactOptions, selected: contact.type, label: "Type" };
+			const contactValueInputData = { ...contact, id: `${key}value`, inputType: "text", index: index, label: "Contact" };
+
+			let onMoveUp;
+			if (index !== 0) onMoveUp = handleMoveUp;
+			let onMoveDown;
+			if (index !== (data.value.length - 1)) onMoveDown = handleMoveDown;
+
 			return (
-				<EditableDataComponent key={contact.id || index} inputsData={[contactTypeInputData, contactValueInputData]} onUpdate={handleContactUpdate} onDeletion={() => handleDeletion(contact.id || index)}>
+				<EditableDataComponent
+					key={key}
+					inputsData={[contactTypeInputData, contactValueInputData]}
+					onUpdate={handleContactUpdate}
+					onDeletion={() => handleDeletion(key)}
+					onMoveUp={onMoveUp ? () => onMoveUp(index) : undefined}
+					onMoveDown={onMoveDown ? () => onMoveDown(index) : undefined}
+				>
+
 					<Contact type={contact.type} value={contact.value} />
+
 				</EditableDataComponent>
 			);
 		});
@@ -85,6 +101,38 @@ export default function ContactSection(props) {
 		newData.value.forEach((element, index) => {
 			element.id = index;
 		});
+		dispatchUpdate({
+			type: "contact_updated",
+			data: newData
+		});
+	}
+
+	function handleMoveUp(index) {
+		const contacts = [...data.value];
+		const contact = contacts[index];
+		const prevCon = contacts[index - 1];
+		contacts[index - 1] = contact;
+		contacts[index] = prevCon;
+		contacts.forEach((cont, index) => cont.id = index);
+
+		const newData = { ...data };
+		newData.value = contacts;
+		dispatchUpdate({
+			type: "contact_updated",
+			data: newData
+		});
+	}
+
+	function handleMoveDown(index) {
+		const contacts = [...data.value];
+		const contact = contacts[index];
+		const nextCon = contacts[index + 1];
+		contacts[index + 1] = contact;
+		contacts[index] = nextCon;
+		contacts.forEach((cont, index) => cont.id = index);
+
+		const newData = { ...data };
+		newData.value = contacts;
 		dispatchUpdate({
 			type: "contact_updated",
 			data: newData

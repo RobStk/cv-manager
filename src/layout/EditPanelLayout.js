@@ -26,10 +26,6 @@ const EditPanelLayout = styled.div`
 	&.inactive {
 		opacity: 0;
 	}
-
-	:focus-within {
-		opacity: 1;
-	}
 `;
 
 EditPanelLayout.displayName = "EditPanelLayout";

@@ -6,7 +6,9 @@ import {
 	FaRegTrashAlt as DeleteIcon,
 	FaCheck as AcceptIcon,
 	FaTimes as CancelIcon,
-	FaPlus as AddIcon
+	FaPlus as AddIcon,
+	FaArrowDown as ArrowDown,
+	FaArrowUp as ArrowUp
 } from "react-icons/fa";
 
 /**
@@ -61,6 +63,18 @@ export default function createButton(props) {
 			opts.icon = <EditIcon />;
 			opts.className = "edit";
 			opts.name = "edit";
+			break;
+		}
+		case "moveUp": {
+			opts.icon = <ArrowUp />;
+			opts.className = "moveUp";
+			opts.name = "moveUp";
+			break;
+		}
+		case "moveDown": {
+			opts.icon = <ArrowDown />;
+			opts.className = "moveDown";
+			opts.name = "moveDown";
 			break;
 		}
 		default: {

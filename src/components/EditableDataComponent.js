@@ -7,7 +7,7 @@ import { ModalDispatchContext } from "./context_providers/DataProvider";
 import Form from "./Form";
 import DeletionConfirmation from "./DeletionConfirmation";
 
-export default function EditableDataComponent({ inputsData, className, onUpdate, onDeletion, onAddition, children }) {
+export default function EditableDataComponent({ inputsData, className, onUpdate, onDeletion, onAddition, onMoveUp, onMoveDown, children }) {
 	const [isHovered, setHover] = useState(false);
 	const dispatchModal = useContext(ModalDispatchContext);
 	const editForm = <Form inputsDataArr={inputsData} onSubmit={handleSubmit} />;
@@ -25,10 +25,22 @@ export default function EditableDataComponent({ inputsData, className, onUpdate,
 		addButton = createButton({ type: "add", onClick: onAddition });
 	}
 
+	let moveUpButton = null;
+	if (onMoveUp) {
+		moveUpButton = createButton({ type: "moveUp", onClick: onMoveUp });
+	}
+
+	let moveDownButton = null;
+	if (onMoveDown) {
+		moveDownButton = createButton({ type: "moveDown", onClick: onMoveDown });
+	}
+
 	return (
-		<EditableDataComponentStyled className={className} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+		<EditableDataComponentStyled className={className} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onFocus={handleFocus} onBlur={handleBlur}>
 			{children}
 			<EditPanelLayout className={(isHovered) ? "active" : "inactive"}>
+				{moveUpButton}
+				{moveDownButton}
 				{addButton}
 				{editButton}
 				{deleteButton}
@@ -50,6 +62,25 @@ export default function EditableDataComponent({ inputsData, className, onUpdate,
 		closeModal();
 	}
 
+	function handleMouseOver(e) {
+		e.stopPropagation();
+		setHover(true);
+	}
+
+	function handleMouseOut() {
+		setHover(false);
+	}
+
+	function handleFocus(e) {
+		e.stopPropagation();
+		setHover(true);
+	}
+
+	function handleBlur(e) {
+		e.stopPropagation();
+		setHover(false);
+	}
+
 	function openModal(content) {
 		dispatchModal({
 			type: "modal_opened",
@@ -62,15 +93,6 @@ export default function EditableDataComponent({ inputsData, className, onUpdate,
 			type: "modal_closed"
 		});
 	}
-
-	function handleMouseOver(e) {
-		e.stopPropagation();
-		setHover(true);
-	}
-
-	function handleMouseOut() {
-		setHover(false);
-	}
 }
 
 EditableDataComponent.propTypes = {
@@ -82,5 +104,7 @@ EditableDataComponent.propTypes = {
 	className: propTypes.string,
 	onUpdate: propTypes.func,
 	onDeletion: propTypes.func,
-	onAddition: propTypes.func
+	onAddition: propTypes.func,
+	onMoveUp: propTypes.func,
+	onMoveDown: propTypes.func,
 };
