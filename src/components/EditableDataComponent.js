@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 import EditableDataComponentStyled from "./EditableDataComponentStyled";
 import createButton from "./factories/buttonFactory";
 import EditPanelLayout from "../layout/EditPanelLayout";
-import { ModalDispatchContext } from "./context_providers/DataProvider";
+import { ModalDispatchContext } from "./context_providers/MainFeatureProvider";
 import Form from "./Form";
 import DeletionConfirmation from "./DeletionConfirmation";
 

@@ -9,7 +9,7 @@ export default function dataReducer(data, action) {
 			break;
 		}
 		case "name_updated": {
-			newData.name = action.name;
+			newData.name = action.data;
 			break;
 		}
 		case "contact_updated": {
@@ -24,8 +24,8 @@ export default function dataReducer(data, action) {
 			newData.diagrams = action.data;
 			break;
 		}
-		case "footer_content_updated": {
-			newData.footer.mainContent = action.data;
+		case "footer_updated": {
+			newData.footer = action.data;
 			break;
 		}
 		default: return newData;

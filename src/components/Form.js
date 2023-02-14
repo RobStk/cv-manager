@@ -4,7 +4,7 @@ import FormStyled from "./FormStyled";
 import InputRow from "./InputRow";
 import createInput from "./factories/inputsFactory";
 import createButton from "./factories/buttonFactory";
-import { ModalDispatchContext } from "./context_providers/DataProvider";
+import { ModalDispatchContext } from "./context_providers/MainFeatureProvider";
 
 export default function Form({ inputsDataArr, onSubmit }) {
 	const [inputsData, setInputsData] = useState([...inputsDataArr]);

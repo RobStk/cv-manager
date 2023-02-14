@@ -1,22 +1,34 @@
-import React, { useContext } from "react";
+import React from "react";
 import ContactSectionStyled from "./ContactSectionStyled";
 import propTypes from "prop-types";
 import Contact from "./Contact";
-import { DataContext, DataDispatchContext } from "./context_providers/DataProvider";
 import EditableDataComponent from "./EditableDataComponent";
 import getContactTypes from "../utils/contact-types";
 import Header from "./Header";
 
 export default function ContactSection(props) {
-	const data = props.data || useContext(DataContext) || {};
+	const dao = props.dao;
+	const data = dao.getData() || {};
 	const header = data.title || "header";
-	const dispatchUpdate = useContext(DataDispatchContext);
-	const titleInput = { ...data, inputType: "text", id: "contactHeaderTitleInput", name: "Title", value: data.title, label: "Title" };
+
+	const titleInput = {
+		...data,
+		inputType: "text",
+		id: "contactHeaderTitleInput",
+		name: "Title",
+		value: data.title,
+		label: "Title"
+	};
+
 	const contacts = createContacts(data);
 
 	return (
 		<ContactSectionStyled>
-			<EditableDataComponent inputsData={[titleInput]} onUpdate={handleTitleUpdate} onAddition={handleAddition}>
+			<EditableDataComponent
+				inputsData={[titleInput]}
+				onUpdate={handleTitleUpdate}
+				onAddition={handleAddition}
+			>
 				<Header>{header}</Header>
 				<div className="contacts">{contacts}</div>
 			</EditableDataComponent>
@@ -35,19 +47,13 @@ export default function ContactSection(props) {
 				newData.title = input.value
 			);
 		});
-		dispatchUpdate({
-			type: "contact_updated",
-			data: newData
-		});
+		dao.setData(newData);
 	}
 
 	function handleDeletion(id) {
 		const newData = { ...data };
 		newData.value = newData.value.filter(el => el.id != id);
-		dispatchUpdate({
-			type: "contact_updated",
-			data: newData
-		});
+		dao.setData(newData);
 	}
 
 	function handleContactUpdate(inputsData) {
@@ -56,10 +62,7 @@ export default function ContactSection(props) {
 			newData.value[input.index].value = input.value;
 			if (input.inputType === "select") newData.value[input.index].type = input.value;
 		});
-		dispatchUpdate({
-			type: "contact_updated",
-			data: newData
-		});
+		dao.setData(newData);
 	}
 
 	function createContacts(data) {
@@ -101,10 +104,7 @@ export default function ContactSection(props) {
 		newData.value.forEach((element, index) => {
 			element.id = index;
 		});
-		dispatchUpdate({
-			type: "contact_updated",
-			data: newData
-		});
+		dao.setData(newData);
 	}
 
 	function handleMoveUp(index) {
@@ -117,10 +117,7 @@ export default function ContactSection(props) {
 
 		const newData = { ...data };
 		newData.value = contacts;
-		dispatchUpdate({
-			type: "contact_updated",
-			data: newData
-		});
+		dao.setData(newData);
 	}
 
 	function handleMoveDown(index) {
@@ -133,13 +130,10 @@ export default function ContactSection(props) {
 
 		const newData = { ...data };
 		newData.value = contacts;
-		dispatchUpdate({
-			type: "contact_updated",
-			data: newData
-		});
+		dao.setData(newData);
 	}
 }
 
 ContactSection.propTypes = {
-	data: propTypes.object
+	dao: propTypes.object
 };

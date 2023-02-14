@@ -2,14 +2,13 @@ import React, { useContext } from "react";
 import { ThemeContext, ThemeProvider } from "styled-components";
 import propTypes from "prop-types";
 import NameStyled from "./NameStyled";
-import { DataContext, DataDispatchContext } from "./context_providers/DataProvider";
 import EditableDataComponent from "./EditableDataComponent";
 import Header from "./Header";
 
 export default function Name(props) {
 	const theme = props.theme || useContext(ThemeContext);
-	const data = props.data || useContext(DataContext) || {};
-	const dispatchNameUpdate = useContext(DataDispatchContext);
+	const dao = props.dao;
+	const data = dao.getData() || {};
 	const nameInput = {
 		inputType: "text",
 		id: "nameValueInput",
@@ -22,7 +21,7 @@ export default function Name(props) {
 		<ThemeProvider theme={theme}>
 			<NameStyled className={props.className}>
 				<EditableDataComponent inputsData={[nameInput]} onUpdate={handleUpdate}>
-					<Header>{data?.value}</Header>
+					<Header>{data.value}</Header>
 				</EditableDataComponent>
 			</NameStyled>
 		</ThemeProvider>
@@ -33,16 +32,13 @@ export default function Name(props) {
 		inputsData.forEach(input => {
 			if (input.id == nameInput.id) newData.value = input.value;
 		});
-		dispatchNameUpdate({
-			type: "name_updated",
-			name: newData
-		});
+		dao.setData(newData);
 	}
 }
 
 Name.propTypes = {
 	className: propTypes.string,
-	data: propTypes.object,
+	dao: propTypes.object,
 	theme: propTypes.object
 };
 

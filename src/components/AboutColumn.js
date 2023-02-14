@@ -2,22 +2,21 @@ import React, { useContext } from "react";
 import { ThemeContext, ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import AboutColumnStyled from "./AboutColumnStyled";
-import { DataDispatchContext } from "./context_providers/DataProvider";
 import SectionHeader from "./SectionHeader";
 import Section from "./Section";
 import AboutContent from "./AboutContent";
 
 export default function AboutColumn(props) {
 	const theme = props.theme || useContext(ThemeContext);
-	const dispatchUpdate = useContext(DataDispatchContext);
-	const dataArr = props.data || [];
+	const dao = props.dao;
+	const dataArr = dao.getData() || [];
 	const content = dataArr.map((element, index) => {
+
 		return (
 			<div key={element.id || index} className="about-section">
 
 				<SectionHeader
 					data={element.title}
-					actionType="aboutMeTitleUpdated"
 					label="About Me Title"
 					onUpdate={data => handleHeaderUpdate(index, data)}
 				/>
@@ -45,23 +44,17 @@ export default function AboutColumn(props) {
 	function handleHeaderUpdate(index, value) {
 		const newData = [...dataArr];
 		newData[index].title = value;
-		dispatchUpdate({
-			type: "about_updated",
-			data: newData
-		});
+		dao.setData(newData);
 	}
 
 	function handleContentUpdate(index, value) {
 		const newData = [...dataArr];
 		newData[index].value = value;
-		dispatchUpdate({
-			type: "about_updated",
-			data: newData
-		});
+		dao.setData(newData);
 	}
 }
 
 AboutColumn.propTypes = {
-	data: PropTypes.array,
+	dao: PropTypes.object,
 	theme: PropTypes.object
 };

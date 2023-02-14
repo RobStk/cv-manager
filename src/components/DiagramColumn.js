@@ -1,21 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import propTypes from "prop-types";
 import DiagramColumnStyled from "./DiagramColumnStyled";
 import Section from "./Section";
-import { DataDispatchContext } from "./context_providers/DataProvider";
 import createDiagramSection from "./factories/diagramSectionFactory";
 import EditableDataComponent from "./EditableDataComponent";
 import Header from "./Header";
 import getDiagramTypes from "../utils/diagram-types";
 
-export default function DiagramColumn({ data }) {
-	const dispatchUpdate = useContext(DataDispatchContext);
-	const dataArr = data || [];
+export default function DiagramColumn(props) {
+	const dao = props.dao;
+	const dataArr = dao.getData() || [];
 	const diagramTypes = getDiagramTypes();
 	const diagramOptions = [];
 	diagramTypes.forEach(diagram => (diagramOptions.push(diagram.type)));
 	const sections = createSections();
-
 
 	return (
 		<DiagramColumnStyled>
@@ -30,10 +28,7 @@ export default function DiagramColumn({ data }) {
 			if (input.id === "titleInput") newData[index].title = input.value;
 			if (input.id === "typeInput") newData[index].type = input.value;
 		});
-		dispatchUpdate({
-			type: "diagrams_updated",
-			data: newData
-		});
+		dao.setData(newData);
 	}
 
 	function handleDiagramsUpdate(index, value) {
@@ -41,10 +36,7 @@ export default function DiagramColumn({ data }) {
 		const newData = [...dataArr];
 		console.log("newData[index]: ", newData[index]);
 		newData[index] = value;
-		dispatchUpdate({
-			type: "diagrams_updated",
-			data: newData
-		});
+		dao.setData(newData);
 	}
 
 	function createSections() {
@@ -69,7 +61,10 @@ export default function DiagramColumn({ data }) {
 			};
 			return (
 				<div className="diagram-section" key={section.id || index}>
-					<EditableDataComponent inputsData={[titleInput, typeInput]} onUpdate={inputs => handleSectionUpdate(index, inputs)}>
+					<EditableDataComponent
+						inputsData={[titleInput, typeInput]}
+						onUpdate={inputs => handleSectionUpdate(index, inputs)}
+					>
 						<>
 							<Header>{section.title}</Header>
 							<Section className="content">
@@ -85,5 +80,5 @@ export default function DiagramColumn({ data }) {
 }
 
 DiagramColumn.propTypes = {
-	data: propTypes.array,
+	dao: propTypes.object,
 };

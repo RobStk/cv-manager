@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import propTypes from "prop-types";
 import InfoBar from "./InfoBar";
 import MainFooterStyled from "./MainFooterStyled";
 import EditableDataComponent from "./EditableDataComponent";
-import { DataDispatchContext } from "./context_providers/DataProvider";
 
-export default function MainFooter({ data }) {
-	const dispatchUpdate = useContext(DataDispatchContext);
-	const mainContent = data ? data.mainContent : "";
+export default function MainFooter(props) {
+	const dao = props.dao;
+	const data = dao.getData() || {};
+	const mainContent = data.mainContent || "";
 
 	const input = [{
 		inputType: "textarea",
@@ -27,18 +27,13 @@ export default function MainFooter({ data }) {
 	);
 
 	function handleUpdate(inputs) {
-		let content = mainContent;
-		inputs.forEach(input => {
-			if (input.id === "footerMainContent")
-				content = input.value;
-			dispatchUpdate({
-				type: "footer_content_updated",
-				data: content
-			});
-		});
+		const newData = { ...data };
+		const footerContentInput = inputs.find(input => input.id === "footerMainContent");
+		newData.mainContent = footerContentInput.value;
+		dao.setData(newData);
 	}
 }
 
 MainFooter.propTypes = {
-	data: propTypes.object,
+	dao: propTypes.object,
 };
