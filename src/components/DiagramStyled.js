@@ -9,7 +9,7 @@ const DiagramStyled = styled.div`
 		switch (props.diagramType) {
 			case "pie": return pieDiagram(props);
 			case "bar": return barDiagram(props);
-			case "list-item": return listItemDiagram(props);
+			case "list": return listItemDiagram(props);
 		}
 	}}
 `;

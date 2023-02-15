@@ -7,10 +7,12 @@ import { ModalDispatchContext } from "./context_providers/MainFeatureProvider";
 import Form from "./Form";
 import DeletionConfirmation from "./DeletionConfirmation";
 
-export default function EditableDataComponent({ inputsData, className, onUpdate, onDeletion, onAddition, onMoveUp, onMoveDown, children }) {
+export default function EditableDataComponent({ inputBatches, className, onUpdate, onDeletion, onAddition, onMoveUp, onMoveDown, children }) {
 	const [isHovered, setHover] = useState(false);
 	const dispatchModal = useContext(ModalDispatchContext);
-	const editForm = <Form inputsDataArr={inputsData} onSubmit={handleSubmit} />;
+
+	const inputBatchesArr = Array.isArray(inputBatches) ? inputBatches : [inputBatches];
+	const editForm = <Form inputsDataArr={inputBatchesArr} onSubmit={handleSubmit} />;
 	const editButton = createButton({ type: "edit", onClick: () => openModal(editForm) });
 
 	let deletionConfirmation = null;
@@ -96,7 +98,10 @@ export default function EditableDataComponent({ inputsData, className, onUpdate,
 }
 
 EditableDataComponent.propTypes = {
-	inputsData: propTypes.array,
+	inputBatches: propTypes.oneOfType([
+		propTypes.object,
+		propTypes.array
+	]),
 	children: propTypes.oneOfType([
 		propTypes.object,
 		propTypes.array

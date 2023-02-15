@@ -12,5 +12,5 @@ const FlexColumnLayout = styled.div.attrs(props => ({
 	${props => flexCol({ gap: props.gap })}
 `;
 
-FlexColumnLayout.displayName = "FlexRowCenterLayout";
+FlexColumnLayout.displayName = "FlexColumnLayout";
 export default FlexColumnLayout;
