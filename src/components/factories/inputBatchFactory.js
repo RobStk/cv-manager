@@ -8,9 +8,23 @@ export default function createInputBatch(props) {
 				...props,
 			};
 		}
-		case "value": {
+		case "value-number": {
 			return {
 				inputType: "number",
+				label: "Value",
+				...props,
+			};
+		}
+		case "value-short": {
+			return {
+				inputType: "text",
+				label: "Value",
+				...props,
+			};
+		}
+		case "value-long": {
+			return {
+				inputType: "textarea",
 				label: "Value",
 				...props,
 			};

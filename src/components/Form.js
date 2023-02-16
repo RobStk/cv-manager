@@ -33,11 +33,10 @@ export default function Form({ inputsDataArr, onSubmit }) {
 	}
 
 	function handleInputChange(event) {
-		const id = event.target.id;
 		const value = event.target.value;
 		const newData = [...inputsData];
 		newData.forEach(input => {
-			if (id == input.id) {
+			if (event.target == input.ref.current) {
 				input.value = value;
 				input.selected = value;
 			}
@@ -46,7 +45,7 @@ export default function Form({ inputsDataArr, onSubmit }) {
 	}
 
 	function createInputsFromData(inputsData) {
-		const inputs = inputsData.map(input => {
+		const inputs = inputsData.map((input, index) => {
 			if (!input.value) return null;
 
 			const inputElement = createInput({
@@ -56,7 +55,7 @@ export default function Form({ inputsDataArr, onSubmit }) {
 			});
 
 			return (
-				<div key={input.id}>
+				<div key={index}>
 					<InputRow>
 						<label htmlFor={input.id}>{input.label}</label>
 						{inputElement}

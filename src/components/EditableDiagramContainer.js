@@ -8,8 +8,17 @@ import createInputBatch from "./factories/inputBatchFactory";
 export default function EditableDiagramContainer(props) {
 
 	const diagrams = props.data.map((diagram, index) => {
-		const titleInputBatch = createInputBatch({ type: "title", id: "diagramTitle", value: diagram.title });
-		const valueInputBatch = createInputBatch({ type: "value", id: "diagramValue", value: diagram.value });
+		const titleInputBatch = createInputBatch({
+			type: "title",
+			id: "diagramTitle",
+			value: diagram.title
+		});
+		const valueInputBatch = createInputBatch({
+			type: "value-number",
+			id: "diagramValue",
+			value: diagram.value
+		});
+
 		return (
 			<EditableDataComponent
 				key={index}
