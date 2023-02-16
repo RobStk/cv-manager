@@ -1,32 +1,18 @@
 import React from "react";
 import propTypes from "prop-types";
-import Diagram from "./Diagram";
-import EditableDataComponent from "./EditableDataComponent";
 import EditableDiagramContainerStyled from "./EditableDiagramContainerStyled";
-import createInputBatch from "./factories/inputBatchFactory";
+import EditableDiagram from "./EditableDiagram";
 
 export default function EditableDiagramContainer(props) {
-
 	const diagrams = props.data.map((diagram, index) => {
-		const titleInputBatch = createInputBatch({
-			type: "title",
-			id: "diagramTitle",
-			value: diagram.title
-		});
-		const valueInputBatch = createInputBatch({
-			type: "value-number",
-			id: "diagramValue",
-			value: diagram.value
-		});
 
 		return (
-			<EditableDataComponent
+			<EditableDiagram
 				key={index}
-				inputBatches={[titleInputBatch, valueInputBatch]}
+				data={diagram}
+				type={props.type}
 				onUpdate={data => handleDiagramUpdate(index, data)}
-			>
-				<li><Diagram data={diagram} type={props.type} /></li>
-			</EditableDataComponent>
+			/>
 		);
 	});
 
@@ -36,12 +22,9 @@ export default function EditableDiagramContainer(props) {
 		</EditableDiagramContainerStyled>
 	);
 
-	function handleDiagramUpdate(index, inputsData) {
+	function handleDiagramUpdate(index, data) {
 		const newDiagramsArr = [...props.data];
-		inputsData.forEach(input => {
-			if (input.id === "diagramTitle") newDiagramsArr[index].title = input.value;
-			if (input.id === "diagramValue") newDiagramsArr[index].value = input.value;
-		});
+		newDiagramsArr[index] = data;
 		props.onUpdate(newDiagramsArr);
 	}
 }

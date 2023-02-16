@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 import propTypes from "prop-types";
-import DiagramColumnSectionStyled from "./DiagramColumnSectionStyled";
+import EditableDiagramSectionStyled from "./EditableDiagramSectionStyled";
 import EditableDataComponent from "./EditableDataComponent";
 import Header from "./Header";
 import Section from "./Section";
@@ -8,27 +8,30 @@ import getDiagramTypes from "../utils/diagram-types";
 import EditableDiagramContainer from "./EditableDiagramContainer";
 import createInputBatch from "./factories/inputBatchFactory";
 
-export default function DiagramColumnSection(props) {
+export default function EditableDiagramSection(props) {
 	const data = props.data;
 	const diagramOptions = [];
 	const diagramTypes = getDiagramTypes();
 	diagramTypes.forEach(diagram => (diagramOptions.push(diagram.type)));
 
+	const titleInputRef = useRef();
 	const titleInputBatch = createInputBatch({
+		ref: titleInputRef,
 		type: "title",
-		id: "titleInput",
 		value: data.title
 	});
+
+	const typeInputRef = useRef();
 	const typeInputBatch = createInputBatch({
+		ref: typeInputRef,
 		type: "type",
-		id: "typeInput",
 		options: diagramOptions,
 		selected: data.type,
 		value: data.type
 	});
 
 	return (
-		<DiagramColumnSectionStyled className="diagram-section">
+		<EditableDiagramSectionStyled className="diagram-section">
 			<EditableDataComponent
 				inputBatches={[titleInputBatch, typeInputBatch]}
 				onUpdate={inputs => handleUpdate(inputs)}
@@ -38,30 +41,24 @@ export default function DiagramColumnSection(props) {
 					<EditableDiagramContainer data={props.data.value} type={props.data.type} onUpdate={handleDiagramsUpdate} />
 				</Section>
 			</EditableDataComponent>
-		</DiagramColumnSectionStyled>
+		</EditableDiagramSectionStyled>
 	);
 
-	function handleUpdate(inputs) {
+	function handleUpdate() {
 		const newData = { ...data };
-		inputs.forEach(input => {
-			if (input.id === "titleInput") newData.title = input.value;
-			if (input.id === "typeInput") newData.type = input.value;
-		});
+		newData.title = titleInputRef.current.value;
+		newData.type = typeInputRef.current.value;
 		props.onUpdate(newData);
 	}
 
 	function handleDiagramsUpdate(value) {
 		const newData = { ...data };
-		newData.diagrams = value;
+		newData.value = value;
 		props.onUpdate(newData);
 	}
 }
 
-DiagramColumnSection.propTypes = {
+EditableDiagramSection.propTypes = {
 	data: propTypes.object,
 	onUpdate: propTypes.func,
-	editableItems: propTypes.oneOfType([
-		propTypes.object,
-		propTypes.array,
-	]),
 };
