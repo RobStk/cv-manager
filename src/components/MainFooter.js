@@ -1,35 +1,34 @@
-import React from "react";
+import React, { useRef } from "react";
 import propTypes from "prop-types";
 import InfoBar from "./InfoBar";
 import MainFooterStyled from "./MainFooterStyled";
 import EditableDataComponent from "./EditableDataComponent";
+import createInputBatch from "./factories/inputBatchFactory";
 
 export default function MainFooter(props) {
 	const dao = props.dao;
 	const data = dao.getData() || {};
 	const mainContent = data.mainContent || "";
 
-	const input = [{
-		inputType: "textarea",
-		id: "footerMainContent",
-		name: "Footer",
+	const inputRef = useRef();
+	const inputBatch = createInputBatch({
+		ref: inputRef,
+		type: "value-long",
 		value: mainContent,
-		label: "Footer"
-	}];
+	});
 
 	return (
 		<MainFooterStyled>
-			<EditableDataComponent inputsData={input} onUpdate={handleUpdate}>
+			<EditableDataComponent inputBatches={inputBatch} onUpdate={handleUpdate}>
 				<p>{mainContent}</p>
 			</EditableDataComponent>
 			<InfoBar content="placeholder" />
 		</MainFooterStyled>
 	);
 
-	function handleUpdate(inputs) {
+	function handleUpdate() {
 		const newData = { ...data };
-		const footerContentInput = inputs.find(input => input.id === "footerMainContent");
-		newData.mainContent = footerContentInput.value;
+		newData.mainContent = inputRef.current.value;
 		dao.setData(newData);
 	}
 }
