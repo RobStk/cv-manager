@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import ContentBlockStyled from "./ContentBlockStyled";
 import RowItem from "./RowItem";
 import EditableDataComponent from "./EditableDataComponent";
@@ -19,7 +19,12 @@ export default function ContentBlock(props) {
 
 	return (
 		<ContentBlockStyled className={props.className}>
-			<EditableDataComponent inputBatches={inputBatches} onUpdate={handleUpdate}>
+			<EditableDataComponent
+				inputBatches={inputBatches}
+				onUpdate={handleUpdate}
+				onMoveUp={props.onMoveUp}
+				onMoveDown={props.onMoveDown}
+			>
 				<div className="content-clock-header">
 					<div className="date content-item">{data.date}</div>
 					<Header className="content-block content-item">{data.title}</Header>
@@ -112,7 +117,9 @@ export default function ContentBlock(props) {
 }
 
 ContentBlock.propTypes = {
-	data: PropTypes.object,
-	onUpdate: PropTypes.func,
-	className: PropTypes.string
+	data: propTypes.object,
+	onUpdate: propTypes.func,
+	className: propTypes.string,
+	onMoveUp: propTypes.func,
+	onMoveDown: propTypes.func,
 };

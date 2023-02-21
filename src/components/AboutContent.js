@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import AboutContentStyled from "./AboutContentStyled";
 import ContentBlock from "./ContentBlock";
+import { moveItemDown, moveItemUp } from "../utils/move-item";
 
 export default function AboutContent(props) {
 	const data = props.data || "";
@@ -26,10 +27,26 @@ export default function AboutContent(props) {
 				data={item}
 				key={index}
 				onUpdate={newData => handleUpdate(index, newData)}
+				onMoveUp={() => handleMoveUp(index)}
+				onMoveDown={() => handleMoveDown(index)}
 				className="content-item"
 			/>
 		);
 		return contentArr;
+	}
+
+	function handleMoveUp(index) {
+		const newData = [...props.data];
+		moveItemUp(newData, index);
+		newData.forEach((cont, index) => cont.id = index);
+		props.onUpdate(newData);
+	}
+
+	function handleMoveDown(index) {
+		const newData = [...props.data];
+		moveItemDown(newData, index);
+		newData.forEach((cont, index) => cont.id = index);
+		props.onUpdate(newData);
 	}
 }
 
