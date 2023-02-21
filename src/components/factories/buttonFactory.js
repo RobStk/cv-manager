@@ -25,6 +25,7 @@ export default function createButton(props) {
 			opts.icon = <AddIcon />;
 			opts.className = "add";
 			opts.name = "add";
+			opts.color = opts.color || "hsl(0deg 0% 100%)";
 			opts.backgroundColor = opts.backgroundColor || "green";
 			break;
 		}

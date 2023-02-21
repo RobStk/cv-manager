@@ -19,8 +19,8 @@ export default function AboutSection(props) {
 			/>
 
 			<EditableDataComponent
-				onUpdate={handleHeaderUpdate}
 				className="inset"
+				onAddition={handleAddition}
 			>
 
 				<Section>
@@ -45,6 +45,13 @@ export default function AboutSection(props) {
 	function handleContentUpdate(value) {
 		const newData = { ...data };
 		newData.value = value;
+		props.onUpdate(newData);
+	}
+
+	function handleAddition() {
+		const newData = { ...data };
+		const newContent = { title: "New element" };
+		newData.value.push(newContent);
 		props.onUpdate(newData);
 	}
 }

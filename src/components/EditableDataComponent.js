@@ -12,8 +12,12 @@ export default function EditableDataComponent({ inputBatches, className, onUpdat
 	const dispatchModal = useContext(ModalDispatchContext);
 
 	const inputBatchesArr = Array.isArray(inputBatches) ? inputBatches : [inputBatches];
-	const editForm = <Form inputsDataArr={inputBatchesArr} onSubmit={handleSubmit} />;
-	const editButton = createButton({ type: "edit", onClick: () => openModal(editForm) });
+
+	let editButton = null;
+	if (onUpdate) {
+		const editForm = <Form inputsDataArr={inputBatchesArr} onSubmit={handleSubmit} />;
+		editButton = createButton({ type: "edit", onClick: () => openModal(editForm) });
+	}
 
 	let deletionConfirmation = null;
 	let deleteButton = null;
