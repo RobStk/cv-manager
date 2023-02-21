@@ -1,14 +1,14 @@
 import React, { useRef } from "react";
 import propTypes from "prop-types";
-import EditableDiagramSectionStyled from "./EditableDiagramSectionStyled";
+import DiagramSectionStyled from "./DiagramSectionStyled";
 import EditableDataComponent from "./EditableDataComponent";
 import Header from "./Header";
 import Section from "./Section";
 import getDiagramTypes from "../utils/diagram-types";
-import EditableDiagramContainer from "./EditableDiagramContainer";
+import DiagramContainer from "./DiagramContainer";
 import createInputBatch from "./factories/inputBatchFactory";
 
-export default function EditableDiagramSection(props) {
+export default function DiagramSection(props) {
 	const data = props.data;
 	const diagramOptions = [];
 	const diagramTypes = getDiagramTypes();
@@ -31,22 +31,41 @@ export default function EditableDiagramSection(props) {
 	});
 
 	return (
-		<EditableDiagramSectionStyled className="diagram-section">
+		<DiagramSectionStyled className={props.className}>
+
 			<EditableDataComponent
-				inputBatches={[titleInputBatch, typeInputBatch]}
-				onUpdate={inputs => handleUpdate(inputs)}
+				inputBatches={titleInputBatch}
+				onUpdate={handleTitleUpdate}
+				className="section-header"
 			>
 				<Header>{props.data.title}</Header>
-				<Section className="content">
-					<EditableDiagramContainer data={props.data.value} type={props.data.type} onUpdate={handleDiagramsUpdate} />
+			</EditableDataComponent>
+
+			<EditableDataComponent
+				inputBatches={typeInputBatch}
+				onUpdate={handleTypeUpdate}
+			>
+				<Section>
+					<DiagramContainer
+						data={props.data.value}
+						type={props.data.type}
+						onUpdate={handleDiagramsUpdate}
+						className="content-container"
+					/>
 				</Section>
 			</EditableDataComponent>
-		</EditableDiagramSectionStyled>
+
+		</DiagramSectionStyled>
 	);
 
-	function handleUpdate() {
+	function handleTitleUpdate() {
 		const newData = { ...data };
 		newData.title = titleInputRef.current.value;
+		props.onUpdate(newData);
+	}
+
+	function handleTypeUpdate() {
+		const newData = { ...data };
 		newData.type = typeInputRef.current.value;
 		props.onUpdate(newData);
 	}
@@ -58,7 +77,8 @@ export default function EditableDiagramSection(props) {
 	}
 }
 
-EditableDiagramSection.propTypes = {
+DiagramSection.propTypes = {
 	data: propTypes.object,
 	onUpdate: propTypes.func,
+	className: propTypes.string
 };

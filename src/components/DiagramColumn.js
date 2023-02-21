@@ -2,7 +2,7 @@ import React from "react";
 import propTypes from "prop-types";
 import DiagramColumnStyled from "./DiagramColumnStyled";
 import getDiagramTypes from "../utils/diagram-types";
-import EditableDiagramSection from "./EditableDiagramSection";
+import DiagramSection from "./DiagramSection";
 
 export default function DiagramColumn(props) {
 	const dao = props.dao;
@@ -27,7 +27,7 @@ export default function DiagramColumn(props) {
 	function createSections() {
 		const sections = dataArr.map((section, index) => {
 			return (
-				<EditableDiagramSection
+				<DiagramSection
 					key={index}
 					data={section}
 					onUpdate={data => handleSectionUpdate(index, data)}
