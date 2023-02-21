@@ -1,108 +1,106 @@
-import React from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import ContentBlockStyled from "./ContentBlockStyled";
 import RowItem from "./RowItem";
 import EditableDataComponent from "./EditableDataComponent";
 import Header from "./Header";
+import createInputBatch from "./factories/inputBatchFactory";
 
-export default function ContentBlock({ data, onUpdate }) {
-	const inputs = createInputs(data);
+export default function ContentBlock(props) {
+	const data = props.data || {};
+
+	const titleInputRef = useRef();
+	const dateInputRef = useRef();
+	const subtitleInputRef = useRef();
+	const textValueInputRef = useRef();
+
+	const inputBatches = createInputBatches();
 	const additionalArr = createAdditionalArr(data);
 
 	return (
-		<ContentBlockStyled>
-			<EditableDataComponent inputsData={inputs} onUpdate={handleUpdate}>
-				<>
-					<div className="content-clock-header">
-						<div className="date">{data.date}</div>
-						<Header className="content-block">{data.title}</Header>
-						<div className="subtitle">{data.subtitle}</div>
-						<div className="text-value">{data.value}</div>
-					</div>
-					<div className="content-block-items">
-						{additionalArr}
-					</div>
-				</>
+		<ContentBlockStyled className={props.className}>
+			<EditableDataComponent inputBatches={inputBatches} onUpdate={handleUpdate}>
+				<div className="content-clock-header">
+					<div className="date content-item">{data.date}</div>
+					<Header className="content-block content-item">{data.title}</Header>
+					<div className="subtitle content-item">{data.subtitle}</div>
+					<div className="text-value content-item">{data.value}</div>
+				</div>
+				<div className="content-block-items content-item">
+					{additionalArr}
+				</div>
 			</EditableDataComponent>
 		</ContentBlockStyled>
 	);
 
-	function handleUpdate(inputs) {
+	function handleUpdate() {
 		const newData = { ...data };
-		inputs.forEach(input => {
-			if (input.name === "Title") newData.title = input.value;
-			if (input.name === "Date") newData.date = input.value;
-			if (input.name === "Subtitle") newData.subtitle = input.value;
-			if (input.name === "Text value") newData.value = input.value;
-			if (input.name.startsWith("Add")) {
-				if (input.name.endsWith("title")) newData.additional[input.index].title = input.value;
-				if (input.name.endsWith("value")) newData.additional[input.index].value = input.value;
-			}
-		});
-		onUpdate(newData);
+		newData.title = titleInputRef.current.value;
+		newData.date = dateInputRef.current.value;
+		newData.subtitle = subtitleInputRef.current.value;
+		newData.value = textValueInputRef.current.value;
+		// 	if (input.name.startsWith("Add")) {
+		// 		if (input.name.endsWith("title")) newData.additional[input.index].title = input.value;
+		// 		if (input.name.endsWith("value")) newData.additional[input.index].value = input.value;
+		// 	}
+		props.onUpdate(newData);
 	}
 
-	function createInputs(data) {
-		const inputs = [];
+	function createInputBatches() {
+		const inputBatches = [];
 
-		const titleInput = {
-			inputType: "text",
-			id: "blockTitle",
-			name: "Title",
+		const titleInputBatch = createInputBatch({
+			ref: titleInputRef,
+			type: "title",
 			value: data.title,
-			label: "Title"
-		};
-		inputs.push(titleInput);
-
-		const dateInput = {
-			inputType: "text",
-			id: "blockDate",
-			name: "Date",
-			value: data.date,
-			label: "Date"
-		};
-		inputs.push(dateInput);
-
-		const subtitleInput = {
-			inputType: "textarea",
-			id: "blockSubtitle",
-			name: "Subtitle",
-			value: data.subtitle,
-			label: "Subtitle"
-		};
-		inputs.push(subtitleInput);
-
-		const textValueInput = {
-			inputType: "textarea",
-			id: "blockTextValue",
-			name: "Text value",
-			value: data.value,
-			label: "textValue"
-		};
-		inputs.push(textValueInput);
-
-		data.additional?.forEach((add, index) => {
-			inputs.push({
-				inputType: "text",
-				id: `title${index}`,
-				index: index,
-				name: `Add ${index + 1} title`,
-				value: add.title,
-				label: `Add ${index + 1} title`
-			});
-
-			inputs.push({
-				inputType: "textarea",
-				id: `value${index}`,
-				index: index,
-				name: `Add ${index + 1} value`,
-				value: add.value,
-				label: `Add ${index + 1} value`
-			});
-
 		});
+		inputBatches.push(titleInputBatch);
 
-		return inputs;
+		const dateInput = createInputBatch({
+			type: "value-short",
+			ref: dateInputRef,
+			value: data.date,
+			label: "Date",
+		});
+		inputBatches.push(dateInput);
+
+		const subtitleInput = createInputBatch({
+			type: "value-long",
+			ref: subtitleInputRef,
+			value: data.subtitle,
+			label: "Subtitle",
+		});
+		inputBatches.push(subtitleInput);
+
+		const textValueInput = createInputBatch({
+			type: "value-long",
+			ref: textValueInputRef,
+			value: data.value,
+		});
+		inputBatches.push(textValueInput);
+
+		// data.additional?.forEach((add, index) => {
+		// 	inputBatches.push({
+		// 		inputType: "text",
+		// 		id: `title${index}`,
+		// 		index: index,
+		// 		name: `Add ${index + 1} title`,
+		// 		value: add.title,
+		// 		label: `Add ${index + 1} title`
+		// 	});
+
+		// 	inputBatches.push({
+		// 		inputType: "textarea",
+		// 		id: `value${index}`,
+		// 		index: index,
+		// 		name: `Add ${index + 1} value`,
+		// 		value: add.value,
+		// 		label: `Add ${index + 1} value`
+		// 	});
+
+		// });
+
+		return inputBatches;
 	}
 
 	function createAdditionalArr(data) {
@@ -115,5 +113,6 @@ export default function ContentBlock({ data, onUpdate }) {
 
 ContentBlock.propTypes = {
 	data: PropTypes.object,
-	onUpdate: PropTypes.func
+	onUpdate: PropTypes.func,
+	className: PropTypes.string
 };

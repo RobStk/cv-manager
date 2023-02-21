@@ -38,7 +38,13 @@ export default function EditableDataComponent({ inputBatches, className, onUpdat
 	}
 
 	return (
-		<EditableDataComponentStyled className={className} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onFocus={handleFocus} onBlur={handleBlur}>
+		<EditableDataComponentStyled
+			className={className}
+			onMouseOver={handleMouseOver}
+			onMouseOut={handleMouseOut}
+			onFocus={handleFocus}
+			onBlur={handleBlur}
+		>
 			{children}
 			<EditPanelLayout className={(isHovered) ? "active" : "inactive"}>
 				{moveUpButton}

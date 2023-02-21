@@ -46,7 +46,7 @@ export default function Form({ inputsDataArr, onSubmit }) {
 
 	function createInputsFromData(inputsData) {
 		const inputs = inputsData.map((input, index) => {
-			if (!input.value) return null;
+			// if (!input.value) return null;
 
 			const inputElement = createInput({
 				...input,

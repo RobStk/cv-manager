@@ -36,6 +36,6 @@ export default function createInputBatch(props) {
 				...props,
 			};
 		}
-		default: throw Error("Unsupported input batch type.");
+		default: throw Error(`"${props.type}" is an unsupported input batch type`);
 	}
 }

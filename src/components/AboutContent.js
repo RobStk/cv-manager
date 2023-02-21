@@ -6,12 +6,10 @@ import ContentBlock from "./ContentBlock";
 export default function AboutContent(props) {
 	const data = props.data || "";
 	const content = Array.isArray(data) ? data : [data];
-	const contentArr = content.map((item, index) =>
-		<ContentBlock data={item} key={index} onUpdate={newData => handleUpdate(index, newData)} />
-	);
+	const contentArr = createContentArr();
 
 	return (
-		<AboutContentStyled>
+		<AboutContentStyled className={props.className}>
 			{contentArr}
 		</AboutContentStyled>
 	);
@@ -21,6 +19,18 @@ export default function AboutContent(props) {
 		newData[index] = value;
 		props.onUpdate(newData);
 	}
+
+	function createContentArr() {
+		const contentArr = content.map((item, index) =>
+			<ContentBlock
+				data={item}
+				key={index}
+				onUpdate={newData => handleUpdate(index, newData)}
+				className="content-item"
+			/>
+		);
+		return contentArr;
+	}
 }
 
 AboutContent.propTypes = {
@@ -28,5 +38,6 @@ AboutContent.propTypes = {
 		PropTypes.array,
 		PropTypes.string
 	]),
-	onUpdate: PropTypes.func
+	onUpdate: PropTypes.func,
+	className: PropTypes.string
 };

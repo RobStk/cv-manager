@@ -10,8 +10,13 @@ export default function Name(props) {
 	const theme = props.theme || useContext(ThemeContext);
 	const dao = props.dao;
 	const data = dao.getData() || {};
-	const nameInputRef = useRef();
-	const inputBatch = createInputBatch({ type: "value-short", ref: nameInputRef, value: data.value });
+
+	const nameInputRef = useRef();	
+	const inputBatch = createInputBatch({
+		type: "value-short",
+		ref: nameInputRef,
+		value: data.value
+	});
 
 	return (
 		<ThemeProvider theme={theme}>
