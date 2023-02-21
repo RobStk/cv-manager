@@ -29,6 +29,7 @@ export default function AboutContent(props) {
 				onUpdate={newData => handleUpdate(index, newData)}
 				onMoveUp={() => handleMoveUp(index)}
 				onMoveDown={() => handleMoveDown(index)}
+				onDeletion={() => handleDeletion(index)}
 				className="content-item"
 			/>
 		);
@@ -46,6 +47,13 @@ export default function AboutContent(props) {
 		const newData = [...props.data];
 		moveItemDown(newData, index);
 		newData.forEach((cont, index) => cont.id = index);
+		props.onUpdate(newData);
+	}
+
+	function handleDeletion(index) {
+		const newData = [...props.data];
+		newData.splice(index, 1);
+		newData.forEach((el, index) => el.id = index);
 		props.onUpdate(newData);
 	}
 }

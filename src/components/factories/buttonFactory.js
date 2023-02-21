@@ -57,6 +57,7 @@ export default function createButton(props) {
 			opts.icon = <DeleteIcon />;
 			opts.backgroundColor = opts.backgroundColor || "hsl(0deg 100% 50%)";
 			opts.className = "delete";
+			opts.color = opts.color || "hsl(0deg 0% 100%)";
 			opts.name = "delete";
 			break;
 		}

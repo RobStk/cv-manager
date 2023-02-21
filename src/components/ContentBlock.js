@@ -24,6 +24,7 @@ export default function ContentBlock(props) {
 				onUpdate={handleUpdate}
 				onMoveUp={props.onMoveUp}
 				onMoveDown={props.onMoveDown}
+				onDeletion={props.onDeletion}
 			>
 				<div className="content-clock-header">
 					<div className="date content-item">{data.date}</div>
@@ -122,4 +123,5 @@ ContentBlock.propTypes = {
 	className: propTypes.string,
 	onMoveUp: propTypes.func,
 	onMoveDown: propTypes.func,
+	onDeletion: propTypes.func,
 };
