@@ -47,20 +47,20 @@ const MainContainerLayout = styled.div`
 			height: 100%;
 			display: flex;
 			flex-direction: column;
-			padding: ${props => props.theme.spaces.main};
-		}
+			padding: ${props => props.theme.spaces.main} 0;
 
-		.content-column:first-child {
-			background-color: ${({ theme }) => theme.colors.bgSecondary};
-			color: ${({ theme }) => theme.colors.fgSecondary};
-			border-top-right-radius: 2rem;
-			padding-left: 0;
-		}
+			&.left-column {
+				background-color: ${({ theme }) => theme.colors.bgSecondary};
+				color: ${({ theme }) => theme.colors.fgSecondary};
+				border-top-right-radius: 2rem;
+				padding-left: 0;
+			}
 
-		.content-column:last-child {
-			> div {
-				gap: 1rem;
-				justify-content: space-evenly;
+			&.right-column {
+				> div {
+					gap: 1rem;
+					justify-content: space-evenly;
+				}
 			}
 		}
 	}

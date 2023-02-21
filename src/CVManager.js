@@ -46,10 +46,10 @@ export default function CVManager() {
 							</Section>
 						</Section>
 						<Section className="cv-content">
-							<Section className="content-column">
+							<Section className="content-column left-column">
 								<AboutColumn dao={aboutDataPart} theme={simpleThemeInverted} />
 							</Section>
-							<Section className="content-column">
+							<Section className="content-column right-column">
 								<DiagramColumn dao={diagramsDataPart} />
 							</Section>
 						</Section>
