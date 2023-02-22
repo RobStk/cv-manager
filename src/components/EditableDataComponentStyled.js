@@ -20,6 +20,10 @@ const EditableDataComponentStyled = styled.div`
 			box-shadow: inset 0px 0px 3px 3px ${props => addOpacityToColor(props.theme.colors.bgSecondary, 0.2)};
 		}		
 	}
+
+	&.no-padding {
+		padding: 0;	
+	}
 `;
 EditableDataComponentStyled.displayName = "EditableDataComponentStyled";
 export default EditableDataComponentStyled;

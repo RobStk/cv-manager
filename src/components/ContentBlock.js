@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
 import propTypes from "prop-types";
 import ContentBlockStyled from "./ContentBlockStyled";
-import RowItem from "./RowItem";
 import EditableDataComponent from "./EditableDataComponent";
 import Header from "./Header";
 import createInputBatch from "./factories/inputBatchFactory";
+import ContentBlockAdd from "./ContentBlockAdd";
 
 export default function ContentBlock(props) {
 	const data = props.data || {};
@@ -27,10 +27,10 @@ export default function ContentBlock(props) {
 				onDeletion={props.onDeletion}
 			>
 				<div className="content-clock-header">
-					<div className="date content-item">{data.date}</div>
+					<p className="date content-item">{data.date}</p>
 					<Header className="content-block content-item">{data.title}</Header>
-					<div className="subtitle content-item">{data.subtitle}</div>
-					<div className="text-value content-item">{data.value}</div>
+					<p className="subtitle content-item">{data.subtitle}</p>
+					<p className="text-value content-item">{data.value}</p>
 				</div>
 				<div className="content-block-items content-item">
 					{additionalArr}
@@ -45,10 +45,12 @@ export default function ContentBlock(props) {
 		newData.date = dateInputRef.current.value;
 		newData.subtitle = subtitleInputRef.current.value;
 		newData.value = textValueInputRef.current.value;
-		// 	if (input.name.startsWith("Add")) {
-		// 		if (input.name.endsWith("title")) newData.additional[input.index].title = input.value;
-		// 		if (input.name.endsWith("value")) newData.additional[input.index].value = input.value;
-		// 	}
+		props.onUpdate(newData);
+	}
+
+	function handleAddUpdate(index, value) {
+		const newData = { ...data };
+		newData.additional[index] = value;
 		props.onUpdate(newData);
 	}
 
@@ -85,33 +87,12 @@ export default function ContentBlock(props) {
 		});
 		inputBatches.push(textValueInput);
 
-		// data.additional?.forEach((add, index) => {
-		// 	inputBatches.push({
-		// 		inputType: "text",
-		// 		id: `title${index}`,
-		// 		index: index,
-		// 		name: `Add ${index + 1} title`,
-		// 		value: add.title,
-		// 		label: `Add ${index + 1} title`
-		// 	});
-
-		// 	inputBatches.push({
-		// 		inputType: "textarea",
-		// 		id: `value${index}`,
-		// 		index: index,
-		// 		name: `Add ${index + 1} value`,
-		// 		value: add.value,
-		// 		label: `Add ${index + 1} value`
-		// 	});
-
-		// });
-
 		return inputBatches;
 	}
 
 	function createAdditionalArr(data) {
 		const additionalArr = data.additional?.map((add, index) => {
-			return <RowItem key={index} title={add.title} value={add.value} />;
+			return <ContentBlockAdd key={index} data={add} onUpdate={(data) => handleAddUpdate(index, data)} />;
 		});
 		return additionalArr;
 	}
