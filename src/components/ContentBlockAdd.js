@@ -20,6 +20,8 @@ export default function ContentBlockAdd(props) {
 				inputBatches={inputBatches}
 				onUpdate={handleUpdate}
 				onDeletion={props.onDeletion}
+				onMoveUp={props.onMoveUp}
+				onMoveDown={props.onMoveDown}
 			>
 				<RowItem title={data.title} value={data.value} />
 			</EditableDataComponent>
@@ -53,4 +55,6 @@ ContentBlockAdd.propTypes = {
 	data: propTypes.object,
 	onUpdate: propTypes.func,
 	onDeletion: propTypes.func,
+	onMoveUp: propTypes.func,
+	onMoveDown: propTypes.func,
 };

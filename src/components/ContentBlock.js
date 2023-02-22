@@ -5,6 +5,7 @@ import EditableDataComponent from "./EditableDataComponent";
 import Header from "./Header";
 import createInputBatch from "./factories/inputBatchFactory";
 import ContentBlockAdd from "./ContentBlockAdd";
+import { moveItemDown, moveItemUp } from "../utils/move-item";
 
 export default function ContentBlock(props) {
 	const data = props.data || {};
@@ -69,6 +70,20 @@ export default function ContentBlock(props) {
 		props.onUpdate(newData);
 	}
 
+	function handleMoveUp(index) {
+		const newData = { ...data };
+		moveItemUp(newData.additional, index);
+		newData.additional.forEach((cont, index) => cont.id = index);
+		props.onUpdate(newData);
+	}
+
+	function handleMoveDown(index) {
+		const newData = { ...data };
+		moveItemDown(newData.additional, index);
+		newData.additional.forEach((cont, index) => cont.id = index);
+		props.onUpdate(newData);
+	}
+
 	function createInputBatches() {
 		const inputBatches = [];
 
@@ -112,6 +127,8 @@ export default function ContentBlock(props) {
 				data={add}
 				onUpdate={(data) => handleAddUpdate(index, data)}
 				onDeletion={() => handleAddDeletion(index)}
+				onMoveUp={() => handleMoveUp(index)}
+				onMoveDown={() => handleMoveDown(index)}
 			/>;
 		});
 		return additionalArr;
