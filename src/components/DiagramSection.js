@@ -9,7 +9,7 @@ import DiagramContainer from "./DiagramContainer";
 import createInputBatch from "./factories/inputBatchFactory";
 
 export default function DiagramSection(props) {
-	const data = props.data;
+	const data = props.data || {};
 	const diagramOptions = [];
 	const diagramTypes = getDiagramTypes();
 	diagramTypes.forEach(diagram => (diagramOptions.push(diagram.type)));
@@ -38,17 +38,18 @@ export default function DiagramSection(props) {
 				onUpdate={handleTitleUpdate}
 				className="section-header"
 			>
-				<Header>{props.data.title}</Header>
+				<Header>{data.title}</Header>
 			</EditableDataComponent>
 
 			<EditableDataComponent
 				inputBatches={typeInputBatch}
 				onUpdate={handleTypeUpdate}
+				onAddition={handleDiagramAddition}
 			>
 				<Section>
 					<DiagramContainer
-						data={props.data.value}
-						type={props.data.type}
+						data={data.value}
+						type={data.type}
 						onUpdate={handleDiagramsUpdate}
 						className="content-container"
 					/>
@@ -60,13 +61,20 @@ export default function DiagramSection(props) {
 
 	function handleTitleUpdate() {
 		const newData = { ...data };
-		newData.title = titleInputRef.current.value;
+		newData.value = titleInputRef.current.value;
 		props.onUpdate(newData);
 	}
 
 	function handleTypeUpdate() {
 		const newData = { ...data };
 		newData.type = typeInputRef.current.value;
+		props.onUpdate(newData);
+	}
+
+	function handleDiagramAddition() {
+		const newData = { ...data };
+		newData.value.push({ title: "New diagram" });
+		newData.value.forEach((el, index) => el.id = index);
 		props.onUpdate(newData);
 	}
 
