@@ -53,8 +53,8 @@ export default function EditableDataComponent({ inputBatches, className, onUpdat
 			<EditPanelLayout className={(isHovered) ? "active" : "inactive"}>
 				{moveUpButton}
 				{moveDownButton}
-				{addButton}
 				{editButton}
+				{addButton}
 				{deleteButton}
 			</EditPanelLayout>
 		</EditableDataComponentStyled>

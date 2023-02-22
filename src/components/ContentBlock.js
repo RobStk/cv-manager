@@ -25,6 +25,7 @@ export default function ContentBlock(props) {
 				onMoveUp={props.onMoveUp}
 				onMoveDown={props.onMoveDown}
 				onDeletion={props.onDeletion}
+				onAddition={handleAddAddition}
 			>
 				<div className="content-clock-header">
 					<p className="date content-item">{data.date}</p>
@@ -51,6 +52,13 @@ export default function ContentBlock(props) {
 	function handleAddUpdate(index, value) {
 		const newData = { ...data };
 		newData.additional[index] = value;
+		props.onUpdate(newData);
+	}
+
+	function handleAddAddition() {
+		const newData = { ...data };
+		newData.additional.push({ title: "New addition" });
+		newData.additional.forEach((el, index) => el.id = index);
 		props.onUpdate(newData);
 	}
 
