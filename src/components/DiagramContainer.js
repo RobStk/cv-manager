@@ -4,6 +4,7 @@ import DiagramContainerStyled from "./DiagramContainerStyled";
 import EditableDiagram from "./EditableDiagram";
 
 export default function DiagramContainer(props) {
+	const data = props.data || [];
 	const diagrams = createDiagrams();
 
 	return (
@@ -12,20 +13,28 @@ export default function DiagramContainer(props) {
 		</DiagramContainerStyled>
 	);
 
-	function handleDiagramUpdate(index, data) {
-		const newDiagramsArr = [...props.data];
-		newDiagramsArr[index] = data;
+	function handleDiagramUpdate(index, value) {
+		const newDiagramsArr = [...data];
+		newDiagramsArr[index] = value;
 		props.onUpdate(newDiagramsArr);
 	}
 
+	function handleDiagramDeletion(index) {
+		const newData = [...data];
+		newData.splice(index, 1);
+		newData.forEach((el, index) => el.id = index);
+		props.onUpdate(newData);
+	}
+
 	function createDiagrams() {
-		const diagrams = props.data.map((diagram, index) => {
+		const diagrams = data.map((diagram, index) => {
 			return (
 				<EditableDiagram
 					key={index}
 					data={diagram}
 					type={props.type}
 					onUpdate={data => handleDiagramUpdate(index, data)}
+					onDeletion={() => handleDiagramDeletion(index)}
 				/>
 			);
 		});
