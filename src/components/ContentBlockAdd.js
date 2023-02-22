@@ -19,6 +19,7 @@ export default function ContentBlockAdd(props) {
 				className="no-padding"
 				inputBatches={inputBatches}
 				onUpdate={handleUpdate}
+				onDeletion={props.onDeletion}
 			>
 				<RowItem title={data.title} value={data.value} />
 			</EditableDataComponent>
@@ -51,4 +52,5 @@ export default function ContentBlockAdd(props) {
 ContentBlockAdd.propTypes = {
 	data: propTypes.object,
 	onUpdate: propTypes.func,
+	onDeletion: propTypes.func,
 };

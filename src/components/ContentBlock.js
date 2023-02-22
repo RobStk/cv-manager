@@ -54,6 +54,13 @@ export default function ContentBlock(props) {
 		props.onUpdate(newData);
 	}
 
+	function handleAddDeletion(index) {
+		const newData = { ...data };
+		newData.additional.splice(index, 1);
+		newData.additional.forEach((el, index) => el.id = index);
+		props.onUpdate(newData);
+	}
+
 	function createInputBatches() {
 		const inputBatches = [];
 
@@ -92,7 +99,12 @@ export default function ContentBlock(props) {
 
 	function createAdditionalArr(data) {
 		const additionalArr = data.additional?.map((add, index) => {
-			return <ContentBlockAdd key={index} data={add} onUpdate={(data) => handleAddUpdate(index, data)} />;
+			return <ContentBlockAdd
+				key={index}
+				data={add}
+				onUpdate={(data) => handleAddUpdate(index, data)}
+				onDeletion={() => handleAddDeletion(index)}
+			/>;
 		});
 		return additionalArr;
 	}
