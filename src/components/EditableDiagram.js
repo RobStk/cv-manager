@@ -26,6 +26,8 @@ export default function EditableDiagram(props) {
 			inputBatches={[titleInputBatch, valueInputBatch]}
 			onUpdate={handleUpdate}
 			onDeletion={props.onDeletion}
+			onMoveUp={props.onMoveUp}
+			onMoveDown={props.onMoveDown}
 		>
 			<li><Diagram data={data} type={props.type} /></li>
 		</EditableDataComponent>
@@ -44,4 +46,6 @@ EditableDiagram.propTypes = {
 	type: propTypes.string,
 	onUpdate: propTypes.func,
 	onDeletion: propTypes.func,
+	onMoveUp: propTypes.func,
+	onMoveDown: propTypes.func,
 };

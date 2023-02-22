@@ -10,6 +10,7 @@ const EditPanelLayout = styled.div`
 	z-index: 1;
 	opacity: 100;
 	transition: opacity 0.2s;
+	width: max-content;
 
 	button {
 		font-size: 1rem;

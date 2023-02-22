@@ -2,6 +2,7 @@ import React from "react";
 import propTypes from "prop-types";
 import DiagramContainerStyled from "./DiagramContainerStyled";
 import EditableDiagram from "./EditableDiagram";
+import { moveItemDown, moveItemUp } from "../utils/move-item";
 
 export default function DiagramContainer(props) {
 	const data = props.data || [];
@@ -26,6 +27,20 @@ export default function DiagramContainer(props) {
 		props.onUpdate(newData);
 	}
 
+	function handleDiagramMoveUp(index) {
+		const newData = [...data];
+		moveItemUp(newData, index);
+		newData.forEach((cont, index) => cont.id = index);
+		props.onUpdate(newData);
+	}
+
+	function handleDiagramMoveDown(index) {
+		const newData = [...data];
+		moveItemDown(newData, index);
+		newData.forEach((cont, index) => cont.id = index);
+		props.onUpdate(newData);
+	}
+
 	function createDiagrams() {
 		const diagrams = data.map((diagram, index) => {
 			return (
@@ -35,6 +50,8 @@ export default function DiagramContainer(props) {
 					type={props.type}
 					onUpdate={data => handleDiagramUpdate(index, data)}
 					onDeletion={() => handleDiagramDeletion(index)}
+					onMoveUp={() => handleDiagramMoveUp(index)}
+					onMoveDown={() => handleDiagramMoveDown(index)}
 				/>
 			);
 		});
