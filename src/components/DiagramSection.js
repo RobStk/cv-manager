@@ -61,7 +61,7 @@ export default function DiagramSection(props) {
 
 	function handleTitleUpdate() {
 		const newData = { ...data };
-		newData.value = titleInputRef.current.value;
+		newData.title = titleInputRef.current.value;
 		props.onUpdate(newData);
 	}
 
