@@ -50,6 +50,7 @@ export default function AboutSection(props) {
 
 	function handleAddition() {
 		const newData = { ...data };
+		if (!newData.value) newData.value = [];
 		const newContent = { title: "New element" };
 		newData.value.push(newContent);
 		props.onUpdate(newData);

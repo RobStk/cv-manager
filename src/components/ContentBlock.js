@@ -58,6 +58,7 @@ export default function ContentBlock(props) {
 
 	function handleAddAddition() {
 		const newData = { ...data };
+		if (!newData.additional) newData.additional = [];
 		newData.additional.push({ title: "New addition" });
 		newData.additional.forEach((el, index) => el.id = index);
 		props.onUpdate(newData);
