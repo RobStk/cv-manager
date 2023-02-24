@@ -22,7 +22,7 @@ export default function MainFooter(props) {
 			<EditableDataComponent inputBatches={inputBatch} onUpdate={handleUpdate}>
 				<p>{mainContent}</p>
 			</EditableDataComponent>
-			<InfoBar content="placeholder" />
+			<InfoBar />
 		</MainFooterStyled>
 	);
 
