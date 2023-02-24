@@ -1,6 +1,6 @@
 const configs = {
 	spaces: {
-		main: "2.5rem"
+		main: "2.2rem"
 	}
 };
 

@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 const AboutColumnStyled = styled.div`
+	height: 100%;
 	display: flex;
 	flex-direction: column;
-	background-color: ${props => props.theme.colors.bgPrimary};
+	justify-content: space-between;
 	color: ${props => props.theme.colors.fgPrimary};
 `;
 

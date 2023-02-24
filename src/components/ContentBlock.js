@@ -28,7 +28,7 @@ export default function ContentBlock(props) {
 				onDeletion={props.onDeletion}
 				onAddition={handleAddAddition}
 			>
-				<div className="content-clock-header">
+				<div className="content-block-header">
 					<p className="date content-item">{data.date}</p>
 					<Header className="content-block content-item">{data.title}</Header>
 					<p className="subtitle content-item">{data.subtitle}</p>

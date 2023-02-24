@@ -6,7 +6,7 @@ import fancyHeader from "../main-styles/mixins/fancy-header";
 const nameWrapperHeight = "8rem";
 
 const MainContainerLayout = styled.div`
-	${flexCol({ gap: "1rem" })}
+	${flexCol({ gap: "0.8rem" })}
 
 	.cv-header {
 		display: grid;
@@ -58,7 +58,6 @@ const MainContainerLayout = styled.div`
 
 			&.right-column {
 				> div {
-					gap: 1rem;
 					justify-content: space-evenly;
 				}
 			}
