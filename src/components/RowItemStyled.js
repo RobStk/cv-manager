@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const RowItemStyled = styled.div`
+	text-align: left;
 	.row-title {
 		font-size: 1.1em;
 		text-decoration: underline;
